@@ -8,10 +8,6 @@
      box-sizing: border-box;
  }
 
- body {
-     width: 100%;
- }
-
  /* Fondo de inicio y medidas */
  #container-principal {
      background-image: url("../img/fondo-principal.jpg");

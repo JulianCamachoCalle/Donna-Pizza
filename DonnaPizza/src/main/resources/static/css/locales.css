@@ -8,16 +8,11 @@
     box-sizing: border-box;
 }
 
-body {
-    width: 100%;
-}
-
 /* Fondo de inicio y medidas */
 #container-locales {
     background-image: url("../img/fondo-locales.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100vh;
 }
 
 .titulo-locales {
