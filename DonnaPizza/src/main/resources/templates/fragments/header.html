@@ -1,0 +1,31 @@
+<!-- Header -->
+<div th:fragment="header" class="container-fluid m-0 p-0">
+    <!--NavBar-->
+    <nav class="navbar navbar-expand-md" style="height: 6.25rem;">
+        <div class="container-fluid d-flex">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center align-items-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/index}">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/carta}">Carta</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/membresia}">Membresía</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/locales}">Locales</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/login}">Iniciar Sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
