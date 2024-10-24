@@ -21,7 +21,7 @@
         <!-- Botón para agregar clientes -->
         <a th:href="@{/formClientes}" class="btn btn-success mb-3">Agregar Cliente</a>
 
-        <!-- Tabla con estilos de Bootstrap -->
+        <!-- Tabla -->
         <table class="table table-striped table-hover">
             <thead class="thead-dark">
                 <tr>
@@ -39,12 +39,12 @@
                     <td th:text="${clientes.id_cliente}"></td>
                     <td th:text="${clientes.nombre}"></td>
                     <td th:text="${clientes.apellido}"></td>
-                    <td th:text="${clientes.email}"></td>
+                    <td th:text="${clientes.email}"></td>   
                     <td th:text="${clientes.telefono}"></td>
                     <td th:text="${clientes.direccion}"></td>
                     <td>
                         <!-- Botón para editar -->
-                        <a th:href="@{'/getEdit/' + ${clientes.id_cliente}}" class="btn btn-warning btn-sm">Editar</a>
+                        <a th:href="@{/getEditCliente/{id}(id=${clientes.id_cliente})}" class="btn btn-warning btn-sm">Editar</a>
                         <!-- Botón para eliminar -->
                         <a th:href="@{'/delete/' + ${clientes.id_cliente}}" class="btn btn-danger btn-sm"
                            onclick="return confirm('¿Está seguro de eliminar este cliente?')">Eliminar</a>

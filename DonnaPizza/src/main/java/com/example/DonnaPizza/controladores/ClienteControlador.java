@@ -15,24 +15,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ClienteControlador {
-    
+
     @Autowired
     ServicioCliente servicioCliente;
-    
+
     @GetMapping("/CRUDClientes")
     public String CRUDClientes(Model model) {
         List<Cliente> lista = servicioCliente.getList();
         model.addAttribute("lista", lista);
-        
+
         return "CRUDClientes";
     }
-    
+
     @GetMapping("/formClientes")
     public String formClientes(Model model) {
         model.addAttribute("clientes", new Cliente());
         return "formClientes";
     }
-    
+
     @PostMapping("/registrarClientes")
     public String grabarClientes(@ModelAttribute Cliente clientes, Model model) {
         try {
@@ -44,15 +44,16 @@ public class ClienteControlador {
             return "formClientes";
         }
     }
-    
-    @GetMapping("/getEdit/{codigoclientes}")
-    public String editFormClientes(Model model, @PathVariable("codigoclientes") Long id) {
+
+    @GetMapping("/getEditCliente/{id}")
+    public String editFormClientes(Model model, @PathVariable("id") Long id) {
         Cliente clientes = servicioCliente.get(id);
         model.addAttribute("clientes", clientes);
         return "formClientes";
     }
-    
-    public String deleteFormClientes(Model model, @RequestParam("id") Long id) {
+
+    @GetMapping("/delete/{id}")
+    public String deleteFormClientes(@PathVariable("id") Long id) {
         servicioCliente.delete(id);
         return "redirect:/CRUDClientes";
     }
