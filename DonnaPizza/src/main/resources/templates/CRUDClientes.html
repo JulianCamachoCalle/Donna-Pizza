@@ -46,7 +46,7 @@
                         <!-- Botón para editar -->
                         <a th:href="@{/getEditCliente/{id}(id=${clientes.id_cliente})}" class="btn btn-warning btn-sm">Editar</a>
                         <!-- Botón para eliminar -->
-                        <a th:href="@{'/delete/' + ${clientes.id_cliente}}" class="btn btn-danger btn-sm"
+                        <a th:href="@{'/deleteCliente/' + ${clientes.id_cliente}}" class="btn btn-danger btn-sm"
                            onclick="return confirm('¿Está seguro de eliminar este cliente?')">Eliminar</a>
                     </td>
                 </tr>

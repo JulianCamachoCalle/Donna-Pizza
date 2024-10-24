@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,12 +35,20 @@ public class ClienteControlador {
     }
 
     @PostMapping("/registrarClientes")
-    public String grabarClientes(@ModelAttribute Cliente clientes, Model model) {
+    public String grabarClientes(@ModelAttribute Cliente clientes, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("clientes", clientes);
+            return "formClientes";
+        }
         try {
             servicioCliente.save(clientes);
             return "redirect:/CRUDClientes";
         } catch (DataIntegrityViolationException e) {
-            model.addAttribute("errorMessage", e.getMessage().toString());
+            model.addAttribute("errorMessage", "Error al guardar el cliente: " + e.getRootCause().getMessage());
+            model.addAttribute("clientes", clientes);
+            return "formClientes";
+        } catch (Exception e) {
+            model.addAttribute("errorMessage", "Ocurrió un error inesperado: " + e.getMessage());
             model.addAttribute("clientes", clientes);
             return "formClientes";
         }
@@ -52,7 +61,7 @@ public class ClienteControlador {
         return "formClientes";
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("/deleteCliente/{id}")
     public String deleteFormClientes(@PathVariable("id") Long id) {
         servicioCliente.delete(id);
         return "redirect:/CRUDClientes";

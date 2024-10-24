@@ -42,9 +42,9 @@
                     <td th:text="${pizzas.disponible}"></td>
                     <td>
                         <!-- Botón para editar -->
-                        <a th:href="@{'/getEdit/' + ${pizzas.id_pizza}}" class="btn btn-warning btn-sm">Editar</a>
+                        <a th:href="@{/getEditPizza/{id}(id=${pizzas.id_pizza})}" class="btn btn-warning btn-sm">Editar</a>
                         <!-- Botón para eliminar -->
-                        <a th:href="@{'/delete/' + ${pizzas.id_pizza}}" class="btn btn-danger btn-sm"
+                        <a th:href="@{'/deletePizza/' + ${pizzas.id_pizza}}" class="btn btn-danger btn-sm"
                            onclick="return confirm('¿Está seguro de eliminar esta pizza?')">Eliminar</a>
                     </td>
                 </tr>

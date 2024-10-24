@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,25 +35,35 @@ public class PizzasControlador {
     }
 
     @PostMapping("/registrarPizzas")
-    public String grabarPizzas(@ModelAttribute Pizzas pizzas, Model model) {
+    public String grabarPizzas(@ModelAttribute Pizzas pizzas, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("pizzas", pizzas);
+            return "formPizzas";
+        }
         try {
             servicioPizzas.save(pizzas);
             return "redirect:/CRUDPizzas";
         } catch (DataIntegrityViolationException e) {
-            model.addAttribute("errorMessage", e.getMessage().toString());
+            model.addAttribute("errorMessage", "Error al guardar el cliente: " + e.getRootCause().getMessage());
+            model.addAttribute("pizzas", pizzas);
+            return "formPizzas";
+        }
+        catch (Exception e) {
+            model.addAttribute("errorMessage", "Ocurrió un error inesperado: " + e.getMessage());
             model.addAttribute("pizzas", pizzas);
             return "formPizzas";
         }
     }
 
-    @GetMapping("/getEdit/{codigopizzas}")
-    public String editFormPizzas(Model model, @PathVariable("codigopizzas") Long id) {
+    @GetMapping("/getEditPizza/{id}")
+    public String editFormPizzas(Model model, @PathVariable("id") Long id) {
         Pizzas pizzas = servicioPizzas.get(id);
         model.addAttribute("pizzas", pizzas);
         return "formPizzas";
     }
-
-    public String deleteFormPizzas(Model model, @RequestParam("id") Long id) {
+    
+    @GetMapping("/deletePizza/{id}")
+    public String deleteFormPizzas(@PathVariable("id") Long id) {
         servicioPizzas.delete(id);
         return "redirect:/CRUDPizzas";
     }
