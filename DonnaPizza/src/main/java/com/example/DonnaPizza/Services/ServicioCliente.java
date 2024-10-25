@@ -59,6 +59,16 @@ public class ServicioCliente {
             );
         }
 
+        // Verificar telefono empieza con 9
+        if (!telefono.startsWith("9") && cliente.getId_cliente() == null) {
+            datosCliente.put("error", true);
+            datosCliente.put("mensaje", "Ingrese un número de teléfono correcto");
+            return new ResponseEntity<>(
+                    datosCliente,
+                    HttpStatus.CONFLICT
+            );
+        }
+
         // Agregar prefijo al telefono
         if (!telefono.startsWith("+51") && cliente.getId_cliente() == null) {
             cliente.setTelefono("+51 " + telefono);
@@ -80,7 +90,7 @@ public class ServicioCliente {
         datosCliente.put("mensaje", "Se ha registrado el Cliente");
 
         //Actualizar
-        if(cliente.getId_cliente() != null) {
+        if (cliente.getId_cliente() != null) {
             datosCliente.put("mensaje", "Se actualizo el Cliente");
         }
 
