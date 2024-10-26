@@ -120,8 +120,8 @@ function cargarDatosCliente(id) {
 
 // Actualizar
 function actualizarCliente() {
-    const id = document.getElementById("id_clienteact").value;
     const clienteActualizado = {
+        id: document.getElementById("id_clienteact").value,
         nombre: document.getElementById("nombreact").value,
         apellido: document.getElementById("apellidoact").value,
         email: document.getElementById("emailact").value,
@@ -129,7 +129,7 @@ function actualizarCliente() {
         direccion: document.getElementById("direccionact").value
     };
 
-    fetch(`/api/v1/clientes/${id}`, {
+    fetch(`/api/v1/clientes/${clienteActualizado.id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'

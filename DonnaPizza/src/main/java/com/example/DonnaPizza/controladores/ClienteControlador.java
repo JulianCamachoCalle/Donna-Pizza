@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "api/v1/clientes")
@@ -26,6 +27,17 @@ public class ClienteControlador {
         return this.servicioCliente.getClientes();
     }
 
+    // Obtener por Id
+    @GetMapping("{clienteId}")
+    public ResponseEntity<Cliente> getCliente(@PathVariable("clienteId") Long id) {
+        Optional<Cliente> cliente = this.servicioCliente.getClienteById(id);
+        if (cliente.isPresent()) {
+            return ResponseEntity.ok(cliente.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     // Registrar Nuevo
     @PostMapping
     public ResponseEntity<Object> registrarCliente(@RequestBody Cliente cliente) {
@@ -33,9 +45,9 @@ public class ClienteControlador {
     }
 
     // Actualizar
-    @PutMapping
-    public ResponseEntity<Object> actualizarCliente(@RequestBody Cliente cliente) {
-        return this.servicioCliente.newCliente(cliente);
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> actualizarCliente(@PathVariable Long id, @RequestBody Cliente cliente) {
+        return this.servicioCliente.updateCliente(id, cliente);
     }
 
     // Eliminar
