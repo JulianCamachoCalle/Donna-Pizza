@@ -37,55 +37,42 @@
             </select>
             <button class="btn btn-outline-success" type="submit">Buscar</button>
         </form>
-        
-        
+    </div>
+        <!-- Contenedor de las pizzas -->
         <div class="container-fluid d-flex justify-content-center">
-                    <div class="row g-2">
-                        <div class="col-12 col-md-6 col-xl-4 mb-4 d-flex justify-content-center">
-                            <div class="card border border-0 bg-success mx-3 my-0 "
-                                 style="max-width: 21.875rem; height: 23.125rem;" id="plato">
-                                <img src="img/pizza-pepperoni.jpg" class="card-img-top img-fluid" alt="pizza-pepperoni">
-                                <div class="card-body d-flex justify-content-center align-items-center flex-column m-0 p-0">
-                                    <h5 class="card-title text-center m-0 p-0" id="nombre-plato">Pizza Americana</h5>
-                                    <p class="card-text text-center mb-1 mx-1 p-0" id="ingredientes-plato">Queso mozzarella,
-                                        jamón ingles, aceituna, pimiento
-                                        y salsa pizzera</p>
-                                    <p class="card-text my-2 p-0" id="precio-plato">29 Familiar 15 Media</p>
-                                    <a class="btn btn-compra border border-0 px-2 py-1" th:href="@{/especificaciones}" role="button">Comprar</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6 col-xl-4 mb-4 d-flex justify-content-center">
-                            <div class="card border border-0 bg-success mx-3 my-0"
-                                 style="max-width: 21.875rem; height: 23.125rem;" id="plato">
-                                <img src="img/pizza-pepperoni.jpg" class="card-img-top img-fluid" alt="pizza-pepperoni">
-                                <div class="card-body d-flex justify-content-center align-items-center flex-column m-0 p-0">
-                                    <h5 class="card-title text-center m-0 p-0" id="nombre-plato">Pizza Pepperoni</h5>
-                                    <p class="card-text text-center mb-1 mx-1 p-0" id="ingredientes-plato">Queso mozzarella,
-                                        pepperoni, aceituna, pimiento y
-                                        salsa pizzera</p>
-                                    <p class="card-text my-2 p-0" id="precio-plato">32 Familiar 17 Media</p>
-                                    <a class="btn btn-compra border border-0 px-2 py-1" th:href="@{/especificaciones}" role="button">Comprar</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-12 col-xl-4 mb-4 d-flex justify-content-center">
-                            <div class="card border border-0 bg-success mx-3 my-0"
-                                 style="max-width: 21.875rem; height: 23.125rem;" id="plato">
-                                <img src="img/pizza-pepperoni.jpg" class="card-img-top img-fluid" alt="pizza-pepperoni">
-                                <div class="card-body d-flex justify-content-center align-items-center flex-column m-0 p-0">
-                                    <h5 class="card-title text-center m-0 p-0" id="nombre-plato">Donna Pizza</h5>
-                                    <p class="card-text text-center mb-1 mx-1 p-0" id="ingredientes-plato">Queso mozzarella,
-                                        pechuga de pollo deshilachado,
-                                        cebolla blanca, aceituna, pimiento, tocino y salsa pizzera</p>
-                                    <p class="card-text my-2 p-0" id="precio-plato">34 Familiar 18 Media</p>
-                                    <a class="btn btn-compra border border-0 px-2 py-1" th:href="@{/especificaciones}" role="button">Comprar</a>
-                                </div>
+            <div class="row g-2" id="pizzasContainer"></div> <!-- Este contenedor será llenado dinámicamente -->
+        </div>
+        <!-- Script para cargar dinámicamente las pizzas -->
+    <script>
+    fetch('/api/v1/pizzas')
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById('pizzasContainer');
+            container.innerHTML = ''; // Limpia el contenedor
+            data.forEach(pizza => {
+                // Ruta de la imagen basada en el nombre de la pizza
+                const imagePath = `img/${pizza.nombre}.jpg`;
+
+                // Crear el HTML para cada carta de pizza
+                const card = `
+                    <div class="col-12 col-md-6 col-xl-4 mb-4 d-flex justify-content-center">
+                        <div class="card border border-0 bg-success mx-3 my-0" style="max-width: 21.875rem; height: 23.125rem;" id="plato">
+                            <img src="${imagePath}" class="card-img-top img-fluid" alt="${pizza.nombre}">
+                            <div class="card-body d-flex justify-content-center align-items-center flex-column m-0 p-0">
+                                <h5 class="card-title text-center m-0 p-0" id="nombre-plato">${pizza.nombre}</h5>
+                                <p class="card-text text-center mb-1 mx-1 p-0" id="ingredientes-plato">${pizza.descripcion}</p>
+                                <p class="card-text my-2 p-0" id="precio-plato">${pizza.precio} €</p>
+                                <a class="btn btn-compra border border-0 px-2 py-1" th:href="@{/especificaciones}" role="button">Comprar</a>
                             </div>
                         </div>
                     </div>
-                </div>
-    </div>
+                `;
+                container.innerHTML += card;
+            });
+        })
+        .catch(error => console.error('Error al cargar las pizzas:', error));
+</script>
+        
          <!--Footer-->
         <div th:replace="fragments/footer :: footer"></div>
         <!--Fin Footer-->
