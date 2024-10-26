@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Clientes - Donna Pizza</title>
+    <title>Ingredientes - Donna Pizza</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,64 +17,49 @@
 </head>
 <body>
 <div class="container mt-4">
-    <h1>Lista de Clientes</h1>
-    <!-- Botón para abrir el modal de agregar cliente -->
-    <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#clienteModal">
-        Agregar Cliente
+    <h1>Lista de Ingredientes</h1>
+    <!-- Botón para abrir el modal de agregar ingrediente -->
+    <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#ingredienteModal">
+        Agregar Ingrediente
     </button>
 
-    <!-- Tabla para listar clientes -->
+    <!-- Tabla para listar ingredientes -->
     <table class="table table-striped">
         <thead>
         <tr>
             <th>ID</th>
             <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Email</th>
-            <th>Teléfono</th>
-            <th>Dirección</th>
+            <th>Cantidad Disponible</th>
             <th>Acciones</th>
         </tr>
         </thead>
-        <tbody id="clientes-list">
+        <tbody id="ingredientes-list">
         </tbody>
     </table>
 </div>
 
 <!-- Modal para agregar -->
-<div class="modal fade" id="clienteModal" tabindex="-1" role="dialog" aria-labelledby="clienteModalLabel"
+<div class="modal fade" id="ingredienteModal" tabindex="-1" role="dialog" aria-labelledby="ingredienteModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="clienteModalLabel">Agregar Cliente</h5>
+                <h5 class="modal-title" id="ingredienteModalLabel">Agregar Ingrediente</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="clienteForm">
+                <form id="ingredienteForm">
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
                         <input type="text" class="form-control" id="nombre" required>
                     </div>
                     <div class="form-group">
-                        <label for="apellido">Apellido</label>
-                        <input type="text" class="form-control" id="apellido" required>
+                        <label for="cantidad_disponible">Cantidad Disponible</label>
+                        <input type="text" class="form-control" id="cantidad_disponible" required>
                     </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="telefono">Teléfono</label>
-                        <input type="text" class="form-control" id="telefono" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="direccion">Dirección</label>
-                        <input type="text" class="form-control" id="direccion" required>
-                    </div>
-                    <button type="button" class="btn btn-primary" onclick="guardarCliente()">Guardar
+                    <button type="button" class="btn btn-primary" onclick="guardarIngrediente()">Guardar
                     </button>
                 </form>
             </div>
@@ -82,39 +67,27 @@
     </div>
 </div>
 
-<!-- Modal para Editar Cliente -->
-<div class="modal fade" id="editarClienteModal" tabindex="-1" aria-labelledby="editarClienteModalLabel"
+<!-- Modal para Editar Ingrediente -->
+<div class="modal fade" id="editarIngredienteModal" tabindex="-1" aria-labelledby="editarIngredienteModal"
      aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editarClienteModalLabel">Editar Cliente</h5>
+                <h5 class="modal-title" id="editarIngredienteModalLabel">Editar Ingrediente</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="formEditarCliente">
-                    <input type="hidden" id="id_clienteact"/>
+                <form id="formEditarIngrediente">
+                    <input type="hidden" id="id_ingredienteact"/>
                     <div class="mb-3">
                         <label for="nombreact" class="form-label">Nombre</label>
                         <input type="text" class="form-control" id="nombreact" required>
                     </div>
                     <div class="mb-3">
-                        <label for="apellidoact" class="form-label">Apellido</label>
-                        <input type="text" class="form-control" id="apellidoact" required>
+                        <label for="cantidad_disponibleact" class="form-label">Cantidad Disponible</label>
+                        <input type="text" class="form-control" id="cantidad_disponibleact" required>
                     </div>
-                    <div class="mb-3">
-                        <label for="emailact" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="emailact" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="telefonoact" class="form-label">Teléfono</label>
-                        <input type="text" class="form-control" id="telefonoact" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="direccionact" class="form-label">Dirección</label>
-                        <input type="text" class="form-control" id="direccionact" required>
-                    </div>
-                    <button type="button" class="btn btn-primary" onclick="actualizarCliente()">Guardar Cambios</button>
+                    <button type="button" class="btn btn-primary" onclick="actualizarIngrediente()">Guardar Cambios</button>
                 </form>
             </div>
         </div>
@@ -124,7 +97,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="/js/clientes.js"></script>
+<script src="/js/ingredientes.js"></script>
 
 </body>
 
