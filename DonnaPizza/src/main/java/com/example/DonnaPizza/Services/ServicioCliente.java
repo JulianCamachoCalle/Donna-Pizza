@@ -1,4 +1,3 @@
-
 package com.example.DonnaPizza.Services;
 
 import com.example.DonnaPizza.Model.Cliente;
@@ -36,7 +35,7 @@ public class ServicioCliente {
         return clienteRepository.findById(id);
     }
 
-    // Crear Nuevo y Actualizar
+    // Crear Nuevo
     public ResponseEntity<Object> newCliente(Cliente cliente) {
         datosCliente = new HashMap<>();
 
@@ -44,7 +43,7 @@ public class ServicioCliente {
         Optional<Cliente> resEmail = clienteRepository.findClienteByEmail(cliente.getEmail());
 
         // Mensaje de error Email
-        if (resEmail.isPresent() && cliente.getId_cliente() == null) {
+        if (resEmail.isPresent()) {
             datosCliente.put("error", true);
             datosCliente.put("mensaje", "Ya existe un cliente con ese email");
             return new ResponseEntity<>(
@@ -55,7 +54,7 @@ public class ServicioCliente {
 
         // Verificar telefono 9 digitos
         String telefono = cliente.getTelefono();
-        if (telefono.length() != 9 && cliente.getId_cliente() == null) {
+        if (telefono.length() != 9) {
             datosCliente.put("error", true);
             datosCliente.put("mensaje", "Ingrese un número de teléfono correcto");
             return new ResponseEntity<>(
@@ -65,7 +64,7 @@ public class ServicioCliente {
         }
 
         // Verificar telefono empieza con 9
-        if (!telefono.startsWith("9") && cliente.getId_cliente() == null) {
+        if (!telefono.startsWith("9")) {
             datosCliente.put("error", true);
             datosCliente.put("mensaje", "Ingrese un número de teléfono correcto");
             return new ResponseEntity<>(
@@ -75,7 +74,7 @@ public class ServicioCliente {
         }
 
         // Agregar prefijo al telefono
-        if (!telefono.startsWith("+51") && cliente.getId_cliente() == null) {
+        if (!telefono.startsWith("+51")) {
             cliente.setTelefono("+51 " + telefono);
         }
 
@@ -83,7 +82,7 @@ public class ServicioCliente {
         Optional<Cliente> resTel = clienteRepository.findClienteByTelefono(cliente.getTelefono());
 
         // Mensaje de error Telefono
-        if (resTel.isPresent() && cliente.getId_cliente() == null) {
+        if (resTel.isPresent()) {
             datosCliente.put("error", true);
             datosCliente.put("mensaje", "Ya existe un cliente con ese teléfono");
             return new ResponseEntity<>(
@@ -92,14 +91,8 @@ public class ServicioCliente {
             );
         }
 
-        datosCliente.put("mensaje", "Se ha registrado el Cliente");
-
-        //Actualizar
-        if (cliente.getId_cliente() != null) {
-            datosCliente.put("mensaje", "Se actualizo el Cliente");
-        }
-
         // Guardar Con Exito
+        datosCliente.put("mensaje", "Se ha registrado el Cliente");
         clienteRepository.save(cliente);
         datosCliente.put("data", cliente);
         return new ResponseEntity<>(
@@ -116,7 +109,9 @@ public class ServicioCliente {
         if (clienteExistente.isEmpty()) {
             datosCliente.put("error", true);
             datosCliente.put("mensaje", "Cliente no encontrado");
-            return new ResponseEntity<>(datosCliente, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(
+                    datosCliente,
+                    HttpStatus.NOT_FOUND);
         }
 
         // Verificar si el email ya está en uso por otro cliente
@@ -124,7 +119,9 @@ public class ServicioCliente {
         if (resEmail.isPresent() && !resEmail.get().getId_cliente().equals(id)) {
             datosCliente.put("error", true);
             datosCliente.put("mensaje", "Ya existe un cliente con ese email");
-            return new ResponseEntity<>(datosCliente, HttpStatus.CONFLICT);
+            return new ResponseEntity<>(
+                    datosCliente,
+                    HttpStatus.CONFLICT);
         }
 
         // Validaciones adicionales
@@ -132,7 +129,9 @@ public class ServicioCliente {
         if (telefono.length() != 9 || !telefono.startsWith("9")) {
             datosCliente.put("error", true);
             datosCliente.put("mensaje", "Ingrese un número de teléfono correcto");
-            return new ResponseEntity<>(datosCliente, HttpStatus.CONFLICT);
+            return new ResponseEntity<>(
+                    datosCliente,
+                    HttpStatus.CONFLICT);
         }
 
         // Prefijo de teléfono
@@ -152,15 +151,17 @@ public class ServicioCliente {
         datosCliente.put("mensaje", "Se actualizó el Cliente");
         datosCliente.put("data", clienteActualizar);
 
-        return new ResponseEntity<>(datosCliente, HttpStatus.OK);
+        return new ResponseEntity<>(
+                datosCliente,
+                HttpStatus.OK);
     }
 
 
     // Eliminar
     public ResponseEntity<Object> deleteCliente(Long id) {
         datosCliente = new HashMap<>();
-        boolean existe = this.clienteRepository.existsById(id);
-        if (!existe) {
+        boolean existeCliente = this.clienteRepository.existsById(id);
+        if (!existeCliente) {
             datosCliente.put("error", true);
             datosCliente.put("mensaje", "No existe un cliente con ese id");
             return new ResponseEntity<>(

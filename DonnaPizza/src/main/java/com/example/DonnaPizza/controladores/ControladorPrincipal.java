@@ -2,6 +2,7 @@ package com.example.DonnaPizza.controladores;
 
 
 import com.example.DonnaPizza.Services.ServicioCliente;
+import com.example.DonnaPizza.Services.ServicioIngredientes;
 import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -41,15 +42,12 @@ public class ControladorPrincipal {
         return "login";
     }
 
-    @GetMapping("/changeLanguage")
-    public String changeLanguage(@RequestParam("lang") String lang, HttpServletRequest request) {
-        request.getSession().setAttribute("org.springframework.web.servlet.i18n.SessionLocaleResolver.LOCALE", new Locale(lang));
-        return "redirect:" + request.getHeader("Referer");
-    }
-
+    // CRUD Clientes
     private final ServicioCliente servicioCliente;
-    public ControladorPrincipal(ServicioCliente servicioCliente) {
+    private final ServicioIngredientes servicioIngredientes;
+    public ControladorPrincipal(ServicioCliente servicioCliente, ServicioIngredientes servicioIngredientes) {
         this.servicioCliente = servicioCliente;
+        this.servicioIngredientes = servicioIngredientes;
     }
 
     @GetMapping("/clientes")
@@ -58,6 +56,11 @@ public class ControladorPrincipal {
         return "CRUDClientes";
     }
 
+    @GetMapping("/ingredientes")
+    public String listarIngredientes(Model model) {
+        model.addAttribute("ingredientes", servicioIngredientes.getIngredientes());
+        return "CRUDIngredientes";
+    }
 
     @GetMapping("/fromclient")
     public String fromclient(Model model) {
@@ -79,6 +82,12 @@ public class ControladorPrincipal {
         model.addAttribute("numero", numero);
         model.addAttribute("direccion", direccion);
         return "client";
+    }
+
+    @GetMapping("/changeLanguage")
+    public String changeLanguage(@RequestParam("lang") String lang, HttpServletRequest request) {
+        request.getSession().setAttribute("org.springframework.web.servlet.i18n.SessionLocaleResolver.LOCALE", new Locale(lang));
+        return "redirect:" + request.getHeader("Referer");
     }
 
     @GetMapping("/especificaciones")
