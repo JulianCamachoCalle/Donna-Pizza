@@ -57,7 +57,8 @@ public class ServicioIngredientes {
         datosIngredientes.put("data", ingredientes);
         return new ResponseEntity<>(
                 datosIngredientes,
-                HttpStatus.CREATED);
+                HttpStatus.CREATED
+        );
     }
 
     // Actualizar
@@ -71,7 +72,8 @@ public class ServicioIngredientes {
             datosIngredientes.put("mensaje", "Ingrediente no encontrado");
             return new ResponseEntity<>(
                     datosIngredientes,
-                    HttpStatus.NOT_FOUND);
+                    HttpStatus.NOT_FOUND
+            );
         }
 
         // Verificar si el nombre ya está usado
@@ -81,7 +83,8 @@ public class ServicioIngredientes {
             datosIngredientes.put("mensaje", "Ya existe un ingrediente con ese nombre");
             return new ResponseEntity<>(
                     datosIngredientes,
-                    HttpStatus.CONFLICT);
+                    HttpStatus.CONFLICT
+            );
         }
 
         // Actualizar Ingrediente
@@ -95,7 +98,8 @@ public class ServicioIngredientes {
 
         return new ResponseEntity<>(
                 datosIngredientes,
-                HttpStatus.OK);
+                HttpStatus.OK
+        );
     }
 
     // Eliminar
@@ -107,12 +111,14 @@ public class ServicioIngredientes {
             datosIngredientes.put("mensaje", "No existe un ingrediente con ese id");
             return new ResponseEntity<>(
                     datosIngredientes,
-                    HttpStatus.CONFLICT);
+                    HttpStatus.CONFLICT
+            );
         }
         ingredientesRepository.deleteById(id);
         datosIngredientes.put("mensaje", "Ingrediente eliminado");
         return new ResponseEntity<>(
                 datosIngredientes,
-                HttpStatus.ACCEPTED);
+                HttpStatus.ACCEPTED
+        );
     }
 }
