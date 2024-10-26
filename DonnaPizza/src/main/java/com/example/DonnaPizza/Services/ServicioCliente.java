@@ -97,7 +97,8 @@ public class ServicioCliente {
         datosCliente.put("data", cliente);
         return new ResponseEntity<>(
                 datosCliente,
-                HttpStatus.CREATED);
+                HttpStatus.CREATED
+        );
     }
 
     // Actualizar
@@ -111,7 +112,8 @@ public class ServicioCliente {
             datosCliente.put("mensaje", "Cliente no encontrado");
             return new ResponseEntity<>(
                     datosCliente,
-                    HttpStatus.NOT_FOUND);
+                    HttpStatus.NOT_FOUND
+            );
         }
 
         // Verificar si el email ya está en uso por otro cliente
@@ -121,7 +123,8 @@ public class ServicioCliente {
             datosCliente.put("mensaje", "Ya existe un cliente con ese email");
             return new ResponseEntity<>(
                     datosCliente,
-                    HttpStatus.CONFLICT);
+                    HttpStatus.CONFLICT
+            );
         }
 
         // Validaciones adicionales
@@ -131,7 +134,8 @@ public class ServicioCliente {
             datosCliente.put("mensaje", "Ingrese un número de teléfono correcto");
             return new ResponseEntity<>(
                     datosCliente,
-                    HttpStatus.CONFLICT);
+                    HttpStatus.CONFLICT
+            );
         }
 
         // Prefijo de teléfono
@@ -153,7 +157,8 @@ public class ServicioCliente {
 
         return new ResponseEntity<>(
                 datosCliente,
-                HttpStatus.OK);
+                HttpStatus.OK
+        );
     }
 
 

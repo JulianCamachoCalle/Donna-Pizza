@@ -44,7 +44,7 @@ public class ClienteControlador {
         return this.servicioCliente.newCliente(cliente);
     }
 
-    // Actualiza
+    // Actualizar
     @PutMapping("/{id}")
     public ResponseEntity<Object> actualizarCliente(@PathVariable Long id, @RequestBody Cliente cliente) {
         return this.servicioCliente.updateCliente(id, cliente);
