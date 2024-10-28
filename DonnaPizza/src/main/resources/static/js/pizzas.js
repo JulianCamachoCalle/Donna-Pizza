@@ -171,7 +171,6 @@ function actualizarPizza() {
         });
 }
 
-
 //Eliminar
 function eliminarPizza(id) {
     Swal.fire({
