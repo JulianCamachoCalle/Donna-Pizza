@@ -3,6 +3,7 @@ package com.example.DonnaPizza.controladores;
 
 import com.example.DonnaPizza.Services.ServicioCliente;
 import com.example.DonnaPizza.Services.ServicioIngredientes;
+import com.example.DonnaPizza.Services.ServicioPizzas;
 import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -45,9 +46,14 @@ public class ControladorPrincipal {
     // CRUD Clientes
     private final ServicioCliente servicioCliente;
     private final ServicioIngredientes servicioIngredientes;
-    public ControladorPrincipal(ServicioCliente servicioCliente, ServicioIngredientes servicioIngredientes) {
+    private final ServicioPizzas servicioPizzas;
+    public ControladorPrincipal(
+            ServicioCliente servicioCliente,
+            ServicioIngredientes servicioIngredientes,
+            ServicioPizzas servicioPizzas) {
         this.servicioCliente = servicioCliente;
         this.servicioIngredientes = servicioIngredientes;
+        this.servicioPizzas = servicioPizzas;
     }
 
     @GetMapping("/clientes")
@@ -60,6 +66,12 @@ public class ControladorPrincipal {
     public String listarIngredientes(Model model) {
         model.addAttribute("ingredientes", servicioIngredientes.getIngredientes());
         return "CRUDIngredientes";
+    }
+
+    @GetMapping("/pizzas")
+    public String listarPizzas(Model model) {
+        model.addAttribute("pizzas", servicioPizzas.getPizzas());
+        return "CRUDPizzas";
     }
 
     @GetMapping("/fromclient")
