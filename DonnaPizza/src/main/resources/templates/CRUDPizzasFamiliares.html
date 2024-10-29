@@ -17,9 +17,9 @@
 </head>
 <body>
 <div class="container-fluid mt-4">
-    <h1>Lista de Pizzas</h1>
+    <h1>Lista de PizzasFamiliar</h1>
     <!-- Botón para abrir el modal de agregar pizzas -->
-    <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#pizzasModal">
+    <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#pizzasfamiliaresModal">
         Agregar Pizzas
     </button>
 
@@ -35,21 +35,21 @@
             <th>Acciones</th>
         </tr>
         </thead>
-        <tbody id="pizzas-list">
+        <tbody id="pizzasfamiliares-list">
         </tbody>
     </table>
 </div>
 
 <!-- Modal para agregar -->
-<div class="modal fade" id="pizzasModal" tabindex="-1" role="dialog" aria-labelledby="pizzasModalLabel"
+<div class="modal fade" id="pizzasfamiliaresModal" tabindex="-1" role="dialog" aria-labelledby="pizzasfamiliaresModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="pizzasModalLabel">Agregar Pizza</h5>
+                <h5 class="modal-title" id="pizzasfamiliaresModalLabel">Agregar Pizza</h5>
             </div>
             <div class="modal-body">
-                <form id="pizzaForm">
+                <form id="pizzafamiliarForm">
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
                         <input type="text" class="form-control" id="nombre" required>
@@ -82,16 +82,16 @@
 </div>
 
 <!-- Modal para Editar Pizza -->
-<div class="modal fade" id="editarPizzaModal" tabindex="-1" aria-labelledby="editarPizzaModalLabel"
+<div class="modal fade" id="editarPizzaFamiliarModal" tabindex="-1" aria-labelledby="editarPizzaFamiliarModalLabel"
      aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editarPizzaModalLabel">Editar Pizza</h5>
+                <h5 class="modal-title" id="editarPizzaFamiliarModalLabel">Editar Pizza</h5>
             </div>
             <div class="modal-body">
-                <form id="formEditarPizza">
-                    <input type="hidden" id="id_pizzaact"/>
+                <form id="formEditarPizzaFamiliar">
+                    <input type="hidden" id="id_pizza_familiaract"/>
                     <div class="mb-3">
                         <label for="nombreact" class="form-label">Nombre</label>
                         <input type="text" class="form-control" id="nombreact" required>
@@ -125,7 +125,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="/js/pizzas.js"></script>
+<script src="/js/pizzasfamiliares.js"></script>
 
 </body>
 

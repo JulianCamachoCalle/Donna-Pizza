@@ -2,58 +2,57 @@ package com.example.DonnaPizza.controladores;
 
 import com.example.DonnaPizza.Model.Pizzas;
 import com.example.DonnaPizza.Services.ServicioPizzas;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@RequestMapping(path = "api/v1/pizzas")
 public class PizzasControlador {
 
+    // Link al Servicio
+    private final ServicioPizzas servicioPizzas;
+
     @Autowired
-    ServicioPizzas servicioPizzas;
-
-    @GetMapping("/CRUDPizzas")
-    public String CRUDPizzas(Model model) {
-        List<Pizzas> lista = servicioPizzas.getList();
-        model.addAttribute("lista", lista);
-
-        return "CRUDPizzas";
+    public PizzasControlador(ServicioPizzas servicioPizzas) {
+        this.servicioPizzas = servicioPizzas;
     }
 
-    @GetMapping("/formPizzas")
-    public String formPizzas(Model model) {
-        model.addAttribute("pizzas", new Pizzas());
-        return "formPizzas";
+    // Obtener Todos
+    @GetMapping
+    public List<Pizzas> getPizzas() {
+        return this.servicioPizzas.getPizzas();
     }
 
-    @PostMapping("/registrarPizzas")
-    public String grabarPizzas(@ModelAttribute Pizzas pizzas, Model model) {
-        try {
-            servicioPizzas.save(pizzas);
-            return "redirect:/CRUDPizzas";
-        } catch (DataIntegrityViolationException e) {
-            model.addAttribute("errorMessage", e.getMessage().toString());
-            model.addAttribute("pizzas", pizzas);
-            return "formPizzas";
+    // Obtener por Id
+    @GetMapping("{pizzasId}")
+    public ResponseEntity<Pizzas> getPizza(@PathVariable("pizzasId") Long id) {
+        Optional<Pizzas> pizzas = this.servicioPizzas.getPizzaById(id);
+        if (pizzas.isPresent()) {
+            return ResponseEntity.ok(pizzas.get());
+        } else {
+            return ResponseEntity.notFound().build();
         }
     }
 
-    @GetMapping("/getEdit/{codigopizzas}")
-    public String editFormPizzas(Model model, @PathVariable("codigopizzas") Long id) {
-        Pizzas pizzas = servicioPizzas.get(id);
-        model.addAttribute("pizzas", pizzas);
-        return "formPizzas";
+    // Registrar Nuevo
+    @PostMapping
+    public ResponseEntity<Object> registrarPizza(@RequestBody Pizzas pizza) {
+        return this.servicioPizzas.newPizza(pizza);
     }
 
-    public String deleteFormPizzas(Model model, @RequestParam("id") Long id) {
-        servicioPizzas.delete(id);
-        return "redirect:/CRUDPizzas";
+    // Actualizar
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> actualizarPizza(@PathVariable Long id, @RequestBody Pizzas pizza) {
+        return this.servicioPizzas.updatePizza(id, pizza);
+    }
+
+    // Eliminar
+    @DeleteMapping(path = "{pizzasId}")
+    public ResponseEntity<Object> eliminarPizza(@PathVariable("pizzasId") Long id) {
+        return this.servicioPizzas.deletePizza(id);
     }
 }

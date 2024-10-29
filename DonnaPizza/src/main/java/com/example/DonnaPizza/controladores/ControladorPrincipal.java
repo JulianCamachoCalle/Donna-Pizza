@@ -1,13 +1,17 @@
 package com.example.DonnaPizza.controladores;
 
 
-
+import com.example.DonnaPizza.Services.ServicioCliente;
+import com.example.DonnaPizza.Services.ServicioIngredientes;
+import com.example.DonnaPizza.Services.ServicioPizzas;
 import jakarta.servlet.http.HttpServletRequest;
-import java.time.LocalDate;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
 import java.util.Locale;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -23,34 +27,10 @@ public class ControladorPrincipal {
     public String index(Model model) {
         return "index";
     }
-    
-
-    
-
-    @GetMapping({"/contacto"})
-    public String contacto(Model model) {
-        return "contacto";
-    }
-   @RequestMapping("/dataformcontacto")
-    public String dataformcontacto(@RequestParam("nombre") String nombre,
-            @RequestParam("email") String email,
-            @RequestParam("telefono") String telefono,
-            Model model){
-        
-        model.addAttribute("nombre", nombre);
-        model.addAttribute("email", email);
-        model.addAttribute("telefono", telefono);
-        return "listacontactos";
-    }
 
     @GetMapping("/carta")
     public String carta(Model model) {
         return "carta";
-    }
-
-    @GetMapping("/membresia")
-    public String membresia(Model model) {
-        return "membresia";
     }
 
     @GetMapping("/locales")
@@ -63,68 +43,50 @@ public class ControladorPrincipal {
         return "login";
     }
 
-    //registro
-    @RequestMapping("/dataFormRegistro")
-    public String dataFormRegistro(@RequestParam("nombre") String nombre,
-            @RequestParam("apellidos") String apellidos,
-            @RequestParam("correo") String correo,
-            @RequestParam("numero") String numero,
-            @RequestParam("cumpleanos") LocalDate cumpleanos,
-            @RequestParam("contrasena") String contrasena,
-            Model model
-    ) {
-        model.addAttribute("nombre", nombre);
-        model.addAttribute("apellidos", apellidos);
-        model.addAttribute("correo", correo);
-        model.addAttribute("numero", numero);
-        model.addAttribute("cumpleanos", cumpleanos);
-        model.addAttribute("contrasena", contrasena);
-        return "usuario";
+    // CRUD Clientes
+    private final ServicioCliente servicioCliente;
+    private final ServicioIngredientes servicioIngredientes;
+    private final ServicioPizzas servicioPizzas;
+    public ControladorPrincipal(
+            ServicioCliente servicioCliente,
+            ServicioIngredientes servicioIngredientes,
+            ServicioPizzas servicioPizzas) {
+        this.servicioCliente = servicioCliente;
+        this.servicioIngredientes = servicioIngredientes;
+        this.servicioPizzas = servicioPizzas;
     }
 
-    @GetMapping("/changeLanguage")
-    public String changeLanguage(@RequestParam("lang") String lang, HttpServletRequest request) {
-        request.getSession().setAttribute("org.springframework.web.servlet.i18n.SessionLocaleResolver.LOCALE", new Locale(lang));
-        return "redirect:" + request.getHeader("Referer");
+    @GetMapping("/clientes")
+    public String listarClientes(Model model) {
+        model.addAttribute("clientes", servicioCliente.getClientes());
+        return "CRUDClientes";
     }
 
-   
+    @GetMapping("/ingredientes")
+    public String listarIngredientes(Model model) {
+        model.addAttribute("ingredientes", servicioIngredientes.getIngredientes());
+        return "CRUDIngredientes";
+    }
 
-    @GetMapping("/sugerencias")
-    public String sugerencias(Model model) {
-        return "sugerencias";
+    @GetMapping("/pizzas")
+    public String listarPizzas(Model model) {
+        model.addAttribute("pizzas", servicioPizzas.getPizzas());
+        return "CRUDPizzas";
     }
-    @RequestMapping("/dataformsugerencia")
-    public String dataformsugerencia(@RequestParam("nombre") String nombre,
-            @RequestParam("email") String email,
-            @RequestParam("descripcion") String descripcion,
-            Model model){
-        
-        model.addAttribute("nombre", nombre);
-        model.addAttribute("email", email);
-        model.addAttribute("descripcion", descripcion);
-        return "listasugerencias";
-    }
-    
 
-    @GetMapping("/reclamaciones")
-    public String reclamaciones(Model model) {
-        return "reclamaciones";
-    }
-    
     @GetMapping("/fromclient")
     public String fromclient(Model model) {
         return "fromclient";
     }
-    
+
     //clientes
     @RequestMapping("/dataclientfrom")
     public String dataclientfrom(@RequestParam("nombre") String nombre,
-            @RequestParam("apellidos") String apellidos,
-            @RequestParam("correo") String correo,
-            @RequestParam("numero") String numero,
-            @RequestParam("direccion") String direccion,
-            Model model
+                                 @RequestParam("apellidos") String apellidos,
+                                 @RequestParam("correo") String correo,
+                                 @RequestParam("numero") String numero,
+                                 @RequestParam("direccion") String direccion,
+                                 Model model
     ) {
         model.addAttribute("nombre", nombre);
         model.addAttribute("apellidos", apellidos);
@@ -133,10 +95,16 @@ public class ControladorPrincipal {
         model.addAttribute("direccion", direccion);
         return "client";
     }
-    
+
+    @GetMapping("/changeLanguage")
+    public String changeLanguage(@RequestParam("lang") String lang, HttpServletRequest request) {
+        request.getSession().setAttribute("org.springframework.web.servlet.i18n.SessionLocaleResolver.LOCALE", new Locale(lang));
+        return "redirect:" + request.getHeader("Referer");
+    }
+
     @GetMapping("/especificaciones")
     public String especificaciones(Model model) {
         return "especificaciones";
     }
-    
+
 }

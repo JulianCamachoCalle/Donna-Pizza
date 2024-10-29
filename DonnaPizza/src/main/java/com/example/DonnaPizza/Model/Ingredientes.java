@@ -11,20 +11,16 @@ import lombok.NoArgsConstructor;
 @Entity
 
 // Tabla
-@Table(name = "pizzas")
-public class Pizzas {
+@Table(name = "ingredientes")
+public class Ingredientes {
 
     // Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_pizza;
+    private Long id_ingrediente;
 
     @Column(unique = true)
     private String nombre;
 
-    private String descripcion;
-
-    private Double precio;
-
-    private Integer disponible;
+    private Double cantidad_disponible;
 }

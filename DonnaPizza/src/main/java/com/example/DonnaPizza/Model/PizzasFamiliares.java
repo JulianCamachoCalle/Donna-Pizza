@@ -11,13 +11,13 @@ import lombok.NoArgsConstructor;
 @Entity
 
 // Tabla
-@Table(name = "pizzas")
-public class Pizzas {
+@Table(name = "pizzas_familiares")
+public class PizzasFamiliares {
 
     // Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_pizza;
+    private Long id_pizza_familiar;
 
     @Column(unique = true)
     private String nombre;
