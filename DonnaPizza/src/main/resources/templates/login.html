@@ -30,7 +30,7 @@
         <main id="main" class="main d-flex justify-content-center align-items-center flex-column vh-100">
             <div class="contenedor position-relative rounded-5 overflow-hidden bg-light shadow-lg p-3 rounded" id="contenedor">
                 <div class="form-contenedor crear-cuenta position-absolute">
-                    <form class="d-flex justify-content-center align-items-center flex-column px-4" th:action="@{/dataFormRegistro}" method="POST" th:object="${usuario}">
+                    <form class="d-flex justify-content-center align-items-center flex-column px-4">
                         <h1 th:text="#{form.usuario.legend.crear}"></h1>
                         <div class="social-iconos my-2">
                             <a href="#" class="iconos mx-2 justify-content-center align-items-center">
@@ -43,17 +43,17 @@
                                 <i class="fa-brands fa-instagram"></i>
                             </a>
                         </div>
-                        <input class="my-1" type="text" name="nombre" id="nombre" th:placeholder="#{form.usuario.nombre}">
-                        <input class="my-1" type="text" name="apellidos" id="apellidos" th:placeholder="#{form.usuario.apellidos}">
-                        <input class="my-1" type="email" name="correo" id="correo" th:placeholder="#{form.usuario.correo}">
-                        <input class="my-1" type="text" name="numero" id="numero" th:placeholder="#{form.usuario.numero}">
-                        <input class="my-1" type="date" name="cumpleanos" id="cumpleanos" th:placeholder="#{form.usuario.cumpleanos}">
-                        <input class="my-1" type="password" name="contrasena" id="contrasena" th:placeholder="#{form.usuario.contrasena}">
-                        <button type="submit" class="btn btn-login-register border px-3 py-2 my-2" name="registro" th:text="#{form.boton.registrar}"></button>
+                        <input class="my-1" type="text" id="nombre" th:placeholder="#{form.usuario.nombre}">
+                        <input class="my-1" type="text" id="apellido" th:placeholder="#{form.usuario.apellidos}">
+                        <input class="my-1" type="email" id="email" th:placeholder="#{form.usuario.correo}">
+                        <input class="my-1" type="text" id="telefono" th:placeholder="#{form.usuario.telefono}">
+                        <input class="my-1" type="text" id="direccion" th:placeholder="#{form.usuario.direccion}">
+                        <input class="my-1" type="password" id="contraseña" th:placeholder="#{form.usuario.contrasena}">
+                        <button type="button" class="btn btn-login-register border px-3 py-2 my-2" onclick="guardarUsuario()" th:text="#{form.boton.registrar}"></button>
                     </form>
                 </div>
                 <div class="form-contenedor position-absolute iniciar-sesion">
-                    <form class="d-flex justify-content-center align-items-center flex-column px-4" action="#" method="POST">
+                    <form class="d-flex justify-content-center align-items-center flex-column px-4">
                         <h1 th:text="#{form.usuario.legend.iniciar}"></h1>
                         <div class="social-iconos my-2">
                             <a href="#" class="iconos mx-2 justify-content-center align-items-center">
@@ -66,10 +66,10 @@
                                 <i class="fa-brands fa-instagram"></i>
                             </a>
                         </div>
-                        <input class="my-1" type="email" name="correo" th:value="*{correo}" th:placeholder="#{form.usuario.ingresar.correo}">
-                        <input class="my-1" type="password" name="contrasena" th:value="*{contrasena}" th:placeholder="#{form.usuario.contrasena}">
+                        <input class="my-1" type="email" name="email_login" th:placeholder="#{form.usuario.ingresar.correo}">
+                        <input class="my-1" type="password" name="contraseña_login" th:placeholder="#{form.usuario.contrasena}">
                         <a href="#" class="my-3">Olvidaste tu contraseña?</a>
-                        <button type="submit" class="btn btn-login-register border px-3 py-2" th:text="#{form.boton.iniciar}" name="iniciar"></button>
+                        <button type="button" class="btn btn-login-register border px-3 py-2" onclick="iniciarSesion()" th:text="#{form.boton.iniciar}"></button>
                     </form>
                 </div>
                 <div class="cambiar-contenedor position-absolute overflow-hidden">
@@ -97,23 +97,10 @@
         <!--Footer-->
         <div th:replace="fragments/footer :: footer"></div>
         <!--Fin Footer-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-        <script>
-            const registerButton = document.getElementById('register');
-            const loginButton = document.getElementById('login');
-            const contenedor = document.getElementById('contenedor');
-
-            // Eventos para cambiar entre registro e inicio de sesión
-            registerButton.addEventListener('click', () => {
-                contenedor.classList.add('active');
-            });
-
-            loginButton.addEventListener('click', () => {
-                contenedor.classList.remove('active');
-            });
-        </script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="/js/login.js"></script>
     </body>
 
 </html>

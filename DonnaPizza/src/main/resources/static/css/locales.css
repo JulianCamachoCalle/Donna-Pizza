@@ -1,5 +1,4 @@
 @import "navbar-footer.css";
-@import "botones.css";
 @import "platos.css";
 
 * {
@@ -38,9 +37,10 @@
     max-height: 500px;
 }
 
-.botones-locales button {
+.botones-locales a {
     margin: 0.938rem 1.875rem;
     padding: 0.938rem 1.875rem;
+    min-width: 250px;
 }
 
 .desactivado {
@@ -49,4 +49,37 @@
 
 iframe {
     border-radius: 25px;
+}
+
+.btn-danger {
+    background-color: rgb(240, 26, 36) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 0.375rem !important;
+    font-family: "Montserrat" !important;
+    font-size: 18px !important;
+    font-weight: 850 !important;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+}
+
+.btn-danger:hover {
+    background-color: rgb(184, 23, 31) !important;
+}
+
+.btn-success {
+    background-color: inherit !important;
+    color: rgb(240, 26, 36) !important;
+    border: 2px solid rgb(240, 26, 36) !important;
+    border-radius: 0.375rem !important;
+    font-family: "Montserrat" !important;
+    font-size: 18px !important;
+    font-weight: 850 !important;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+}
+
+.btn-success:hover {
+    color: white !important;
+    border: 2px solid white !important;
 }

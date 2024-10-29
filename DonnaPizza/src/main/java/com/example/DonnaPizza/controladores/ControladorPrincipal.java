@@ -5,6 +5,7 @@ import com.example.DonnaPizza.Services.ServicioCliente;
 import com.example.DonnaPizza.Services.ServicioIngredientes;
 import com.example.DonnaPizza.Services.ServicioPizzas;
 import com.example.DonnaPizza.Services.ServicioPizzasFamiliares;
+import com.example.DonnaPizza.Services.ServicioUsuarios;
 import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -34,9 +35,14 @@ public class ControladorPrincipal {
         return "carta";
     }
 
-    @GetMapping("/locales")
-    public String locales(Model model) {
-        return "locales";
+    @GetMapping("/primerlocal")
+    public String primerlocal(Model model) {
+        return "primerlocal";
+    }
+
+    @GetMapping("/segundolocal")
+    public String segundolocal(Model model) {
+        return "segundolocal";
     }
 
     @GetMapping("/login")
@@ -49,6 +55,7 @@ public class ControladorPrincipal {
     private final ServicioIngredientes servicioIngredientes;
     private final ServicioPizzas servicioPizzas;
     private final ServicioPizzasFamiliares servicioPizzasFamiliares;
+    private final ServicioUsuarios servicioUsuarios;
     public ControladorPrincipal(
             ServicioCliente servicioCliente,
             ServicioIngredientes servicioIngredientes,
@@ -58,6 +65,7 @@ public class ControladorPrincipal {
         this.servicioIngredientes = servicioIngredientes;
         this.servicioPizzas = servicioPizzas;
         this.servicioPizzasFamiliares = servicioPizzasFamiliares;
+        this.servicioUsuarios = servicioUsuarios;
     }
     
     @GetMapping("/pizzasfamiliares")
@@ -82,6 +90,12 @@ public class ControladorPrincipal {
     public String listarPizzas(Model model) {
         model.addAttribute("pizzas", servicioPizzas.getPizzas());
         return "CRUDPizzas";
+    }
+
+    @GetMapping("/usuarios")
+    public String listarUsuarios(Model model) {
+        model.addAttribute("usuarios", servicioUsuarios.getUsuarios());
+        return "CRUDUsuarios";
     }
 
     @GetMapping("/fromclient")
