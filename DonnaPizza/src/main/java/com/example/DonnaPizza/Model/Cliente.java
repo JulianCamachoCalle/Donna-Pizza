@@ -30,4 +30,5 @@ public class Cliente {
     private String telefono;
 
     private String direccion;
+
 }
