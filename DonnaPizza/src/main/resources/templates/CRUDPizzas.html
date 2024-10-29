@@ -19,8 +19,13 @@
 <div class="container-fluid mt-4">
     <h1>Lista de Pizzas</h1>
     <!-- Botón para abrir el modal de agregar pizzas -->
-    <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#pizzasModal">
+    <button type="button" class="btn btn-primary my-3" data-toggle="modal" data-target="#pizzasModal">
         Agregar Pizzas
+    </button>
+
+    <!-- Botón para Exportar a Excel -->
+    <button type="button" class="btn btn-success my-3" onclick="exportarExcel()">
+        <i class="fas fa-file-excel"></i> Exportar a Excel
     </button>
 
     <!-- Tabla para listar pizzas -->

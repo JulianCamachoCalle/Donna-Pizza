@@ -233,3 +233,7 @@ function eliminarUsuario(id) {
         }
     });
 }
+
+function exportarExcel() {
+    window.location.href = '/excelusuarios';
+}
