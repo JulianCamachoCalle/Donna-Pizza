@@ -4,77 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a68d45f-09a6-4b17-9ede-cee68f1ec71d" name="Changes" comment="FINISH CRUD USUARIOS HTML 100%">
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/4 en 1 (Familiar).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/4 en 1 (Mediana).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Alemana (Familiar).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Alemana (Mediana).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Americana (Familiar).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Americana (Mediana).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Canelones de Jamón y Queso en Salsa Pomodoro.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Canelones de Jamón y Queso en Salsa a lo Alfredo.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Canelones de Pollo, Champiñones y Queso en Salsa a lo Alfredo.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Continental (Familiar).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Continental (Mediana).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Donna Pizza (Familiar).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Donna Pizza (Mediana).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Española 1 (Familiar).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Española 1 (Mediana).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Española 2 (Familiar).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Española 2 (Mediana).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Fettuccini a la Bolognesa.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Fettuccini a la Reina.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Fettuccini a lo Alfredo.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Fettuccini en Salsa Blanca con Champiñones.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Fogosita (Familiar).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Fogosita (Mediana).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Gaucha (Familiar).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Gaucha (Mediana).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Hawaiana (Familiar).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Hawaiana (Mediana).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Irlandesa (Familiar).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Irlandesa (Mediana).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Italiana (Familiar).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Italiana (Mediana).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Lasagna 3 Sabores.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Lasagna Florentina.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Lasagna Toscana.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Lasagna de Carne y Queso.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Lasagna de Jamón y Queso en Salsa Pomodoro.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Limeña (Familiar).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Limeña (Mediana).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Llanera (Familiar).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Llanera (Mediana).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Macarrones.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Mexicana (Familiar).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Mexicana (Mediana).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Napolitana (Familiar).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Napolitana (Mediana).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Oriental (Familiar).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Oriental (Mediana).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Parrillera (Familiar).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Parrillera (Mediana).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Pepperoni (Familiar).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Pepperoni (Mediana).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Pepperoni 2 (Familiar).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Pepperoni 2 (Mediana).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Portuguesa (Familiar).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Portuguesa (Mediana).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Ravioles de Carne a la Bolognesa.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Ravioles de Jamón y Queso a lo Alfredo.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Suprema (Familiar).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Suprema (Mediana).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Tropical (Familiar).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Tropical (Mediana).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Vegetariana (Familiar).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/Vegetariana (Mediana).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/img/pizzas/predeterminada.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/js/carta.js" afterDir="false" />
+    <list default="true" id="6a68d45f-09a6-4b17-9ede-cee68f1ec71d" name="Changes" comment="FINISH CARTA HTML 100%">
+      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/js/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/controladores/ControladorPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/controladores/ControladorPrincipal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/css/carta.css" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/css/carta.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/css/platos.css" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/css/platos.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/carta.html" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/carta.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,9 +21,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="JavaScript File" />
         <option value="HTML File" />
         <option value="Class" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -115,12 +48,22 @@
     &quot;assignee&quot;: &quot;JulianCamachoCalle&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/JulianCamachoCalle/Donna-Pizza.git&quot;,
-    &quot;accountId&quot;: &quot;8cbc90a8-fdd1-4865-bb74-311c7b5df973&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/JulianCamachoCalle/Donna-Pizza.git",
+    "accountId": "8cbc90a8-fdd1-4865-bb74-311c7b5df973"
+  },
+  "recentNewPullRequestHead": {
+    "server": {
+      "useHttp": false,
+      "host": "github.com",
+      "port": null,
+      "suffix": null
+    },
+    "owner": "JulianCamachoCalle",
+    "repository": "Donna-Pizza"
   }
-}</component>
+}]]></component>
   <component name="PhpDebugGeneral" listening_started="true" />
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe" />
   <component name="ProjectColorInfo">{
@@ -143,7 +86,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.DonnaPizzaApplication.executor": "Run",
-    "git-widget-placeholder": "JulianCamacho",
+    "git-widget-placeholder": "#20 on JulianCamacho",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/julic/IdeaProjects/Donna-Pizza/DonnaPizza/src/main/resources/static/img",
     "node.js.detected.package.eslint": "true",
@@ -196,7 +139,7 @@
       <workItem from="1729982397751" duration="1406000" />
       <workItem from="1730079682779" duration="1129000" />
       <workItem from="1730147361880" duration="507000" />
-      <workItem from="1730172581663" duration="11297000" />
+      <workItem from="1730172581663" duration="11919000" />
     </task>
     <task id="LOCAL-00001" summary="FINISH CRUD CLIENTES">
       <option name="closed" value="true" />
@@ -254,7 +197,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730182409445</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="FINISH CARTA HTML 100%">
+      <option name="closed" value="true" />
+      <created>1730184029307</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1730184029308</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -267,6 +218,7 @@
     <MESSAGE value="FINISH CRUD Ingredientes HTML 100%" />
     <MESSAGE value="FINISH CRUD Pizzas HTML 100%" />
     <MESSAGE value="FINISH CRUD USUARIOS HTML 100%" />
-    <option name="LAST_COMMIT_MESSAGE" value="FINISH CRUD USUARIOS HTML 100%" />
+    <MESSAGE value="FINISH CARTA HTML 100%" />
+    <option name="LAST_COMMIT_MESSAGE" value="FINISH CARTA HTML 100%" />
   </component>
 </project>
