@@ -60,7 +60,8 @@ public class ControladorPrincipal {
             ServicioCliente servicioCliente,
             ServicioIngredientes servicioIngredientes,
             ServicioPizzas servicioPizzas,
-            ServicioPizzasFamiliares servicioPizzasFamiliares) {
+            ServicioPizzasFamiliares servicioPizzasFamiliares,
+            ServicioUsuarios servicioUsuarios) {
         this.servicioCliente = servicioCliente;
         this.servicioIngredientes = servicioIngredientes;
         this.servicioPizzas = servicioPizzas;
