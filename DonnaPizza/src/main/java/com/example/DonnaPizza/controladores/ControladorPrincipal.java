@@ -4,6 +4,7 @@ package com.example.DonnaPizza.controladores;
 import com.example.DonnaPizza.Services.ServicioCliente;
 import com.example.DonnaPizza.Services.ServicioIngredientes;
 import com.example.DonnaPizza.Services.ServicioPizzas;
+import com.example.DonnaPizza.Services.ServicioPizzasFamiliares;
 import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -47,13 +48,22 @@ public class ControladorPrincipal {
     private final ServicioCliente servicioCliente;
     private final ServicioIngredientes servicioIngredientes;
     private final ServicioPizzas servicioPizzas;
+    private final ServicioPizzasFamiliares servicioPizzasFamiliares;
     public ControladorPrincipal(
             ServicioCliente servicioCliente,
             ServicioIngredientes servicioIngredientes,
-            ServicioPizzas servicioPizzas) {
+            ServicioPizzas servicioPizzas,
+            ServicioPizzasFamiliares servicioPizzasFamiliares) {
         this.servicioCliente = servicioCliente;
         this.servicioIngredientes = servicioIngredientes;
         this.servicioPizzas = servicioPizzas;
+        this.servicioPizzasFamiliares = servicioPizzasFamiliares;
+    }
+    
+    @GetMapping("/pizzasfamiliares")
+    public String listarPizzasFamiliares(Model model) {
+        model.addAttribute("pizzasfamiliares", servicioPizzasFamiliares.getPizzasFamiliares());
+        return "CRUDPizzasFamiliares";
     }
 
     @GetMapping("/clientes")
