@@ -4,6 +4,7 @@ package com.example.DonnaPizza.controladores;
 import com.example.DonnaPizza.Services.ServicioCliente;
 import com.example.DonnaPizza.Services.ServicioIngredientes;
 import com.example.DonnaPizza.Services.ServicioPizzas;
+import com.example.DonnaPizza.Services.ServicioPizzasFamiliares;
 import com.example.DonnaPizza.Services.ServicioUsuarios;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -53,16 +54,24 @@ public class ControladorPrincipal {
     private final ServicioCliente servicioCliente;
     private final ServicioIngredientes servicioIngredientes;
     private final ServicioPizzas servicioPizzas;
+    private final ServicioPizzasFamiliares servicioPizzasFamiliares;
     private final ServicioUsuarios servicioUsuarios;
     public ControladorPrincipal(
             ServicioCliente servicioCliente,
             ServicioIngredientes servicioIngredientes,
             ServicioPizzas servicioPizzas,
-            ServicioUsuarios servicioUsuarios) {
+            ServicioPizzasFamiliares servicioPizzasFamiliares) {
         this.servicioCliente = servicioCliente;
         this.servicioIngredientes = servicioIngredientes;
         this.servicioPizzas = servicioPizzas;
+        this.servicioPizzasFamiliares = servicioPizzasFamiliares;
         this.servicioUsuarios = servicioUsuarios;
+    }
+    
+    @GetMapping("/pizzasfamiliares")
+    public String listarPizzasFamiliares(Model model) {
+        model.addAttribute("pizzasfamiliares", servicioPizzasFamiliares.getPizzasFamiliares());
+        return "CRUDPizzasFamiliares";
     }
 
     @GetMapping("/clientes")
