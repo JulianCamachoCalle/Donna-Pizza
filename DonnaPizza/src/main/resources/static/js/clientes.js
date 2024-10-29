@@ -170,7 +170,6 @@ function actualizarCliente() {
         });
 }
 
-
 //Eliminar
 function eliminarCliente(id) {
     Swal.fire({

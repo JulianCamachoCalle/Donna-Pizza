@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a68d45f-09a6-4b17-9ede-cee68f1ec71d" name="Changes" comment="FINISH CRUD Pizzas HTML 100%">
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/js/pizzas.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/CRUDPizzas.html" afterDir="false" />
+    <list default="true" id="6a68d45f-09a6-4b17-9ede-cee68f1ec71d" name="Changes" comment="FINISH CARTA HTML 100%">
+      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/js/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/controladores/ControladorPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/controladores/ControladorPrincipal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,8 +21,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Class" />
         <option value="JavaScript File" />
       </list>
     </option>
@@ -36,25 +35,36 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "history": [
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;history&quot;: [
     {
-      "state": "OPEN",
-      "assignee": "JulianCamachoCalle",
-      "author": "JulianCamachoCalle"
+      &quot;state&quot;: &quot;OPEN&quot;,
+      &quot;assignee&quot;: &quot;JulianCamachoCalle&quot;,
+      &quot;author&quot;: &quot;JulianCamachoCalle&quot;
     }
   ],
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "JulianCamachoCalle"
-  }
-}]]></component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/JulianCamachoCalle/Donna-Pizza.git&quot;,
-    &quot;accountId&quot;: &quot;8cbc90a8-fdd1-4865-bb74-311c7b5df973&quot;
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;JulianCamachoCalle&quot;
   }
 }</component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/JulianCamachoCalle/Donna-Pizza.git",
+    "accountId": "8cbc90a8-fdd1-4865-bb74-311c7b5df973"
+  },
+  "recentNewPullRequestHead": {
+    "server": {
+      "useHttp": false,
+      "host": "github.com",
+      "port": null,
+      "suffix": null
+    },
+    "owner": "JulianCamachoCalle",
+    "repository": "Donna-Pizza"
+  }
+}]]></component>
+  <component name="PhpDebugGeneral" listening_started="true" />
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
@@ -76,16 +86,28 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.DonnaPizzaApplication.executor": "Run",
-    "git-widget-placeholder": "JulianCamacho",
+    "git-widget-placeholder": "#20 on JulianCamacho",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/julic/IdeaProjects/Donna-Pizza/DonnaPizza/src/main/resources/static/img",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\julic\IdeaProjects\Donna-Pizza\DonnaPizza\src\main\resources\static\img" />
+      <recent name="C:\Users\julic\IdeaProjects\Donna-Pizza\DonnaPizza\src\main\resources\static\js" />
+      <recent name="C:\Users\julic\IdeaProjects\Donna-Pizza\DonnaPizza\src\main\resources\templates" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\julic\IdeaProjects\Donna-Pizza\DonnaPizza\src\main\resources\templates" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="DonnaPizzaApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
@@ -113,7 +135,11 @@
       <option name="presentableId" value="Default" />
       <updated>1729881985074</updated>
       <workItem from="1729881986189" duration="14765000" />
-      <workItem from="1729903940445" duration="9872000" />
+      <workItem from="1729903940445" duration="10246000" />
+      <workItem from="1729982397751" duration="1406000" />
+      <workItem from="1730079682779" duration="1129000" />
+      <workItem from="1730147361880" duration="507000" />
+      <workItem from="1730172581663" duration="11919000" />
     </task>
     <task id="LOCAL-00001" summary="FINISH CRUD CLIENTES">
       <option name="closed" value="true" />
@@ -155,7 +181,31 @@
       <option name="project" value="LOCAL" />
       <updated>1729911797980</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="FINISH CRUD Pizzas HTML 100%">
+      <option name="closed" value="true" />
+      <created>1729914461234</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1729914461234</updated>
+    </task>
+    <task id="LOCAL-00007" summary="FINISH CRUD USUARIOS HTML 100%">
+      <option name="closed" value="true" />
+      <created>1730182409445</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1730182409445</updated>
+    </task>
+    <task id="LOCAL-00008" summary="FINISH CARTA HTML 100%">
+      <option name="closed" value="true" />
+      <created>1730184029307</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1730184029308</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,6 +217,8 @@
     <MESSAGE value="FINISH CRUD CLIENTES HTML 100%" />
     <MESSAGE value="FINISH CRUD Ingredientes HTML 100%" />
     <MESSAGE value="FINISH CRUD Pizzas HTML 100%" />
-    <option name="LAST_COMMIT_MESSAGE" value="FINISH CRUD Pizzas HTML 100%" />
+    <MESSAGE value="FINISH CRUD USUARIOS HTML 100%" />
+    <MESSAGE value="FINISH CARTA HTML 100%" />
+    <option name="LAST_COMMIT_MESSAGE" value="FINISH CARTA HTML 100%" />
   </component>
 </project>
