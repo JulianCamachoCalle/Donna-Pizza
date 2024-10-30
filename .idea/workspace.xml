@@ -4,25 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a68d45f-09a6-4b17-9ede-cee68f1ec71d" name="Changes" comment="FINISH CARTA HTML 100%">
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/controladores/ReportesControlador.java" afterDir="false" />
+    <list default="true" id="6a68d45f-09a6-4b17-9ede-cee68f1ec71d" name="Changes" comment="IMPLEMENTACION DE APACHE POI">
+      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Model/EmailDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Util/EmailEnvio.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/controladores/EmailControlador.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/EnviarEmail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DonnaPizza/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Services/ServicioCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Services/ServicioCliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Services/ServicioIngredientes.java" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Services/ServicioIngredientes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Services/ServicioPizzas.java" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Services/ServicioPizzas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Services/ServicioPizzasFamiliares.java" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Services/ServicioPizzasFamiliares.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Services/ServicioUsuarios.java" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Services/ServicioUsuarios.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/js/clientes.js" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/js/clientes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/js/ingredientes.js" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/js/ingredientes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/js/pizzas.js" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/js/pizzas.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/js/pizzasfamiliares.js" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/js/pizzasfamiliares.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/js/usuarios.js" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/js/usuarios.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/messages.properties" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/messages.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/messages_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/messages_en.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/messages_es.properties" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/messages_es.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/CRUDClientes.html" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/CRUDClientes.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/CRUDIngredientes.html" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/CRUDIngredientes.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/CRUDPizzas.html" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/CRUDPizzas.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/CRUDPizzasFamiliares.html" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/CRUDPizzasFamiliares.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/CRUDUsuarios.html" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/CRUDUsuarios.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/formClientes.html" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/formClientes.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/fragments/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/fragments/footer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/login.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,8 +33,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
         <option value="Class" />
       </list>
     </option>
@@ -101,7 +98,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.DonnaPizzaApplication.executor": "Run",
-    "git-widget-placeholder": "JulianCamacho",
+    "git-widget-placeholder": "#24 on JulianCamacho",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/julic/IdeaProjects/Donna-Pizza/DonnaPizza/src/main/resources/static/img",
     "node.js.detected.package.eslint": "true",
@@ -110,6 +107,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -220,7 +218,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730184029308</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="IMPLEMENTACION DE APACHE POI">
+      <option name="closed" value="true" />
+      <created>1730242616215</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1730242616215</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -234,6 +240,7 @@
     <MESSAGE value="FINISH CRUD Pizzas HTML 100%" />
     <MESSAGE value="FINISH CRUD USUARIOS HTML 100%" />
     <MESSAGE value="FINISH CARTA HTML 100%" />
-    <option name="LAST_COMMIT_MESSAGE" value="FINISH CARTA HTML 100%" />
+    <MESSAGE value="IMPLEMENTACION DE APACHE POI" />
+    <option name="LAST_COMMIT_MESSAGE" value="IMPLEMENTACION DE APACHE POI" />
   </component>
 </project>
