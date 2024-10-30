@@ -104,23 +104,6 @@ public class ControladorPrincipal {
         return "fromclient";
     }
 
-    //clientes
-    @RequestMapping("/dataclientfrom")
-    public String dataclientfrom(@RequestParam("nombre") String nombre,
-                                 @RequestParam("apellidos") String apellidos,
-                                 @RequestParam("correo") String correo,
-                                 @RequestParam("numero") String numero,
-                                 @RequestParam("direccion") String direccion,
-                                 Model model
-    ) {
-        model.addAttribute("nombre", nombre);
-        model.addAttribute("apellidos", apellidos);
-        model.addAttribute("correo", correo);
-        model.addAttribute("numero", numero);
-        model.addAttribute("direccion", direccion);
-        return "client";
-    }
-
     @GetMapping("/changeLanguage")
     public String changeLanguage(@RequestParam("lang") String lang, HttpServletRequest request) {
         request.getSession().setAttribute("org.springframework.web.servlet.i18n.SessionLocaleResolver.LOCALE", new Locale(lang));
