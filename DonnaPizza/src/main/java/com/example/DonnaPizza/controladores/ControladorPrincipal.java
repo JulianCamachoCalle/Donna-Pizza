@@ -111,9 +111,5 @@ public class ControladorPrincipal {
         return "redirect:" + request.getHeader("Referer");
     }
 
-    @GetMapping("/especificaciones")
-    public String especificaciones(Model model) {
-        return "especificaciones";
-    }
 
 }
