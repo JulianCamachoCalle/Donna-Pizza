@@ -170,7 +170,6 @@ function actualizarCliente() {
         });
 }
 
-
 //Eliminar
 function eliminarCliente(id) {
     Swal.fire({
@@ -210,6 +209,9 @@ function eliminarCliente(id) {
     });
 }
 
+function exportarExcel() {
+    window.location.href = '/excelclientes';
+}
 
 
 

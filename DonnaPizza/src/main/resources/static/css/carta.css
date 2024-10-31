@@ -1,3 +1,8 @@
+#container-principal {
+    background-image: url("static/img/fondo-carta.jpg");
+    background-repeat: no-repeat;
+}
+
 .product-card {
     display: flex;
     border: 1px solid #ccc;

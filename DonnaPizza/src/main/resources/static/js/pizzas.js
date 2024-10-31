@@ -209,3 +209,8 @@ function eliminarPizza(id) {
         }
     });
 }
+
+function exportarExcel() {
+    window.location.href = '/excelpizzas';
+}
+

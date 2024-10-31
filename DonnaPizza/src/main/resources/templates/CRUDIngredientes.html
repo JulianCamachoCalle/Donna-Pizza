@@ -14,11 +14,16 @@
     <link rel="icon" href="img/favicon.ico" type="image/pizza-icon">
 </head>
 <body>
-<div class="container mt-4">
+<div class="container-fluid mt-4">
     <h1>Lista de Ingredientes</h1>
     <!-- Botón para abrir el modal de agregar ingrediente -->
-    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#pastaModal">
+    <button type="button" class="btn btn-primary my-3" data-toggle="modal" data-target="#ingredienteModal">
         Agregar Ingrediente
+    </button>
+
+    <!-- Botón para Exportar a Excel -->
+    <button type="button" class="btn btn-success my-3" onclick="exportarExcel()">
+        <i class="fas fa-file-excel"></i> Exportar a Excel
     </button>
 
     <!-- Tabla para listar ingredientes -->

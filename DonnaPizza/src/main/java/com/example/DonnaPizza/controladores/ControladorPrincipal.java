@@ -4,6 +4,8 @@ package com.example.DonnaPizza.controladores;
 import com.example.DonnaPizza.Services.ServicioCliente;
 import com.example.DonnaPizza.Services.ServicioIngredientes;
 import com.example.DonnaPizza.Services.ServicioPizzas;
+import com.example.DonnaPizza.Services.ServicioPizzasFamiliares;
+import com.example.DonnaPizza.Services.ServicioUsuarios;
 import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -12,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.Locale;
 
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -33,27 +34,50 @@ public class ControladorPrincipal {
         return "carta";
     }
 
-    @GetMapping("/locales")
-    public String locales(Model model) {
-        return "locales";
+    @GetMapping("/primerlocal")
+    public String primerlocal(Model model) {
+        return "primerlocal";
     }
 
-    @GetMapping("/login")
+    @GetMapping("/segundolocal")
+    public String segundolocal(Model model) {
+        return "segundolocal";
+    }
+
+    @GetMapping("/inicioSesion")
     public String login(Model model) {
-        return "login";
+        return "inicioSesion";
+    }
+
+    @GetMapping("/access-denied")
+    public String accessDenied(Model model) {
+        return "access-denied";
     }
 
     // CRUD Clientes
     private final ServicioCliente servicioCliente;
     private final ServicioIngredientes servicioIngredientes;
     private final ServicioPizzas servicioPizzas;
+    private final ServicioPizzasFamiliares servicioPizzasFamiliares;
+    private final ServicioUsuarios servicioUsuarios;
+
     public ControladorPrincipal(
             ServicioCliente servicioCliente,
             ServicioIngredientes servicioIngredientes,
-            ServicioPizzas servicioPizzas) {
+            ServicioPizzas servicioPizzas,
+            ServicioPizzasFamiliares servicioPizzasFamiliares,
+            ServicioUsuarios servicioUsuarios) {
         this.servicioCliente = servicioCliente;
         this.servicioIngredientes = servicioIngredientes;
         this.servicioPizzas = servicioPizzas;
+        this.servicioPizzasFamiliares = servicioPizzasFamiliares;
+        this.servicioUsuarios = servicioUsuarios;
+    }
+
+    @GetMapping("/pizzasfamiliares")
+    public String listarPizzasFamiliares(Model model) {
+        model.addAttribute("pizzasfamiliares", servicioPizzasFamiliares.getPizzasFamiliares());
+        return "CRUDPizzasFamiliares";
     }
 
     @GetMapping("/clientes")
@@ -74,26 +98,15 @@ public class ControladorPrincipal {
         return "CRUDPizzas";
     }
 
+    @GetMapping("/usuarios")
+    public String listarUsuarios(Model model) {
+        model.addAttribute("usuarios", servicioUsuarios.getUsuarios());
+        return "CRUDUsuarios";
+    }
+
     @GetMapping("/fromclient")
     public String fromclient(Model model) {
         return "fromclient";
-    }
-
-    //clientes
-    @RequestMapping("/dataclientfrom")
-    public String dataclientfrom(@RequestParam("nombre") String nombre,
-                                 @RequestParam("apellidos") String apellidos,
-                                 @RequestParam("correo") String correo,
-                                 @RequestParam("numero") String numero,
-                                 @RequestParam("direccion") String direccion,
-                                 Model model
-    ) {
-        model.addAttribute("nombre", nombre);
-        model.addAttribute("apellidos", apellidos);
-        model.addAttribute("correo", correo);
-        model.addAttribute("numero", numero);
-        model.addAttribute("direccion", direccion);
-        return "client";
     }
 
     @GetMapping("/changeLanguage")
@@ -102,9 +115,5 @@ public class ControladorPrincipal {
         return "redirect:" + request.getHeader("Referer");
     }
 
-    @GetMapping("/especificaciones")
-    public String especificaciones(Model model) {
-        return "especificaciones";
-    }
 
 }

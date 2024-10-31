@@ -19,8 +19,13 @@
 <div class="container-fluid mt-4">
     <h1>Lista de PizzasFamiliar</h1>
     <!-- Botón para abrir el modal de agregar pizzas -->
-    <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#pizzasfamiliaresModal">
+    <button type="button" class="btn btn-primary my-3" data-toggle="modal" data-target="#pizzasfamiliaresModal">
         Agregar Pizzas
+    </button>
+
+    <!-- Botón para Exportar a Excel -->
+    <button type="button" class="btn btn-success my-3" onclick="exportarExcel()">
+        <i class="fas fa-file-excel"></i> Exportar a Excel
     </button>
 
     <!-- Tabla para listar pizzas -->
@@ -87,7 +92,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editarPizzaFamiliarModalLabel">Editar Pizza</h5>
+                <h5 class="modal-title" id="editarPizzaFamiliarModalLabel">Editar PizzaFamiliar</h5>
             </div>
             <div class="modal-body">
                 <form id="formEditarPizzaFamiliar">
@@ -115,7 +120,7 @@
                             <label for="disponible-noact">No</label>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-primary" onclick="actualizarPizza()">Guardar Cambios</button>
+                    <button type="button" class="btn btn-primary" onclick="actualizarPizzaFamiliar()">Guardar Cambios</button>
                 </form>
             </div>
         </div>

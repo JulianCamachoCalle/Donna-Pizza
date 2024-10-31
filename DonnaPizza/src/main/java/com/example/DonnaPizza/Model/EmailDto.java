@@ -1,21 +1,20 @@
 package com.example.DonnaPizza.Model;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-@Entity
-@Table(name = "email_dto")
+import org.springframework.web.multipart.MultipartFile;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class EmailDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String subject;
 
-    private String enviando;
-    private String mensaje;
-    private String receptor;
+    private String message;
+
+    private String receiver;
+
+    private MultipartFile attachment;
 }
