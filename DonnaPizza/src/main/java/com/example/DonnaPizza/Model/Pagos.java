@@ -1,6 +1,7 @@
 package com.example.DonnaPizza.Model;
 
 import jakarta.persistence.*;
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,14 +12,19 @@ import lombok.NoArgsConstructor;
 @Entity
 
 // Tabla
-@Table(name = "metodos_pago")
-public class MetodosPago {
+@Table(name = "pagos")
+public class Pagos {
+
     // Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id_pago;
+
+    private Long id_pedido;
+
     private Long id_metodo_pago;
 
-    private String nombre;
+    private Double monto;
 
-    private String descripcion;
+    private Date fecha;
 }

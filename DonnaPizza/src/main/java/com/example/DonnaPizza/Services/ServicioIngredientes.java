@@ -48,7 +48,7 @@ public class ServicioIngredientes {
         datosIngredientes = new HashMap<>();
 
         // Verificar Nombre Existente
-        Optional<Ingredientes> resNom = ingredientesRepository.findByNombre(ingredientes.getNombre());
+        Optional<Ingredientes> resNom = ingredientesRepository.findIngredientesByNombre(ingredientes.getNombre());
 
         // Mnesaje de error Nombre
         if (resNom.isPresent()) {
@@ -86,7 +86,7 @@ public class ServicioIngredientes {
         }
 
         // Verificar si el nombre ya está usado
-        Optional<Ingredientes> resNom = ingredientesRepository.findByNombre(ingredientes.getNombre());
+        Optional<Ingredientes> resNom = ingredientesRepository.findIngredientesByNombre(ingredientes.getNombre());
         if (resNom.isPresent() && !resNom.get().getId_ingrediente().equals(id)) {
             datosIngredientes.put("error", true);
             datosIngredientes.put("mensaje", "Ya existe un ingrediente con ese nombre");

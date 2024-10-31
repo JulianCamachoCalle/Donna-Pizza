@@ -11,14 +11,16 @@ import lombok.NoArgsConstructor;
 @Entity
 
 // Tabla
-@Table(name = "metodos_pago")
-public class MetodosPago {
+@Table(name = "ingredientes_entrada")
+@IdClass(IngredientesEntradaId.class)
+public class  IngredientesEntrada {
+
     // Atributos
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_metodo_pago;
+    private Long id_entrada;
 
-    private String nombre;
+    @Id
+    private Long id_ingrediente;
 
-    private String descripcion;
+    private Double cantidad_necesaria;
 }
