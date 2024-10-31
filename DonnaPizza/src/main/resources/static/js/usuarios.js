@@ -12,11 +12,11 @@ function listarUsuarios() {
                         <td>${usuarios.id_usuario}</td>
                         <td>${usuarios.nombre}</td>
                         <td>${usuarios.apellido}</td>
-                        <td>${usuarios.email}</td>
+                        <td>${usuarios.username}</td>
                         <td>${usuarios.telefono}</td>
                         <td>${usuarios.direccion}</td>
                         <td>${usuarios.rol}</td>
-                        <td>${usuarios.contraseña}</td>
+                        <td>${usuarios.password}</td>
                         <td>${usuarios.fecha_registro}</td>
                         <td>
                             <button class="btn btn-warning" onclick="cargarDatosUsuario(${usuarios.id_usuario})">Editar</button>
@@ -36,11 +36,11 @@ function guardarUsuario() {
     const usuarios = {
         nombre: document.getElementById("nombre").value,
         apellido: document.getElementById("apellido").value,
-        email: document.getElementById("email").value,
+        username: document.getElementById("email").value,
         telefono: document.getElementById("telefono").value,
         direccion: document.getElementById("direccion").value,
         rol: document.getElementById("rol").value,
-        contraseña: document.getElementById("contraseña").value,
+        password: document.getElementById("contraseña").value,
         fecha_registro: document.getElementById("fecha_registro").value
     };
 
@@ -122,7 +122,7 @@ function cargarDatosUsuario(id) {
                 document.getElementById("telefono_editar").value = data.telefono.replace("+51 ", ""); // Remover el prefijo para editar
                 document.getElementById("direccion_editar").value = data.direccion;
                 document.getElementById("rol_editar").value = data.rol;
-                document.getElementById("contraseña_editar").value = data.contraseña;
+                document.getElementById("contraseña_editar").value = data.password;
                 document.getElementById("fecha_registro_editar").value = data.fecha_registro;
 
                 // Mostrar el modal
@@ -145,11 +145,11 @@ function actualizarUsuario() {
         id: document.getElementById("id_usuario_editar").value,
         nombre: document.getElementById("nombre_editar").value,
         apellido: document.getElementById("apellido_editar").value,
-        email: document.getElementById("email_editar").value,
+        username: document.getElementById("email_editar").value,
         telefono: document.getElementById("telefono_editar").value,
         direccion: document.getElementById("direccion_editar").value,
         rol: document.getElementById("rol_editar").value,
-        contraseña: document.getElementById("contraseña_editar").value,
+        password: document.getElementById("contraseña_editar").value,
         fecha_registro: document.getElementById("fecha_registro_editar").value
 
     };

@@ -32,44 +32,22 @@
                 <div class="form-contenedor crear-cuenta position-absolute">
                     <form class="d-flex justify-content-center align-items-center flex-column px-4">
                         <h1 th:text="#{form.usuario.legend.crear}"></h1>
-                        <div class="social-iconos my-2">
-                            <a href="#" class="iconos mx-2 justify-content-center align-items-center">
-                                <i class="fa-brands fa-google-plus-g"></i>
-                            </a>
-                            <a href="#" class="iconos mx-2 justify-content-center align-items-center">
-                                <i class="fa-brands fa-facebook-f"></i>
-                            </a>
-                            <a href="#" class="iconos mx-2 justify-content-center align-items-center">
-                                <i class="fa-brands fa-instagram"></i>
-                            </a>
-                        </div>
-                        <input class="my-1" type="text" id="nombre" th:placeholder="#{form.usuario.nombre}">
-                        <input class="my-1" type="text" id="apellido" th:placeholder="#{form.usuario.apellidos}">
-                        <input class="my-1" type="email" id="emailDto" th:placeholder="#{form.usuario.correo}">
-                        <input class="my-1" type="text" id="telefono" th:placeholder="#{form.usuario.telefono}">
-                        <input class="my-1" type="text" id="direccion" th:placeholder="#{form.usuario.direccion}">
-                        <input class="my-1" type="password" id="contraseña" th:placeholder="#{form.usuario.contrasena}">
-                        <button type="button" class="btn btn-login-register border px-3 py-2 my-2" onclick="guardarUsuario()" th:text="#{form.boton.registrar}"></button>
+                        <input class="my-1" type="text" id="nombre" th:placeholder="#{form.usuario.nombre}" required>
+                        <input class="my-1" type="text" id="apellido" th:placeholder="#{form.usuario.apellidos}" required>
+                        <input class="my-1" type="email" id="email" th:placeholder="#{form.usuario.correo}" required>
+                        <input class="my-1" type="text" id="telefono" th:placeholder="#{form.usuario.telefono}" required>
+                        <input class="my-1" type="text" id="direccion" th:placeholder="#{form.usuario.direccion}" required>
+                        <input class="my-1" type="password" id="contraseña" th:placeholder="#{form.usuario.contrasena}" required>
+                        <button type="button" onclick="guardarUsuario()" class="btn btn-login-register border px-3 py-2 my-2" th:text="#{form.boton.registrar}"></button>
                     </form>
                 </div>
                 <div class="form-contenedor position-absolute iniciar-sesion">
                     <form class="d-flex justify-content-center align-items-center flex-column px-4">
                         <h1 th:text="#{form.usuario.legend.iniciar}"></h1>
-                        <div class="social-iconos my-2">
-                            <a href="#" class="iconos mx-2 justify-content-center align-items-center">
-                                <i class="fa-brands fa-google-plus-g"></i>
-                            </a>
-                            <a href="#" class="iconos mx-2 justify-content-center align-items-center">
-                                <i class="fa-brands fa-facebook-f"></i>
-                            </a>
-                            <a href="#" class="iconos mx-2 justify-content-center align-items-center">
-                                <i class="fa-brands fa-instagram"></i>
-                            </a>
-                        </div>
-                        <input class="my-1" type="emailDto" name="email_login" th:placeholder="#{form.usuario.ingresar.correo}">
-                        <input class="my-1" type="password" name="contraseña_login" th:placeholder="#{form.usuario.contrasena}">
+                        <input class="my-1" type="email" name="emaillogin" th:placeholder="#{form.usuario.ingresar.correo}">
+                        <input class="my-1" type="password" name="contraseñalogin" th:placeholder="#{form.usuario.contrasena}">
                         <a href="#" class="my-3">Olvidaste tu contraseña?</a>
-                        <button type="button" class="btn btn-login-register border px-3 py-2" onclick="iniciarSesion()" th:text="#{form.boton.iniciar}"></button>
+                        <button type="button" onclick="iniciarSesion()" class="btn btn-login-register border px-3 py-2" th:text="#{form.boton.iniciar}"></button>
                     </form>
                 </div>
                 <div class="cambiar-contenedor position-absolute overflow-hidden">
