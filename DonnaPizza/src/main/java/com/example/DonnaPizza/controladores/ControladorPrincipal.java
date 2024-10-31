@@ -54,6 +54,11 @@ public class ControladorPrincipal {
         return "access-denied";
     }
 
+    @GetMapping("/menuUsuario")
+    public String menuUsuario(Model model) {
+        return "menuUsuario";
+    }
+
     // CRUD Clientes
     private final ServicioCliente servicioCliente;
     private final ServicioIngredientes servicioIngredientes;

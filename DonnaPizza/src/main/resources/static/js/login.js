@@ -16,11 +16,11 @@ function guardarUsuario() {
     const usuarios = {
         nombre: document.getElementById("nombre").value,
         apellido: document.getElementById("apellido").value,
-        email: document.getElementById("email").value,
+        username: document.getElementById("email").value,
         telefono: document.getElementById("telefono").value,
         direccion: document.getElementById("direccion").value,
         rol: rolUsuario,
-        contraseña: document.getElementById("contraseña").value,
+        password: document.getElementById("contraseña").value,
         fecha_registro: fecha_registroUsuario
     };
 
@@ -39,6 +39,7 @@ function guardarUsuario() {
                     icon: 'error',
                     title: 'Error',
                     text: data.mensaje || "Hubo un problema al agregar el usuario.",
+                    timer: 2000,
                 });
             } else {
                 // Mostrar mensaje de éxito
@@ -57,9 +58,13 @@ function guardarUsuario() {
                 icon: 'error',
                 title: 'Error de conexión',
                 text: 'No se pudo conectar con el servidor. Intente nuevamente más tarde.',
+                timer: 2000,
             });
             console.error('Error al guardar usuario:', error);
         });
+    setTimeout(() => {
+        window.location.href = "/inicioSesion";
+    }, 3000);
 }
 
 // Obtiene la fecha actual
@@ -76,50 +81,35 @@ const fecha_registroUsuario = currentDate;
 
 const rolUsuario = "USER";
 
-// Función para iniciar sesión
 function iniciarSesion() {
-    const datosInicio = {
-        email: document.getElementsByName("email_login")[0].value,
-        contraseña: document.getElementsByName("contraseña_login")[0].value
-    };
+    const username = document.querySelector('input[name="emaillogin"]').value;
+    const password = document.querySelector('input[name="contraseñalogin"]').value;
 
-    fetch('/api/v1/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
+    // Validar campos
+    if (!username || !password) {
+        Swal.fire('Error', 'Por favor, complete todos los campos.', 'error');
+        return;
+    }
+
+    // Enviar datos al backend
+    $.ajax({
+        type: 'POST',
+        url: '/api/v1/usuarios/login',
+        data: {
+            username: username,
+            password: password
         },
-        body: JSON.stringify(datosInicio)
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.error) {
-                // Mostrar mensaje de error
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: data.mensaje || "Hubo un problema al iniciar sesión.",
-                });
+        success: function(response) {
+            // Maneja la respuesta, redirige o muestra un mensaje
+            if (response.success) {
+                window.location.href = '/menuUsuario/${result.id}';
             } else {
-                // Si la respuesta es exitosa, redirige o muestra un mensaje
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Inicio de sesión exitoso',
-                    text: data.mensaje || "Bienvenido de nuevo.",
-                    timer: 2000,
-                    showConfirmButton: false
-                }).then(() => {
-                    // Redirige al usuario a la página usuario
-                    window.location.href = '../../templates/menuUsuario.html';
-                });
+                Swal.fire('Error', response.message, 'error');
             }
-        })
-        .catch(error => {
-            // Mostrar mensaje de error en caso de fallo en la conexión
-            Swal.fire({
-                icon: 'error',
-                title: 'Error de conexión',
-                text: 'No se pudo conectar con el servidor. Intente nuevamente más tarde.',
-            });
-            console.error('Error al iniciar sesión:', error);
-        });
+        },
+        error: function() {
+            Swal.fire('Error', 'Ocurrió un error en el inicio de sesión.', 'error');
+        }
+    });
 }
+

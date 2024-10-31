@@ -4,6 +4,7 @@ import com.example.DonnaPizza.Model.Usuarios;
 import com.example.DonnaPizza.Repository.UsuariosRepository;
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.AllArgsConstructor;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.BorderStyle;
@@ -13,6 +14,10 @@ import org.apache.poi.ss.util.CellRangeAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +27,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ServicioUsuarios {
+@AllArgsConstructor
+public class ServicioUsuarios implements UserDetailsService {
 
     // Link al Repository
     private final UsuariosRepository usuariosRepository;
@@ -288,5 +294,20 @@ public class ServicioUsuarios {
         workbook.write(ops);
         workbook.close();
         ops.close();
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<Usuarios> usuarios = usuariosRepository.findUsuariosByUsername(username);
+        if (usuarios.isPresent()) {
+
+            var usuario = usuarios.get();
+            return User.builder()
+                    .username(usuario.getUsername())
+                    .password(usuario.getPassword())
+                    .build();
+        } else {
+            throw new UsernameNotFoundException(username);
+        }
     }
 }
