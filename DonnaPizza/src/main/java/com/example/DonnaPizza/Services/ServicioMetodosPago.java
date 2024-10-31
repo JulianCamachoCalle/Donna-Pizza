@@ -76,7 +76,7 @@ public class ServicioMetodosPago {
 
         // Buscar metodo de pago por ID
         Optional<MetodosPago> metodosPagoExistente = metodosPagoRepository.findById(id);
-        if (MetodosPagoExistente.isEmpty()) {
+        if (metodosPagoExistente.isEmpty()) {
             datosMetodosPago.put("error", true);
             datosMetodosPago.put("mensaje", "Metodo de pago no encontrado");
             return new ResponseEntity<>(
@@ -87,7 +87,7 @@ public class ServicioMetodosPago {
 
         // Verificar si el nombre ya está usado
         Optional<MetodosPago> resNom = metodosPagoRepository.findByNombre(metodosPago.getNombre());
-        if (resNom.isPresent() && !resNom.get().getId_MetodosPago().equals(id)) {
+        if (resNom.isPresent() && !resNom.get().getId_metodo_pago().equals(id)) {
             datosMetodosPago.put("error", true);
             datosMetodosPago.put("mensaje", "Ya existe un metodo de pago con ese nombre");
             return new ResponseEntity<>(
@@ -99,14 +99,14 @@ public class ServicioMetodosPago {
         // Actualizar metodo de pago
         MetodosPago metodosPagoActualizar = metodosPagoExistente.get();
         metodosPagoActualizar.setNombre(metodosPago.getNombre());
-        metodosPagoActualizar.setDescripcion(metodosPago.getDescripcion);
+        metodosPagoActualizar.setDescripcion(metodosPago.getDescripcion());
 
         metodosPagoRepository.save(metodosPagoActualizar);
         datosMetodosPago.put("mensaje", "Se actualizó el metodo de pago");
         datosMetodosPago.put("data", metodosPagoActualizar);
 
         return new ResponseEntity<>(
-                datosIMetodosPago,
+                datosMetodosPago,
                 HttpStatus.OK
         );
     }
@@ -191,11 +191,11 @@ public class ServicioMetodosPago {
 
         // Llenar datos
         int dataRowIndex = 2;
-        for (MetodosPago metodosPago : metodosPago) {
+        for (MetodosPago metodoPago : metodosPago) {
             HSSFRow dataRow = sheet.createRow(dataRowIndex++);
-            dataRow.createCell(0).setCellValue(metodosPago.getId_metodo_pago());
-            dataRow.createCell(1).setCellValue(metodosPago.getNombre());
-            dataRow.createCell(2).setCellValue(metodosPago.getDescripcion);
+            dataRow.createCell(0).setCellValue(metodoPago.getId_metodo_pago());
+            dataRow.createCell(1).setCellValue(metodoPago.getNombre());
+            dataRow.createCell(2).setCellValue(metodoPago.getDescripcion());
 
             // Aplicar estilo de datos a cada celda
             for (int i = 0; i < headers.length; i++) {
