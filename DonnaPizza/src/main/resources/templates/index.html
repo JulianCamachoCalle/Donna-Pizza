@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Donna Pizza</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+              rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montagu+Slab:opsz,wght@16..144,100..700&display=swap"
+              rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="stylesheet" href="css/index.css">
+        <link rel="icon" href="img/favicon.ico" type="image/pizza-icon">
+    </head>
+
+    <body>
+        <!--Header-->
+        <div class="container-fluid d-flex justify-content-center align-items-center flex-column p-0" id="container-principal">
+            <div th:replace="fragments/header :: header">
+            </div>
+            <div class="container-fluid d-flex justify-content-center align-items-center flex-column"
+                 style="padding: 12.05rem 0;">
+                <img class="img-fluid" src="img/logo.png" alt="logo-principal">
+                <a class="btn btn-success mt-2" href="#" role="button">PIDE AHORA</a>
+            </div>
+        </div>
+        <!--Fin Header-->
+        <!--Main-->
+        <main>
+            <div class="container-fluid d-flex flex-column align-items-center py-5" id="container-info">
+                <div class="contenedor-titulo-platos mt-4">
+                    <p class="text-center">Disfruta Nuestros Platos</p>
+                </div>
+                <!--Platos-->
+                <div class="container-fluid d-flex justify-content-center">
+                    <div class="row g-2" id="pizza-container">
+                        <!-- Las tarjetas de pizza se generarán aquí -->
+                    </div>
+                </div>
+                <!--Fin Platos-->
+                <div class="contenedor-boton-compra">
+                    <button type="button" class="btn btn-danger px-3 py-2" data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop">
+                        Carta Completa
+                    </button>
+                </div>
+            </div>
+            <!--Nosotros-->
+            <div class="container-fluid container-fluid d-flex justify-content-center align-items-center flex-column"
+                 id="container-nosotros">
+                <div class="row">
+                    <div class="col-12 col-md-6 my-2 d-flex justify-content-center align-items-center flex-column">
+                        <div class="texto-nosotros">
+                            <div class="titulo-nosotros mb-3">
+                                DONNA PIZZA
+                            </div>
+                            <div class="contenido-nosotros mt-3">
+                                Contamos con más de 15 años de experiencia en ofrecer auténtica comida italiana. Nos
+                                especializamos
+                                en una amplia variedad de pizzas y pastas, elaboradas con recetas tradicionales y los
+                                ingredientes
+                                más frescos.
+                            </div>
+                            <div class="extra-nosotros mt-1">
+                                “Nuestra pasión por la buena comida y el servicio al cliente nos distingue, convirtiendo cada
+                                visita
+                                en una experiencia culinaria única.”
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 my-2 d-flex justify-content-center align-items-center flex-column">
+                        <div class="imagenes-nosotros">
+                            <div class="pizza-item1 d-flex justify-content-center align-items-center">
+                                <img class="img-fluid" src="img/pizza-cuadro1.jpg" alt="Pizza 1">
+                            </div>
+                            <div class="pizza-item2 d-flex justify-content-center align-items-center">
+                                <img class="img-fluid" src="img/pizza-cuadro2.jpg" alt="Pizza 2">
+                            </div>
+                            <div class="pizza-item3 d-flex justify-content-center align-items-center">
+                                <img class="img-fluid" src="img/pizza-cuadro3.jpg" alt="Pizza 3">
+                            </div>
+                            <div class="pizza-item4 d-flex justify-content-center align-items-center">
+                                <img class="img-fluid" src="img/pizza-cuadro4.jpeg" alt="Pizza 4">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Fin Nosotros-->
+            <!--Contacto-->
+            <div class="container-fluid d-flex justify-content-center align-items-center flex-column" id="container-contacto">
+                <div class="form-container py-5 px-4" id="form-contacto">
+                    <h2 class="text-left font-weight-bold mx-2 my-0" id="titulo-contacto">¡Estamos para Servirte!</h2>
+                    <p class="text-left font-weight-bold mx-2" id="subtitulo-contacto">¿Tienes alguna pregunta o quieres hacer
+                        un
+                        pedido? ¡Estamos aquí para ayudarte! Escríbenos o llámanos, y con gusto te atenderemos.</p>
+                    <form id="consultaForm" class="row" th:action="@{/dataformcontacto}"  method="post">
+                        <div class="form-group col-lg-3 col-md-6 col-sm-12 mb-3" id="input-contacto">
+                            <input type="text" class="form-control p-2" id="nombre" th:placeholder="#{from.ContactoDp.nombrecontacto}" name="nombre" >
+                        </div>
+                        <div class="form-group col-lg-3 col-md-6 col-sm-12 mb-3" id="input-contacto">
+                            <input type="emailDto" class="form-control p-2" id="emailDto" th:placeholder="#{from.ContactoDp.emailcontacto}" name="emailDto"  >
+                        </div>
+                        <div class="form-group col-lg-3 col-md-6 col-sm-12 mb-3" id="input-contacto">
+                            <input type="tel" class="form-control p-2" id="telefono" th:placeholder="#{from.ContactoDp.telefonocontacto}" name="telefono"  >
+                        </div>
+                        <div class="form-group col-lg-3 col-md-6 col-sm-12 mb-3 d-flex justify-content-center"
+                             id="input-contacto">
+                            <button type="submit" class="btn btn-danger p-2 w-100" id="boton-contacto" th:value="#{from.boton.registrarcontacto}">Solicitar Ayuda</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--Fin Contacto-->
+        </main>
+        <!--Fin Main-->
+        <!--Footer-->
+        <div th:replace="fragments/footer :: footer"></div>
+        <!--Fin Footer-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+        <script src="/js/index.js"></script>
+    </body>
+
+</html>

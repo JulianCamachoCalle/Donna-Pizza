@@ -1,0 +1,46 @@
+ /* Botones */
+ .btn-success {
+    background-color: rgb(0, 164, 77) !important;
+    color: white !important;
+    padding: 0.938rem 1.25rem !important;
+    border: none !important;
+    border-radius: 0.375rem !important;
+    font-family: "Montserrat" !important;
+    font-weight: 850 !important;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+}
+
+.btn-success:hover {
+    background-color: rgb(22, 75, 34) !important;
+}
+
+.btn-danger {
+    background-color: rgb(240, 26, 36) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 0.375rem !important;
+    font-family: "Montserrat" !important;
+    font-size: 18px !important;
+    font-weight: 850 !important;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+}
+
+.btn-danger:hover {
+    background-color: rgb(184, 23, 31) !important;
+}
+
+.btn-compra {
+    background-color: rgb(240, 26, 36) !important;
+    color: white !important;
+    font-family: "Montserrat" !important;
+    font-size: 0.625rem !important;
+    font-weight: 850 !important;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+}
+
+.btn-compra:hover {
+    background-color: rgb(184, 23, 31) !important;
+}

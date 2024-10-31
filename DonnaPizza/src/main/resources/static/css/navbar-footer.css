@@ -1,0 +1,56 @@
+/* Navbar */
+.navbar {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.39) 68%, rgba(102, 102, 102, 0) 100%);
+}
+
+.navbar-nav .nav-item .nav-link {
+    color: white;
+    padding: 5px 20px !important;
+    font-family: "Montserrat";
+    font-weight: 200;
+}
+
+.active {
+    color: white !important;
+    font-weight: 600 !important;
+}
+
+/* Footer */
+footer {
+    background-color: black;
+    font-size: 1.375rem;
+    font-weight: 400;
+    padding: 20px 0; /* Agregar padding */
+}
+
+#container-footer {
+    background-color: black;
+    font-family: "Montagu Slab";
+}
+
+footer h5 {
+    color: white !important;
+    font-size: 1.375rem;
+    font-weight: 500;
+    margin-bottom: 10px; /* Espacio inferior */
+}
+
+footer .nav-item {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+footer .nav-link {
+    transition: color 0.3s; /* Suaviza la transición del color */
+}
+
+footer .nav-link:hover {
+    color: #F01A24; /* Cambia el color al pasar el mouse */
+}
+
+footer p {
+    font-size: 1rem;
+    font-weight: 300;
+    margin-top: 20px; /* Espacio superior */
+    color: white !important;
+}

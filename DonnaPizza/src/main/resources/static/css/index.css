@@ -1,0 +1,124 @@
+ @import "navbar-footer.css";
+ @import "botones.css";
+ @import "platos.css";
+
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+ }
+
+ /* Fondo de inicio y medidas */
+ #container-principal {
+     background-image: url("../img/fondo-principal.jpg");
+     background-repeat: no-repeat;
+     background-size: cover;
+ }
+
+ /* Apartado de Platos */
+ #container-info {
+     background-image: url("../img/fondo-secundario.jpg");
+     background-repeat: no-repeat;
+     background-size: cover;
+     width: 100%;
+ }
+
+ .contenedor-titulo-platos {
+     color: white;
+     font-family: "Montagu Slab";
+     font-size: 3rem;
+     font-weight: 900;
+     text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.5);
+ }
+
+ /* Nosotros */
+ #container-nosotros {
+     background-color: white;
+     width: 100%;
+     padding: 6.25rem 1.25rem;
+ }
+
+ .titulo-nosotros {
+     color: rgb(240, 26, 36);
+     font-family: "Montagu Slab";
+     font-size: 1.5rem;
+     font-weight: bold;
+ }
+
+ .contenido-nosotros {
+     color: rgb(0, 0, 0);
+     font-family: "Montserrat";
+     font-size: 1rem;
+     font-weight: 300;
+     font-style: italic;
+     max-width: 430px;
+ }
+
+ .extra-nosotros {
+     color: rgb(0, 0, 0);
+     font-family: "Montserrat";
+     font-size: .75rem;
+     font-weight: 200;
+     max-width: 430px;
+ }
+
+ .imagenes-nosotros {
+     display: grid;
+     grid-template-columns: repeat(2, 1fr);
+     gap: 10px;
+     max-width: 500px;
+     max-height: 600px;
+ }
+
+ .pizza-item1,
+ .pizza-item2,
+ .pizza-item3,
+ .pizza-item4 {
+     box-shadow: 6px 6px 3px rgba(0, 0, 0, 0.5);
+ }
+
+ .pizza-item1 img,
+ .pizza-item2 img,
+ .pizza-item3 img,
+ .pizza-item4 img {
+     height: 100%;
+     width: 100%;
+     object-fit: cover;
+ }
+
+ /* Contactanos */
+ #container-contacto {
+     background-image: url("../img/fondo-contacto.jpg");
+     background-repeat: no-repeat;
+     background-size: cover;
+     padding: 8.625rem 1.25rem;
+     width: 100%;
+ }
+
+ #form-contacto {
+     background-color: rgb(10, 10, 10, 0.8);
+     border-radius: 25px;
+ }
+
+ #titulo-contacto {
+     color: white;
+     font-family: "Montserrat";
+     font-size: 2rem;
+     font-weight: 900;
+ }
+
+ #subtitulo-contacto {
+     color: white;
+     font-family: "Montserrat";
+     font-size: 1rem;
+     font-weight: 100;
+ }
+
+ #input-contacto input {
+     background-color: rgb(255, 255, 255, 0.8);
+     color: rgb(0, 0, 0, 0.8);
+     font-family: "Montserrat";
+     font-size: 1.125rem;
+     font-weight: 400;
+     border-radius: 0.375rem;
+ }

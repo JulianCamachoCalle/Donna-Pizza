@@ -1,0 +1,47 @@
+#container-principal {
+    background-image: url("static/img/fondo-carta.jpg");
+    background-repeat: no-repeat;
+}
+
+.product-card {
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-image img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.product-info {
+    margin-left: 20px;
+}
+
+.price-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.price-button {
+    background-color: yellow;
+    color: black;
+    border-radius: 50px;
+    padding: 5px 15px;
+    font-weight: bold;
+}
+
+.quantity-container {
+    margin-top: 15px;
+}
+
+#cart-container {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+}

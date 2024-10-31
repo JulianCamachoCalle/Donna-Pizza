@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Donna Pizza</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montagu+Slab:opsz,wght@16..144,100..700&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="icon" href="img/favicon.ico" type="image/pizza-icon">
+</head>
+
+<body>
+<!--Header-->
+<div class="container-fluid d-flex justify-content-center align-items-center flex-column p-0"
+     id="container-principal">
+    <div th:replace="fragments/header :: header">
+    </div>
+</div>
+<!--Fin Header-->
+<div class="container mt-5">
+    <h2>Complete su Pedido</h2>
+
+    <!-- Resumen del carrito -->
+    <div id="cart-summary" class="mt-4">
+        <h4>Resumen del Pedido</h4>
+        <ul id="cart-items" class="list-group"></ul>
+    </div>
+
+    <form id="clienteForm">
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" id="nombre" required>
+        </div>
+        <div class="form-group">
+            <label for="apellido">Apellido</label>
+            <input type="text" class="form-control" id="apellido" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" required>
+        </div>
+        <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input type="text" class="form-control" id="telefono" required>
+        </div>
+        <div class="form-group">
+            <label for="direccion">Dirección</label>
+            <input type="text" class="form-control" id="direccion" required>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="guardarCliente()">Guardar
+        </button>
+    </form>
+
+
+
+    <!--Footer-->
+    <div th:replace="fragments/footer :: footer"></div>
+    <!--Fin Footer-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+</body>
+<script>
+    // Cargar y mostrar el carrito
+    function loadCart() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartItemsList = document.getElementById('cart-items');
+
+        cartItemsList.innerHTML = '';
+        cart.forEach(item => {
+            const li = document.createElement('li');
+            li.className = "list-group-item";
+            li.textContent = `${item.quantity} x ${item.name} (${item.size}) - ${item.price}`;
+            cartItemsList.appendChild(li);
+        });
+    }
+
+    window.onload = function() {
+        loadCart();
+    }
+
+    // Manejo del formulario
+    document.getElementById('client-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Obtener datos del formulario
+        const name = document.getElementById('name').value;
+        const address = document.getElementById('address').value;
+        const phone = document.getElementById('phone').value;
+
+        // Aquí puedes manejar la lógica para enviar el pedido al servidor
+        // Por ejemplo, puedes usar AJAX o redirigir a una página de confirmación.
+        console.log("Pedido Confirmado", { name, address, phone });
+
+        // Limpiar el carrito después de enviar el pedido
+        localStorage.removeItem('cart');
+
+        alert('Pedido confirmado. ¡Gracias por tu compra!');
+        window.location.href = 'thankyou.html'; // Puedes crear una página de agradecimiento.
+    });
+
+
+    function guardarCliente() {
+        const cliente = {
+            nombre: document.getElementById("nombre").value,
+            apellido: document.getElementById("apellido").value,
+            email: document.getElementById("email").value,
+            telefono: document.getElementById("telefono").value,
+            direccion: document.getElementById("direccion").value
+        };
+
+        fetch('/api/v1/clientes', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(cliente)
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    // Mostrar mensaje de error
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: data.mensaje || "Hubo un problema al agregar el cliente.",
+                    });
+                } else {
+                    // Mostrar mensaje de éxito
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Cliente agregado',
+                        text: data.mensaje || "El cliente se ha registrado exitosamente.",
+                        timer: 2000,
+                        showConfirmButton: false
+                    }).then(() => {
+                        $('#clienteModal').modal('hide'); // Ocultar el modal
+                        listarClientes(); // Refrescar la lista de clientes
+                    });
+                }
+            })
+            .catch(error => {
+                // Mostrar mensaje de error en caso de fallo en la conexión
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error de conexión',
+                    text: 'No se pudo conectar con el servidor. Intente nuevamente más tarde.',
+                });
+                console.error('Error al guardar cliente:', error);
+            });
+    }
+</script>
+</html>

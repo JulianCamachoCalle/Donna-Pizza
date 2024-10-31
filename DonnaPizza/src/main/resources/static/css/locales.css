@@ -1,0 +1,85 @@
+@import "navbar-footer.css";
+@import "platos.css";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fondo de inicio y medidas */
+#container-locales {
+    background-image: url("../img/fondo-locales.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.titulo-locales {
+    color: white;
+    font-family: "Montagu Slab";
+    font-size: 3rem;
+    font-weight: 200;
+    text-shadow: 3px 3px 1px rgba(0, 0, 0, 1);
+    margin: 15px 0;
+}
+
+.descripcion-locales {
+    color: white;
+    font-family: "Montagu Slab";
+    font-size: 1.5rem;
+    font-weight: 300;
+    text-shadow: 1.5px 1.5px 1px rgba(0, 0, 0, 1);
+    margin: 15px 0;
+}
+
+.map-locales {
+    max-width: 700px;
+    max-height: 500px;
+}
+
+.botones-locales a {
+    margin: 0.938rem 1.875rem;
+    padding: 0.938rem 1.875rem;
+    min-width: 250px;
+}
+
+.desactivado {
+    background-color: none !important;
+}
+
+iframe {
+    border-radius: 25px;
+}
+
+.btn-danger {
+    background-color: rgb(240, 26, 36) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 0.375rem !important;
+    font-family: "Montserrat" !important;
+    font-size: 18px !important;
+    font-weight: 850 !important;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+}
+
+.btn-danger:hover {
+    background-color: rgb(184, 23, 31) !important;
+}
+
+.btn-success {
+    background-color: inherit !important;
+    color: rgb(240, 26, 36) !important;
+    border: 2px solid rgb(240, 26, 36) !important;
+    border-radius: 0.375rem !important;
+    font-family: "Montserrat" !important;
+    font-size: 18px !important;
+    font-weight: 850 !important;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+}
+
+.btn-success:hover {
+    color: white !important;
+    border: 2px solid white !important;
+}

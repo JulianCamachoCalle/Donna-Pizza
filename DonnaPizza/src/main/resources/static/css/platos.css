@@ -1,0 +1,36 @@
+/* Platos */
+#plato {
+    border-radius: 25px !important;
+    background-color: rgb(0, 164, 77) !important;
+    box-shadow: 6px 6px 4px rgba(0, 0, 0, 0.5) !important;
+}
+
+.card-img-top {
+    height: 12.5rem !important;
+    border-radius: 25px 25px 0 0 !important;
+}
+
+#nombre-plato {
+    color: white;
+    font-family: "Montagu Slab";
+    font-size: 1.25rem;
+    font-weight: 900;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+#ingredientes-plato {
+    color: rgb(240, 240, 240);
+    font-family: "Montserrat";
+    font-size: 0.75rem;
+    font-style: italic;
+    font-weight: 200;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+#precio-plato {
+    color: rgb(255, 215, 0);
+    font-family: "Montserrat";
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}

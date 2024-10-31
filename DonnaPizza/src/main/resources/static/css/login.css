@@ -1,0 +1,293 @@
+@import "navbar-footer.css";
+@import "botones.css";
+
+@keyframes move {
+
+    0%,
+    49.99% {
+        opacity: 0;
+        z-index: 1;
+    }
+
+    50%,
+    100% {
+        opacity: 1;
+        z-index: 5;
+    }
+}
+
+body {
+    background-image: url(../img/fondo-login.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.contenedor {
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+}
+
+.social-iconos a {
+    width: 30px;
+    height: 30px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main {
+    flex: 1;
+}
+
+.form-contenedor {
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+}
+
+.contenedor a {
+    color: rgb(240, 26, 36);
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.btn-login-register {
+    background-color: rgb(240, 26, 36) !important;
+    color: white !important;
+    font-family: "Montserrat" !important;
+    font-size: 0.875rem !important;
+    font-weight: 850 !important;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+    border: 1px solid transparent !important;
+    text-transform: uppercase;
+    cursor: pointer !important;
+}
+
+.btn-cambio {
+    color: white !important;
+    font-family: "Montserrat" !important;
+    font-size: 0.875rem !important;
+    font-weight: 850 !important;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+    text-transform: uppercase;
+    cursor: pointer !important;
+}
+
+
+.contenedor button.ocultar {
+    background-color: transparent;
+    border-color: white;
+}
+
+.contenedor form {
+    background-color: white;
+    height: 100%;
+}
+
+.contenedor input {
+    background-color: rgb(240, 26, 36);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    box-shadow: 6px 6px 3px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    outline: none;
+    padding: 10px 15px;
+    font-size: 0.875rem;
+}
+
+input::placeholder {
+    color: white;
+    font-family: "Montserrat";
+    font-size: 0.875rem;
+    font-weight: 200;
+}
+
+.iniciar-sesion {
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+
+.contenedor.active .iniciar-sesion {
+    transform: translateX(100%);
+}
+
+.crear-cuenta {
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+
+.contenedor.active .crear-cuenta {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: move 0.6s;
+}
+
+.social-iconos a {
+    border: 1px solid rgb(240, 26, 36);
+    border-radius: 20%;
+    display: inline-flex;
+}
+
+.cambiar-contenedor {
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+    border-radius: 150px 0 0 150px;
+    z-index: 1000;
+}
+
+.contenedor.active .cambiar-contenedor {
+    transform: translateX(-100%);
+    border-radius: 0 150px 150px 0;
+}
+
+.cambiar {
+    height: 100%;
+    background: linear-gradient(to right, rgb(240, 26, 36), rgb(138, 15, 21));
+    color: white;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.contenedor.active .cambiar {
+    transform: translateX(50%);
+}
+
+.cambiar-panel {
+    width: 50%;
+    height: 100%;
+    padding: 0 30px;
+    top: 0;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.cambiar-izquierda {
+    transform: translateX(-200%);
+}
+
+
+.contenedor.active .cambiar-izquierda {
+    transform: translateX(0);
+}
+
+.cambiar-derecha {
+    right: 0;
+    transform: translateX(0);
+}
+
+.contenedor.active .cambiar-derecha {
+    transform: translateX(200%);
+}
+
+form h1 {
+    color: rgb(122, 0, 6);
+    font-family: "Montagu Slab" !important;
+    font-size: 1.875rem;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+
+.cambiar p {
+    color: white;
+    font-family: "Montserrat";
+    font-size: 0.875rem;
+    font-weight: 200;
+    font-style: italic;
+    margin: 25px 0;
+    padding: 0;
+}
+
+.cambiar h1 {
+    color: white;
+    font-family: "Montagu Slab" !important;
+    font-size: 1.875rem;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos específicos para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .contenedor {
+        width: 100%;
+    }
+
+    .form-contenedor {
+        padding: 20px;
+    }
+
+    form h1 {
+        font-size: 1.5rem;
+    }
+
+    .btn-login-register,
+    .btn-cambio {
+        font-size: 0.75rem;
+    }
+
+    .social-iconos a {
+        width: 25px;
+        height: 25px;
+    }
+
+    .contenedor input {
+        font-size: 0.75rem;
+        padding: 8px 12px;
+    }
+}
+
+@media (max-width: 576px) {
+    .contenedor {
+        padding: 10px;
+    }
+
+    .contenedor input {
+        font-size: 0.75rem;
+    }
+
+    form h1 {
+        font-size: 1rem;
+    }
+
+    .cambiar h1 {
+        font-size: 1.2rem;
+    }
+
+    .cambiar p {
+        font-size: 0.75rem;
+    }
+
+    .btn-login-register,
+    .btn-cambio {
+        padding: 8px 10px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .contenedor {
+        width: 900px;
+    }
+
+    form h1 {
+        font-size: 2rem;
+    }
+}

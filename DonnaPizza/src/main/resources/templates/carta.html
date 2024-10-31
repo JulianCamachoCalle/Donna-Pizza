@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Donna Pizza</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montagu+Slab:opsz,wght@16..144,100..700&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="icon" href="img/favicon.ico" type="image/pizza-icon">
+</head>
+<body>
+<!--Header-->
+<div class="container-fluid d-flex justify-content-center align-items-center flex-column p-0" id="container-principal">
+    <div th:replace="fragments/header :: header"></div>
+    <!--Fin Header-->
+
+    <!-- Icono flotante del carrito -->
+    <div id="cart-icon" onclick="toggleCartModal()">
+        <img src="img/icono-pizza.jpg" alt="Carrito de Compras" class="img-fluid">
+    </div>
+
+    <!-- Modal del carrito -->
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cartModalLabel">Carrito de Compras</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <ul id="cart-items" class="list-group"></ul>
+                </div>
+                <div class="modal-footer">
+                    <a href="/fromclient" class="btn btn-success">Proceder al Pago</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container mt-4">
+        <form action="#" method="GET" class="d-flex mb-5">
+            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
+            <select class="form-select me-2" name="categoria">
+                <option value="entrada">Entrada</option>
+                <option value="pizza">Pizza</option>
+                <option value="pastas">Pastas</option>
+            </select>
+            <button class="btn btn-outline-success" type="submit">Buscar</button>
+        </form>
+
+        <div class="container-fluid d-flex justify-content-center">
+            <div class="row g-2" id="pizza-container">
+                <!-- Las tarjetas de pizza se generarán aquí -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Especificaciones de Pizza -->
+<div class="modal fade" id="pizzaModal" tabindex="-1" aria-labelledby="pizzaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="pizzaModalLabel">Especificaciones de la Pizza</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex align-items-center">
+                    <div class="product-image">
+                        <img src="/img/pizzas/predeterminada.jpg" alt="Imagen de la Pizza" class="img-fluid" id="modal-pizza-image">
+                    </div>
+                    <div class="product-info ms-3">
+                        <h3 id="modal-pizza-name">Nombre de la Pizza</h3>
+                        <p id="modal-pizza-description">Descripción de los ingredientes de la pizza.</p>
+                        <div class="size-options mt-3">
+                            <h5>Selecciona el tamaño:</h5>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="size" id="size-familiar" value="Familiar" checked>
+                                <label class="form-check-label" for="size-familiar">Familiar - S/. <span id="modal-price-familiar">0</span></label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="size" id="size-media" value="Media">
+                                <label class="form-check-label" for="size-media">Media - S/. <span id="modal-price-media">0</span></label>
+                            </div>
+                        </div>
+                        <div class="quantity-container d-flex align-items-center mt-3">
+                            <button class="btn btn-outline-secondary" onclick="updateQuantity(-1)">-</button>
+                            <input id="modal-quantity" type="text" value="1" readonly class="form-control text-center mx-2" style="width: 50px;">
+                            <button class="btn btn-outline-secondary" onclick="updateQuantity(1)">+</button>
+                        </div>
+                        <button class="btn btn-danger mt-3" onclick="addToCart()">Agregar al Carrito</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Footer-->
+<div th:replace="fragments/footer :: footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/carta.js"></script>
+
+</body>
+</html>

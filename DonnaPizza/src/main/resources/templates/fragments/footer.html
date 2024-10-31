@@ -1,0 +1,52 @@
+<!-- Footer -->
+<div th:fragment="footer" class="container-fluid m-0 p-0" id="container-footer">
+    <footer class="container">
+        <div class="row">
+            <!-- Sección de navegación -->
+            <div class="col-12 col-md-4 mb-3">
+                <h5 th:text="#{footer.enlaces}"></h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item"><a th:text="#{footer.inicio}" th:href="@{/index}" class="nav-link px-2 text-light" aria-label="Ir a la página de inicio"></a></li>
+                    <li class="nav-item"><a th:text="#{footer.sugerencias}" th:href="@{/sugerencias}" class="nav-link px-2 text-light" aria-label="Ir a la sección de sugerencias"></a></li>
+                    <li class="nav-item"><a th:text="#{footer.reclamaciones}" th:href="@{/reclamaciones}" class="nav-link px-2 text-light" aria-label="Ir al libro de reclamaciones"></a></li>
+                    <li class="nav-item"><a th:text="#{footer.nosotros}" th:href="@{/nosotros}" class="nav-link px-2 text-light" aria-label="Ir a la sección nosotros"></a></li>
+                </ul>
+            </div>
+
+            <!-- Sección de contacto -->
+            <div class="col-12 col-md-4 mb-3">
+                <h5 th:text="#{footer.contacto}"></h5>
+                <address class="nav flex-column">
+                    <p class="nav-item"><a th:text="#{footer.telefono}" href="tel:945942112" class="nav-link text-light px-2"></a></p>
+                    <p class="nav-item"><a th:text="#{footer.emailDto}" href="mailto:Donnapizza@gmail.com" class="nav-link text-light px-2"></a></p>
+                    <p class="nav-item"><a th:text="#{footer.formulario}" th:href="@{/index}" class="nav-link text-light px-2" aria-label="Ir al formulario de contacto"></a></p>
+                </address>
+            </div>
+
+            <!-- Sección de redes sociales -->
+            <div class="col-12 col-md-4 mb-3">
+                <h5 th:text="#{footer.siguenos}"></h5>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a href="https://www.facebook.com" target="_blank" class="nav-link px-2 text-light" aria-label="Ir a Facebook">
+                            <i class="fab fa-facebook-f mx-1"></i> Facebook
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.instagram.com" target="_blank" class="nav-link px-2 text-light" aria-label="Ir a Instagram">
+                            <i class="fab fa-instagram mx-1"></i> Instagram
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.twitter.com" target="_blank" class="nav-link px-2 text-light" aria-label="Ir a Twitter">
+                            <i class="fab fa-twitter mx-1"></i> Twitter
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Pie de página -->
+        <p class="text-center mt-4" th:text="#{footer.derechos}"></p>
+    </footer>
+</div>
