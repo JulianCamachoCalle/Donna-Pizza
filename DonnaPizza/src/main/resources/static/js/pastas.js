@@ -1,43 +1,47 @@
-// Obtener lista de ingredientes y mostrarlos en la tabla
-function listarIngredientes() {
-    fetch('/api/v1/ingredientes')
+// Obtener lista de pastas y mostrarlas en la tabla
+function listarPastas() {
+    fetch('/api/v1/pastas')
         .then(response => response.json())
         .then(data => {
-            const ingredientesList = document.getElementById("pastas-list");
-            ingredientesList.innerHTML = ""; // Limpiar tabla antes de cargar datos
+            const pastasList = document.getElementById("clientes-list");
+            pastasList.innerHTML = ""; // Limpiar tabla antes de cargar datos
 
-            data.forEach(ingrediente => {
+            data.forEach(pasta => {
                 let row = `
                     <tr>
-                        <td>${ingrediente.id_ingrediente}</td>
-                        <td>${ingrediente.nombre}</td>
-                        <td>${ingrediente.cantidad_disponible}</td>
+                        <td>${pasta.id_pasta}</td>
+                        <td>${pasta.nombre}</td>
+                        <td>${pasta.descripcion}</td>
+                        <td>${pasta.precio}</td>
+                        <td>${pasta.disponible ? 'Sí' : 'No'}</td>
                         <td>
-                            <button class="btn btn-warning" onclick="cargarDatosIngrediente(${ingrediente.id_ingrediente})">Editar</button>
-                            <button class="btn btn-danger" onclick="eliminarIngrediente(${ingrediente.id_ingrediente})">Eliminar</button>
+                            <button class="btn btn-warning" onclick="cargarDatosPasta(${pasta.id_pasta})">Editar</button>
+                            <button class="btn btn-danger" onclick="eliminarPasta(${pasta.id_pasta})">Eliminar</button>
                         </td>
                     </tr>`;
-                ingredientesList.innerHTML += row;
+                pastasList.innerHTML += row;
             });
         })
-        .catch(error => console.error('Error al listar ingredientes:', error));
+        .catch(error => console.error('Error al listar pastas:', error));
 }
 
-document.addEventListener('DOMContentLoaded', listarIngredientes);
+document.addEventListener('DOMContentLoaded', listarPastas);
 
-// Función para guardar un ingrediente
-function guardarIngrediente() {
-    const ingrediente = {
+// Función para guardar una nueva pasta
+function guardarPasta() {
+    const pasta = {
         nombre: document.getElementById("nombre").value,
-        cantidad_disponible: document.getElementById("cantdisponible").value
+        descripcion: document.getElementById("apellido").value, // Asumiendo que "apellido" se usa para descripción
+        precio: document.getElementById("email").value,
+        disponible: document.getElementById("telefono").value // Cambiar si es booleano
     };
 
-    fetch('/api/v1/ingredientes', {
+    fetch('/api/v1/pastas', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(ingrediente)
+        body: JSON.stringify(pasta)
     })
         .then(response => response.json())
         .then(data => {
@@ -46,19 +50,19 @@ function guardarIngrediente() {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: data.mensaje || "Hubo un problema al agregar el ingrediente.",
+                    text: data.mensaje || "Hubo un problema al agregar la pasta.",
                 });
             } else {
                 // Mostrar mensaje de éxito
                 Swal.fire({
                     icon: 'success',
-                    title: 'Ingrediente agregado',
-                    text: data.mensaje || "El ingrediente se ha registrado exitosamente.",
+                    title: 'Pasta agregada',
+                    text: data.mensaje || "La pasta se ha registrado exitosamente.",
                     timer: 2000,
                     showConfirmButton: false
                 }).then(() => {
                     $('#pastaModal').modal('hide'); // Ocultar el modal
-                    listarIngredientes(); // Refrescar la lista de ingredientes
+                    listarPastas(); // Refrescar la lista de pastas
                 });
             }
         })
@@ -69,16 +73,16 @@ function guardarIngrediente() {
                 title: 'Error de conexión',
                 text: 'No se pudo conectar con el servidor. Intente nuevamente más tarde.',
             });
-            console.error('Error al guardar ingrediente:', error);
+            console.error('Error al guardar pasta:', error);
         });
 }
 
 // Cargar datos al Modal Actualizar
-function cargarDatosIngrediente(id) {
-    fetch(`/api/v1/ingredientes/${id}`)
+function cargarDatosPasta(id) {
+    fetch(`/api/v1/pastas/${id}`)
         .then(response => {
             if (!response.ok) {
-                throw new Error('Error al obtener datos del ingrediente');
+                throw new Error('Error al obtener datos de la pasta');
             }
             return response.json();
         })
@@ -91,38 +95,42 @@ function cargarDatosIngrediente(id) {
                 });
             } else {
                 // Cargar datos en el modal
-                document.getElementById("id_ingredienteact").value = data.id_ingrediente;
+                document.getElementById("id_pastaact").value = data.id_pasta;
                 document.getElementById("nombreact").value = data.nombre;
-                document.getElementById("cantdisponibleact").value = data.cantidad_disponible;
+                document.getElementById("apellidoact").value = data.descripcion;
+                document.getElementById("emailact").value = data.precio;
+                document.getElementById("disponibleact").value = data.disponible ? 'Sí' : 'No'; // Cambiar según el tipo de dato
 
                 // Mostrar el modal
-                $('#editarIngredienteModal').modal('show');
+                $('#editarPastaModal').modal('show');
             }
         })
         .catch(error => {
             Swal.fire({
                 icon: 'error',
                 title: 'Error de conexión',
-                text: 'No se pudo cargar los datos del ingrediente.',
+                text: 'No se pudo cargar los datos de la pasta.',
             });
-            console.error('Error al cargar datos del ingrediente:', error);
+            console.error('Error al cargar datos de la pasta:', error);
         });
 }
 
 // Actualizar
-function actualizarIngrediente() {
-    const ingredienteActualizado = {
-        id_ingrediente: document.getElementById("id_ingredienteact").value,
+function actualizarPasta() {
+    const pastaActualizada = {
+        id: document.getElementById("id_pastaact").value,
         nombre: document.getElementById("nombreact").value,
-        cantidad_disponible: document.getElementById("cantdisponibleact").value
+        descripcion: document.getElementById("apellidoact").value,
+        precio: document.getElementById("emailact").value,
+        disponible: document.getElementById("disponibleact").value === 'Sí' // Cambiar según el tipo de dato
     };
 
-    fetch(`/api/v1/ingredientes/${ingredienteActualizado.id_ingrediente}`, {
+    fetch(`/api/v1/pastas/${pastaActualizada.id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(ingredienteActualizado)
+        body: JSON.stringify(pastaActualizada)
     })
         .then(response => response.json())
         .then(data => {
@@ -131,19 +139,19 @@ function actualizarIngrediente() {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: data.mensaje || "Hubo un problema al actualizar el ingrediente.",
+                    text: data.mensaje || "Hubo un problema al actualizar la pasta.",
                 });
             } else {
                 // Mostrar mensaje de éxito
                 Swal.fire({
                     icon: 'success',
-                    title: 'Ingrediente actualizado',
-                    text: data.mensaje || "El ingrediente se ha actualizado exitosamente.",
+                    title: 'Pasta actualizada',
+                    text: data.mensaje || "La pasta se ha actualizado exitosamente.",
                     timer: 2000,
                     showConfirmButton: false
                 }).then(() => {
-                    $('#editarIngredienteModal').modal('hide'); // Ocultar el modal
-                    listarIngredientes(); // Refrescar la lista de ingredientes
+                    $('#editarPastaModal').modal('hide'); // Ocultar el modal
+                    listarPastas(); // Refrescar la lista de pastas
                 });
             }
         })
@@ -154,12 +162,12 @@ function actualizarIngrediente() {
                 title: 'Error de conexión',
                 text: 'No se pudo conectar con el servidor. Intente nuevamente más tarde.',
             });
-            console.error('Error al actualizar ingrediente:', error);
+            console.error('Error al actualizar pasta:', error);
         });
 }
 
 // Eliminar
-function eliminarIngrediente(id) {
+function eliminarPasta(id) {
     Swal.fire({
         title: '¿Estás seguro?',
         text: "No podrás revertir esto!",
@@ -170,7 +178,7 @@ function eliminarIngrediente(id) {
         confirmButtonText: 'Sí, eliminar!'
     }).then((result) => {
         if (result.isConfirmed) {
-            fetch(`/api/v1/ingredientes/${id}`, {
+            fetch(`/api/v1/pastas/${id}`, {
                 method: 'DELETE'
             })
                 .then(response => response.json())
@@ -181,7 +189,7 @@ function eliminarIngrediente(id) {
                         text: data.mensaje,
                     }).then(() => {
                         if (!data.error) {
-                            listarIngredientes(); // Refrescar la lista de ingredientes
+                            listarPastas(); // Refrescar la lista de pastas
                         }
                     });
                 })
@@ -189,9 +197,9 @@ function eliminarIngrediente(id) {
                     Swal.fire({
                         icon: 'error',
                         title: 'Error de conexión',
-                        text: 'No se pudo eliminar el ingrediente.',
+                        text: 'No se pudo eliminar la pasta.',
                     });
-                    console.error('Error al eliminar ingrediente:', error);
+                    console.error('Error al eliminar pasta:', error);
                 });
         }
     });

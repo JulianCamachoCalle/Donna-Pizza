@@ -1,43 +1,41 @@
-// Obtener lista de ingredientes y mostrarlos en la tabla
-function listarIngredientes() {
-    fetch('/api/v1/ingredientes')
+// Obtener lista de documentos y mostrarlos en la tabla
+function listarDocumentos() {
+    fetch('/api/v1/documentos') // Cambiar a la ruta correcta para documentos
         .then(response => response.json())
         .then(data => {
-            const ingredientesList = document.getElementById("pastas-list");
-            ingredientesList.innerHTML = ""; // Limpiar tabla antes de cargar datos
+            const documentosList = document.getElementById("documentos-list"); // Cambiar el ID a documentos-list
+            documentosList.innerHTML = ""; // Limpiar tabla antes de cargar datos
 
-            data.forEach(ingrediente => {
+            data.forEach(documento => {
                 let row = `
                     <tr>
-                        <td>${ingrediente.id_ingrediente}</td>
-                        <td>${ingrediente.nombre}</td>
-                        <td>${ingrediente.cantidad_disponible}</td>
+                        <td>${documento.idDocumento}</td> <!-- Cambiar el nombre de la propiedad según tu modelo -->
+                        <td>${documento.tipoDocumento}</td> <!-- Cambiar el nombre de la propiedad según tu modelo -->
                         <td>
-                            <button class="btn btn-warning" onclick="cargarDatosIngrediente(${ingrediente.id_ingrediente})">Editar</button>
-                            <button class="btn btn-danger" onclick="eliminarIngrediente(${ingrediente.id_ingrediente})">Eliminar</button>
+                            <button class="btn btn-warning" onclick="cargarDatosDocumento(${documento.idDocumento})">Editar</button>
+                            <button class="btn btn-danger" onclick="eliminarDocumento(${documento.idDocumento})">Eliminar</button>
                         </td>
                     </tr>`;
-                ingredientesList.innerHTML += row;
+                documentosList.innerHTML += row;
             });
         })
-        .catch(error => console.error('Error al listar ingredientes:', error));
+        .catch(error => console.error('Error al listar documentos:', error));
 }
 
-document.addEventListener('DOMContentLoaded', listarIngredientes);
+document.addEventListener('DOMContentLoaded', listarDocumentos);
 
-// Función para guardar un ingrediente
-function guardarIngrediente() {
-    const ingrediente = {
-        nombre: document.getElementById("nombre").value,
-        cantidad_disponible: document.getElementById("cantdisponible").value
+// Función para guardar un documento
+function guardarDocumento() {
+    const documento = {
+        tipoDocumento: document.getElementById("tipo_documento").value // Cambiar el ID al correcto
     };
 
-    fetch('/api/v1/ingredientes', {
+    fetch('/api/v1/documentos', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(ingrediente)
+        body: JSON.stringify(documento)
     })
         .then(response => response.json())
         .then(data => {
@@ -46,19 +44,19 @@ function guardarIngrediente() {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: data.mensaje || "Hubo un problema al agregar el ingrediente.",
+                    text: data.mensaje || "Hubo un problema al agregar el documento.",
                 });
             } else {
                 // Mostrar mensaje de éxito
                 Swal.fire({
                     icon: 'success',
-                    title: 'Ingrediente agregado',
-                    text: data.mensaje || "El ingrediente se ha registrado exitosamente.",
+                    title: 'Documento agregado',
+                    text: data.mensaje || "El documento se ha registrado exitosamente.",
                     timer: 2000,
                     showConfirmButton: false
                 }).then(() => {
-                    $('#pastaModal').modal('hide'); // Ocultar el modal
-                    listarIngredientes(); // Refrescar la lista de ingredientes
+                    $('#documentoModal').modal('hide'); // Ocultar el modal
+                    listarDocumentos(); // Refrescar la lista de documentos
                 });
             }
         })
@@ -69,16 +67,16 @@ function guardarIngrediente() {
                 title: 'Error de conexión',
                 text: 'No se pudo conectar con el servidor. Intente nuevamente más tarde.',
             });
-            console.error('Error al guardar ingrediente:', error);
+            console.error('Error al guardar documento:', error);
         });
 }
 
 // Cargar datos al Modal Actualizar
-function cargarDatosIngrediente(id) {
-    fetch(`/api/v1/ingredientes/${id}`)
+function cargarDatosDocumento(id) {
+    fetch(`/api/v1/documentos/${id}`)
         .then(response => {
             if (!response.ok) {
-                throw new Error('Error al obtener datos del ingrediente');
+                throw new Error('Error al obtener datos del documento');
             }
             return response.json();
         })
@@ -91,38 +89,36 @@ function cargarDatosIngrediente(id) {
                 });
             } else {
                 // Cargar datos en el modal
-                document.getElementById("id_ingredienteact").value = data.id_ingrediente;
-                document.getElementById("nombreact").value = data.nombre;
-                document.getElementById("cantdisponibleact").value = data.cantidad_disponible;
+                document.getElementById("id_documentoact").value = data.idDocumento; // Cambiar al ID correcto
+                document.getElementById("tipo_documentoact").value = data.tipoDocumento; // Cambiar al ID correcto
 
                 // Mostrar el modal
-                $('#editarIngredienteModal').modal('show');
+                $('#editarDocumentoModal').modal('show');
             }
         })
         .catch(error => {
             Swal.fire({
                 icon: 'error',
                 title: 'Error de conexión',
-                text: 'No se pudo cargar los datos del ingrediente.',
+                text: 'No se pudo cargar los datos del documento.',
             });
-            console.error('Error al cargar datos del ingrediente:', error);
+            console.error('Error al cargar datos del documento:', error);
         });
 }
 
 // Actualizar
-function actualizarIngrediente() {
-    const ingredienteActualizado = {
-        id_ingrediente: document.getElementById("id_ingredienteact").value,
-        nombre: document.getElementById("nombreact").value,
-        cantidad_disponible: document.getElementById("cantdisponibleact").value
+function actualizarDocumento() {
+    const documentoActualizado = {
+        id: document.getElementById("id_documentoact").value, // Cambiar al ID correcto
+        tipoDocumento: document.getElementById("tipo_documentoact").value // Cambiar al ID correcto
     };
 
-    fetch(`/api/v1/ingredientes/${ingredienteActualizado.id_ingrediente}`, {
+    fetch(`/api/v1/documentos/${documentoActualizado.id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(ingredienteActualizado)
+        body: JSON.stringify(documentoActualizado)
     })
         .then(response => response.json())
         .then(data => {
@@ -131,19 +127,19 @@ function actualizarIngrediente() {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: data.mensaje || "Hubo un problema al actualizar el ingrediente.",
+                    text: data.mensaje || "Hubo un problema al actualizar el documento.",
                 });
             } else {
                 // Mostrar mensaje de éxito
                 Swal.fire({
                     icon: 'success',
-                    title: 'Ingrediente actualizado',
-                    text: data.mensaje || "El ingrediente se ha actualizado exitosamente.",
+                    title: 'Documento actualizado',
+                    text: data.mensaje || "El documento se ha actualizado exitosamente.",
                     timer: 2000,
                     showConfirmButton: false
                 }).then(() => {
-                    $('#editarIngredienteModal').modal('hide'); // Ocultar el modal
-                    listarIngredientes(); // Refrescar la lista de ingredientes
+                    $('#editarDocumentoModal').modal('hide'); // Ocultar el modal
+                    listarDocumentos(); // Refrescar la lista de documentos
                 });
             }
         })
@@ -154,12 +150,12 @@ function actualizarIngrediente() {
                 title: 'Error de conexión',
                 text: 'No se pudo conectar con el servidor. Intente nuevamente más tarde.',
             });
-            console.error('Error al actualizar ingrediente:', error);
+            console.error('Error al actualizar documento:', error);
         });
 }
 
 // Eliminar
-function eliminarIngrediente(id) {
+function eliminarDocumento(id) {
     Swal.fire({
         title: '¿Estás seguro?',
         text: "No podrás revertir esto!",
@@ -170,7 +166,7 @@ function eliminarIngrediente(id) {
         confirmButtonText: 'Sí, eliminar!'
     }).then((result) => {
         if (result.isConfirmed) {
-            fetch(`/api/v1/ingredientes/${id}`, {
+            fetch(`/api/v1/documentos/${id}`, {
                 method: 'DELETE'
             })
                 .then(response => response.json())
@@ -181,7 +177,7 @@ function eliminarIngrediente(id) {
                         text: data.mensaje,
                     }).then(() => {
                         if (!data.error) {
-                            listarIngredientes(); // Refrescar la lista de ingredientes
+                            listarDocumentos(); // Refrescar la lista de documentos
                         }
                     });
                 })
@@ -189,9 +185,9 @@ function eliminarIngrediente(id) {
                     Swal.fire({
                         icon: 'error',
                         title: 'Error de conexión',
-                        text: 'No se pudo eliminar el ingrediente.',
+                        text: 'No se pudo eliminar el documento.',
                     });
-                    console.error('Error al eliminar ingrediente:', error);
+                    console.error('Error al eliminar documento:', error);
                 });
         }
     });
