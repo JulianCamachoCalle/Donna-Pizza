@@ -4,6 +4,7 @@ import com.example.DonnaPizza.Jwt.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -21,30 +22,22 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http
-                .csrf(csrf ->
-                        csrf
-                        .disable())
+        http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authRequest ->
-                    authRequest
-                        .requestMatchers(
-                                "/**",
-                                "/index",
-                                "/carta",
-                                "/primerlocal",
-                                "/segundolocal",
-                                "/inicioSesion",
-                                "/auth/**",
-                                "/changeLanguage").permitAll()
-                        .anyRequest().authenticated()
-                        )
+                        authRequest
+                                .requestMatchers("/**").permitAll()
+                                .anyRequest().authenticated() // Requiere autenticación para cualquier otra solicitud
+                )
                 .sessionManagement(sessionManager ->
-                        sessionManager
-                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                        sessionManager.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
                 .authenticationProvider(authProvider)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .build();
-    }
+                .exceptionHandling(exceptionHandling ->
+                        exceptionHandling.accessDeniedPage("/access-denied")
+                );
 
+        return http.build();
+    }
 }
 

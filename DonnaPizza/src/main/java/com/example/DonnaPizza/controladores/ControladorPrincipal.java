@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.Locale;
 
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -48,6 +47,11 @@ public class ControladorPrincipal {
     @GetMapping("/inicioSesion")
     public String login(Model model) {
         return "inicioSesion";
+    }
+
+    @GetMapping("/access-denied")
+    public String accessDenied(Model model) {
+        return "access-denied";
     }
 
     // CRUD Clientes

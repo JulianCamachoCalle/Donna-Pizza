@@ -22,21 +22,7 @@
     <button type="button" class="btn btn-primary my-3" data-toggle="modal" data-target="#emailModal">
         Nuevo Email
     </button>
-    <!-- Tabla para listar pizzas -->
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Precio</th>
-            <th>Disponible</th>
-            <th>Acciones</th>
-        </tr>
-        </thead>
-        <tbody id="pizzas-list">
-        </tbody>
-    </table>
+    <p th:text="${message}"></p>
 </div>
 <!-- Modal para form emailDto -->
 <div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="emailModalLabel"
@@ -47,21 +33,24 @@
                 <h5 class="modal-title" id="emailModalLabel">Nuevo Email</h5>
             </div>
             <div class="modal-body">
-                <form th:action="@{/enviarEmail}" th:method="post" th:object="${emailDto}" id="pizzaForm">
+                <form th:action="@{/enviarEmail}" th:method="post" th:object="${emailDto}" id="pizzaForm"  enctype="multipart/form-data">
                     <div class="form-group">
                         <label>Receptor del Email</label>
-                        <input type="text" class="form-control" th:field="*{receptor}" required>
+                        <input type="text" class="form-control" th:field="*{receiver}" required>
                     </div>
                     <div class="form-group">
-                        <label>Enviado Por:</label>
-                        <input type="text" class="form-control" th:field="*{enviando}" required>
+                        <label>Proposito</label>
+                        <input type="text" class="form-control" th:field="*{subject}" required>
                     </div>
                     <div class="form-group">
                         <label>Mensaje</label>
-                        <textarea class="form-control" cols="30" rows="10" th:field="*{mensaje}"></textarea>
+                        <textarea class="form-control" cols="30" rows="10" th:field="*{message}" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Enviar
-                    </button>
+                    <div class="form-group">
+                        <label>Adjuntar Archivo</label>
+                        <input type="file" class="form-control" th:field="*{attachment}">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
                 </form>
             </div>
         </div>
