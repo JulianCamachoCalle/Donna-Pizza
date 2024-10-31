@@ -19,8 +19,13 @@
 <div class="container-fluid mt-4">
     <h1>Lista de Usuarios</h1>
     <!-- Botón para abrir el modal de agregar usuarios -->
-    <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#usuariosModal">
+    <button type="button" class="btn btn-primary my-3" data-toggle="modal" data-target="#usuariosModal">
         Agregar Usuarios
+    </button>
+
+    <!-- Botón para Exportar a Excel -->
+    <button type="button" class="btn btn-success my-3" onclick="exportarExcel()">
+        <i class="fas fa-file-excel"></i> Exportar a Excel
     </button>
 
     <!-- Tabla para listar usuarios -->
@@ -64,8 +69,8 @@
                         <input type="text" class="form-control" id="apellido" required>
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" required>
+                        <label for="emailDto" class="form-label">Email</label>
+                        <input type="emailDto" class="form-control" id="emailDto" required>
                     </div>
                     <div class="mb-3">
                         <label for="telefono" class="form-label">Teléfono</label>
@@ -119,7 +124,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="email_editar" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email_editar" required>
+                        <input type="emailDto" class="form-control" id="email_editar" required>
                     </div>
                     <div class="mb-3">
                         <label for="telefono_editar" class="form-label">Teléfono</label>

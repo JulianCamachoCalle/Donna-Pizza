@@ -210,3 +210,7 @@ function eliminarPizzaFamiliar(id) {
         }
     });
 }
+
+function exportarExcel() {
+    window.location.href = '/excelpizzasfamiliares';
+}

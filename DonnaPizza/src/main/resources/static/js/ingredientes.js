@@ -198,3 +198,7 @@ function eliminarIngrediente(id) {
     });
 }
 
+function exportarExcel() {
+    window.location.href = '/excelingredientes';
+}
+

@@ -7,12 +7,19 @@
     <list default="true" id="6a68d45f-09a6-4b17-9ede-cee68f1ec71d" name="Changes" comment="IMPLEMENTACION DE APACHE COMMONS AL 50%">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DonnaPizza/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/pom.xml" afterDir="false" />
+
       <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/css/carta.css" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/css/carta.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/carta.html" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/carta.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/especificaciones.html" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/especificaciones.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/formClientes.html" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/formClientes.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/fromclient.html" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/fromclient.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bd_donnapízza.sql" beforeDir="false" afterPath="$PROJECT_DIR$/bd_donnapízza.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/controladores/ControladorPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/controladores/ControladorPrincipal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/DonnaPizza/src/main/resources/static/css/menucliente.css" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/css/menucliente.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/DonnaPizza/src/main/resources/static/js/menuClientes.js" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/js/menuClientes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/menuCliente.html" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/menuCliente.html" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,6 +99,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.DonnaPizzaApplication.executor": "Run",
     "git-widget-placeholder": "Walter",
+    "git-widget-placeholder": "#25 on JulianCamacho",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/julic/IdeaProjects/Donna-Pizza/DonnaPizza/src/main/resources/static/img",
     "node.js.detected.package.eslint": "true",

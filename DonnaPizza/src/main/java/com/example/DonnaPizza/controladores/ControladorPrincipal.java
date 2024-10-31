@@ -60,7 +60,8 @@ public class ControladorPrincipal {
             ServicioCliente servicioCliente,
             ServicioIngredientes servicioIngredientes,
             ServicioPizzas servicioPizzas,
-            ServicioPizzasFamiliares servicioPizzasFamiliares) {
+            ServicioPizzasFamiliares servicioPizzasFamiliares,
+            ServicioUsuarios servicioUsuarios) {
         this.servicioCliente = servicioCliente;
         this.servicioIngredientes = servicioIngredientes;
         this.servicioPizzas = servicioPizzas;
@@ -101,23 +102,6 @@ public class ControladorPrincipal {
     @GetMapping("/fromclient")
     public String fromclient(Model model) {
         return "fromclient";
-    }
-
-    //clientes
-    @RequestMapping("/dataclientfrom")
-    public String dataclientfrom(@RequestParam("nombre") String nombre,
-                                 @RequestParam("apellidos") String apellidos,
-                                 @RequestParam("correo") String correo,
-                                 @RequestParam("numero") String numero,
-                                 @RequestParam("direccion") String direccion,
-                                 Model model
-    ) {
-        model.addAttribute("nombre", nombre);
-        model.addAttribute("apellidos", apellidos);
-        model.addAttribute("correo", correo);
-        model.addAttribute("numero", numero);
-        model.addAttribute("direccion", direccion);
-        return "client";
     }
 
     @GetMapping("/changeLanguage")

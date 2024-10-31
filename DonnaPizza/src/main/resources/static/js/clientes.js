@@ -209,6 +209,9 @@ function eliminarCliente(id) {
     });
 }
 
+function exportarExcel() {
+    window.location.href = '/excelclientes';
+}
 
 
 
