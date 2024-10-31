@@ -45,9 +45,9 @@ public class ControladorPrincipal {
         return "segundolocal";
     }
 
-    @GetMapping("/login")
+    @GetMapping("/inicioSesion")
     public String login(Model model) {
-        return "login";
+        return "inicioSesion";
     }
 
     // CRUD Clientes
@@ -56,6 +56,7 @@ public class ControladorPrincipal {
     private final ServicioPizzas servicioPizzas;
     private final ServicioPizzasFamiliares servicioPizzasFamiliares;
     private final ServicioUsuarios servicioUsuarios;
+
     public ControladorPrincipal(
             ServicioCliente servicioCliente,
             ServicioIngredientes servicioIngredientes,
@@ -68,7 +69,7 @@ public class ControladorPrincipal {
         this.servicioPizzasFamiliares = servicioPizzasFamiliares;
         this.servicioUsuarios = servicioUsuarios;
     }
-    
+
     @GetMapping("/pizzasfamiliares")
     public String listarPizzasFamiliares(Model model) {
         model.addAttribute("pizzasfamiliares", servicioPizzasFamiliares.getPizzasFamiliares());

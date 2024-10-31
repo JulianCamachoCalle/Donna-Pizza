@@ -52,7 +52,7 @@ public class ServicioUsuarios {
         datosUsuario = new HashMap<>();
 
         // Verificar Email Existente
-        Optional<Usuarios> resEmail = usuariosRepository.findUsuariosByEmail(usuarios.getEmail());
+        Optional<Usuarios> resEmail = usuariosRepository.findUsuariosByUsername(usuarios.getUsername());
 
         // Mensaje de error Email
         if (resEmail.isPresent()) {
@@ -104,7 +104,7 @@ public class ServicioUsuarios {
         }
 
         // Formatear Contrasena
-        usuarios.setContraseña(passwordEncoder.encode(usuarios.getContraseña()));
+        usuarios.setPassword(passwordEncoder.encode(usuarios.getPassword()));
 
         // Guardar Con Exito
         datosUsuario.put("mensaje", "Se ha registrado el Usuario");
@@ -132,7 +132,7 @@ public class ServicioUsuarios {
         }
 
         // Verificar si el email ya está en uso por otro usuario
-        Optional<Usuarios> resEmail = usuariosRepository.findUsuariosByEmail(usuarios.getEmail());
+        Optional<Usuarios> resEmail = usuariosRepository.findUsuariosByUsername(usuarios.getUsername());
         if (resEmail.isPresent() && !resEmail.get().getId_usuario().equals(id)) {
             datosUsuario.put("error", true);
             datosUsuario.put("mensaje", "Ya existe un usuario con ese email");
@@ -162,12 +162,12 @@ public class ServicioUsuarios {
         Usuarios usuariosActualizar = usuarioExistente.get();
         usuariosActualizar.setNombre(usuarios.getNombre());
         usuariosActualizar.setApellido(usuarios.getApellido());
-        usuariosActualizar.setEmail(usuarios.getEmail());
+        usuariosActualizar.setUsername(usuarios.getUsername());
         usuariosActualizar.setTelefono(usuarios.getTelefono());
         usuariosActualizar.setDireccion(usuarios.getDireccion());
         usuariosActualizar.setRol(usuarios.getRol());
-        if (!usuarios.getContraseña().isEmpty()) {
-            usuariosActualizar.setContraseña(passwordEncoder.encode(usuarios.getContraseña()));
+        if (!usuarios.getPassword().isEmpty()) {
+            usuariosActualizar.setPassword(passwordEncoder.encode(usuarios.getPassword()));
         }
 
         usuariosRepository.save(usuariosActualizar);
@@ -265,11 +265,11 @@ public class ServicioUsuarios {
             dataRow.createCell(0).setCellValue(usuario.getId_usuario());
             dataRow.createCell(1).setCellValue(usuario.getNombre());
             dataRow.createCell(2).setCellValue(usuario.getApellido());
-            dataRow.createCell(3).setCellValue(usuario.getEmail());
+            dataRow.createCell(3).setCellValue(usuario.getUsername());
             dataRow.createCell(4).setCellValue(usuario.getTelefono());
             dataRow.createCell(5).setCellValue(usuario.getDireccion());
-            dataRow.createCell(6).setCellValue(usuario.getRol());
-            dataRow.createCell(7).setCellValue(usuario.getContraseña());
+            dataRow.createCell(6).setCellValue(usuario.getRol().toString());
+            dataRow.createCell(7).setCellValue(usuario.getPassword());
             dataRow.createCell(8).setCellValue(usuario.getFecha_registro());
 
             // Aplicar estilo de datos a cada celda
