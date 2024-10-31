@@ -13,8 +13,4 @@ public interface PizzasFamiliaresRepository extends JpaRepository<PizzasFamiliar
     // Buscar Segun Nombre
     Optional<PizzasFamiliares> findPizzaFamiliarByNombre(String nombre);
 
-    // Verificar existencia
-    boolean existsById_pizza_familiar(Long id_pizza_familiar);
-    // Eliminar
-    void deleteById_pizza_familiar(Long id_pizza_familiar);
 }

@@ -40,16 +40,8 @@ public class ServicioPizzasFamiliares {
     }
 
     // Obtener pizza familiar por ID
-    public ResponseEntity<Object> getPizzaFamiliarById(Long id) {
-        Optional<PizzasFamiliares> pizzaFamiliar = pizzasFamiliaresRepository.findById(id);
-        if (pizzaFamiliar.isPresent()) {
-            datosPizzasFamiliares.put("data", pizzaFamiliar.get());
-            return new ResponseEntity<>(datosPizzasFamiliares, HttpStatus.OK);
-        } else {
-            datosPizzasFamiliares.put("error", true);
-            datosPizzasFamiliares.put("message", "Pizza no encontrada");
-            return new ResponseEntity<>(datosPizzasFamiliares, HttpStatus.NOT_FOUND);
-        }
+    public Optional<PizzasFamiliares> getPizzaFamiliarById(Long id) {
+        return this.pizzasFamiliaresRepository.findById(id);
     }
 
     // Crear nuevo
@@ -117,7 +109,7 @@ public class ServicioPizzasFamiliares {
 
     // Generar Excel
     public void generarExcelPizzasFamiliares(HttpServletResponse response) throws IOException {
-        List<PizzasFamiliares> pizzasFamiliares = pizzasfamiliaresRepository.findAll();
+        List<PizzasFamiliares> pizzasFamiliares = pizzasFamiliaresRepository.findAll();
 
         HSSFWorkbook workbook = new HSSFWorkbook();
         HSSFSheet sheet = workbook.createSheet("Pizzas Familiares Info");

@@ -10,9 +10,4 @@ import java.util.Optional;
 @Repository
 public interface IngredientesPizzaRepository extends JpaRepository<IngredientesPizza, Long> {
 
-    // Buscar por id_pizza
-    List<IngredientesPizza> findById_pizza(Long id_pizza);
-
-    // Buscar por id_ingrediente
-    List<IngredientesPizza> findById_ingrediente(Long id_ingrediente);
 }

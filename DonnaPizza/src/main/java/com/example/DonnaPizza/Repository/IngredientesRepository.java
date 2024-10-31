@@ -12,5 +12,4 @@ public interface IngredientesRepository extends JpaRepository<Ingredientes, Long
     // Buscar Segun Nombre
     Optional<Ingredientes> findIngredientesByNombre(String nombre);
 
-    Optional<Ingredientes> findIngredientesByDouble (Double cantidad_disponible);
 }

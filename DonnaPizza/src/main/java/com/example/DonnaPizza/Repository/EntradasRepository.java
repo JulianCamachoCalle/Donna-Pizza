@@ -9,9 +9,4 @@ import java.util.Optional;
 @Repository
 public interface EntradasRepository extends JpaRepository<Entradas, Long>{
 
-    // Buscar entradas disponibles (disponible = true)
-    List<Entradas> findByDisponibleTrue();
-
-    // Buscar entradas por nombre
-    List<Entradas> findByNombre(String nombre);
 }
