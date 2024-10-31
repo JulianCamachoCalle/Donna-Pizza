@@ -10,16 +10,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 
-// Tabla
-@Table(name = "metodos_pago")
-public class MetodosPago {
+@Table(name = "documentos")
+public class Documentos {
 
-    // Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_metodo_pago;
+    @Column(name = "id_documento")
+    private Long idDocumento;
 
-    private String nombre;
-
-    private String descripcion;
+    @Column(name = "tipo_documento")
+    private String tipoDocumento;
 }
