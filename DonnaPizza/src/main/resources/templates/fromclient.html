@@ -35,53 +35,34 @@
         <ul id="cart-items" class="list-group"></ul>
     </div>
 
-    <!-- Formulario de Cliente con estilos -->
-<div class="container mt-5">
-    <form method="post" th:action="@{/dataclientfrom}" class="border p-4 shadow rounded">
-        <fieldset>
-            <legend th:text="#{from.client.legend.generalcli}" class="text-center mb-4">Info Cliente</legend>
-
-            <!-- Nombre -->
-            <div class="mb-3">
-                <label for="nombre" th:text="#{from.client.nombre}" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="nombre" th:placeholder="#{from.client.nombre}" name="nombre" required>
-            </div>
-
-            <!-- Apellidos -->
-            <div class="mb-3">
-                <label for="apellidos" th:text="#{from.client.apellidos}" class="form-label">Apellidos</label>
-                <input type="text" class="form-control" id="apellidos" th:placeholder="#{from.client.apellidos}" name="apellidos" required>
-            </div>
-
-            <!-- Correo Electrónico -->
-            <div class="mb-3">
-                <label for="correo" th:text="#{from.client.correo}" class="form-label">Correo Electrónico</label>
-                <input type="text" class="form-control" id="correo" th:placeholder="#{from.client.correo}" name="correo" required>
-
-            </div>
-            
-            <!-- Correo Numero -->
-            <div class="mb-3">
-                <label for="correo" th:text="#{from.client.numero}" class="form-label">Numero</label>
-                <input type="numero" class="form-control" id="numero" th:placeholder="#{from.client.numero}" name="numero" required>
-            </div>
-
-            <!-- Dirección -->
-            <div class="mb-3">
-                <label for="direccion" th:text="#{from.client.direccion}" class="form-label">Dirección</label>
-                <input type="text" class="form-control" id="direccion" th:placeholder="#{from.client.direccion}" name="direccion" required>
-            </div>
-
-            <!-- Botón de Enviar -->
-            <div class="text-center">
-                <input type="submit" class="btn btn-primary" th:value="#{from.boton.regitercli}">
-            </div>
-        </fieldset>
-    </form>
-</div>
+            <form id="clienteForm">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="apellido">Apellido</label>
+                    <input type="text" class="form-control" id="apellido" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono</label>
+                    <input type="text" class="form-control" id="telefono" required>
+                </div>
+                <div class="form-group">
+                    <label for="direccion">Dirección</label>
+                    <input type="text" class="form-control" id="direccion" required>
+                </div>
+                <button type="button" class="btn btn-primary" onclick="guardarCliente()">Guardar
+                </button>
+            </form>
 
 
-        <!--Footer-->
+
+            <!--Footer-->
         <div th:replace="fragments/footer :: footer"></div>
         <!--Fin Footer-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -93,7 +74,7 @@
 function loadCart() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const cartItemsList = document.getElementById('cart-items');
-    
+
     cartItemsList.innerHTML = '';
     cart.forEach(item => {
         const li = document.createElement('li');
@@ -110,21 +91,72 @@ window.onload = function() {
 // Manejo del formulario
 document.getElementById('client-form').addEventListener('submit', function(event) {
     event.preventDefault();
-    
+
     // Obtener datos del formulario
     const name = document.getElementById('name').value;
     const address = document.getElementById('address').value;
     const phone = document.getElementById('phone').value;
-    
+
     // Aquí puedes manejar la lógica para enviar el pedido al servidor
     // Por ejemplo, puedes usar AJAX o redirigir a una página de confirmación.
     console.log("Pedido Confirmado", { name, address, phone });
-    
+
     // Limpiar el carrito después de enviar el pedido
     localStorage.removeItem('cart');
-    
+
     alert('Pedido confirmado. ¡Gracias por tu compra!');
     window.location.href = 'thankyou.html'; // Puedes crear una página de agradecimiento.
 });
+
+
+function guardarCliente() {
+    const cliente = {
+        nombre: document.getElementById("nombre").value,
+        apellido: document.getElementById("apellido").value,
+        email: document.getElementById("email").value,
+        telefono: document.getElementById("telefono").value,
+        direccion: document.getElementById("direccion").value
+    };
+
+    fetch('/api/v1/clientes', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(cliente)
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                // Mostrar mensaje de error
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: data.mensaje || "Hubo un problema al agregar el cliente.",
+                });
+            } else {
+                // Mostrar mensaje de éxito
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Cliente agregado',
+                    text: data.mensaje || "El cliente se ha registrado exitosamente.",
+                    timer: 2000,
+                    showConfirmButton: false
+                }).then(() => {
+                    $('#clienteModal').modal('hide'); // Ocultar el modal
+                    listarClientes(); // Refrescar la lista de clientes
+                });
+            }
+        })
+        .catch(error => {
+            // Mostrar mensaje de error en caso de fallo en la conexión
+            Swal.fire({
+                icon: 'error',
+                title: 'Error de conexión',
+                text: 'No se pudo conectar con el servidor. Intente nuevamente más tarde.',
+            });
+            console.error('Error al guardar cliente:', error);
+        });
+}
 </script>
 </html>
