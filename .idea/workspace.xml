@@ -5,22 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a68d45f-09a6-4b17-9ede-cee68f1ec71d" name="Changes" comment="Correccion">
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/logback-spring.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/access-denied.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Model/MetodosPago.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Repository/MetodosPagoRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Services/ServicioMetodosPago.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/controladores/ControladorMetodosPago.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/js/metodosPago.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/CRUDMetodosPago.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Demo/DemoControlador.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Model/EmailDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Model/EmailDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Services/ServicioCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Services/ServicioCliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Util/EmailEnvio.java" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Util/EmailSenderUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/controladores/ControladorPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/controladores/ControladorPrincipal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/controladores/EmailControlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/controladores/EmailControlador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/CRUDClientes.html" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/CRUDClientes.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/CRUDUsuarios.html" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/CRUDUsuarios.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/EnviarEmail.html" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/EnviarEmail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/inicioSesion.html" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/inicioSesion.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,9 +94,9 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.DonnaPizzaApplication.executor": "Run",
-    "git-widget-placeholder": "#29 on JulianCamacho",
+    "git-widget-placeholder": "RoosveltMatos",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/julic/IdeaProjects/Donna-Pizza/DonnaPizza/src/main/resources/static/img",
+    "last_opened_file_path": "C:/Users/ASUS/IdeaProjects/Donna-Pizza/DonnaPizza/src/main/resources/static/js",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -121,9 +113,11 @@
       <recent name="com.example.DonnaPizza.Auth" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\julic\IdeaProjects\Donna-Pizza\DonnaPizza\src\main\resources\static\img" />
-      <recent name="C:\Users\julic\IdeaProjects\Donna-Pizza\DonnaPizza\src\main\resources\static\js" />
-      <recent name="C:\Users\julic\IdeaProjects\Donna-Pizza\DonnaPizza\src\main\resources\templates" />
+      <recent name="C:\Users\ASUS\IdeaProjects\Donna-Pizza\DonnaPizza\src\main\resources\static\js" />
+      <recent name="C:\Users\ASUS\IdeaProjects\Donna-Pizza\DonnaPizza\src\main\resources\templates" />
+      <recent name="C:\Users\ASUS\IdeaProjects\Donna-Pizza\DonnaPizza\src\main\java\com\example\DonnaPizza\controladores" />
+      <recent name="C:\Users\ASUS\IdeaProjects\Donna-Pizza\DonnaPizza\src\main\java\com\example\DonnaPizza\Services" />
+      <recent name="C:\Users\ASUS\IdeaProjects\Donna-Pizza\DonnaPizza\src\main\java\com\example\DonnaPizza\Repository" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\julic\IdeaProjects\Donna-Pizza\DonnaPizza\src\main\resources\static\js" />
@@ -258,6 +252,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="FINISH CRUD CLIENTES" />
