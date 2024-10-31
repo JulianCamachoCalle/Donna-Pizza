@@ -3,15 +3,18 @@ package com.example.DonnaPizza.Model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class EmailDto {
 
-    private String enviando;
+    private String subject;
 
-    private String mensaje;
+    private String message;
 
-    private String receptor;
+    private String receiver;
+
+    private MultipartFile attachment;
 }
