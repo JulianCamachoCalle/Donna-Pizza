@@ -16,6 +16,8 @@ import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.util.CellRangeAddress;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +25,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ServicioCliente {
+
+    private static final Logger logger = LoggerFactory.getLogger(ServicioCliente.class);
 
     // Link al Repository
     private final ClienteRepository clienteRepository;
