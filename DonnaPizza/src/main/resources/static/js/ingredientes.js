@@ -3,7 +3,7 @@ function listarIngredientes() {
     fetch('/api/v1/ingredientes')
         .then(response => response.json())
         .then(data => {
-            const ingredientesList = document.getElementById("ingredientes-list");
+            const ingredientesList = document.getElementById("pastas-list");
             ingredientesList.innerHTML = ""; // Limpiar tabla antes de cargar datos
 
             data.forEach(ingrediente => {
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', listarIngredientes);
 function guardarIngrediente() {
     const ingrediente = {
         nombre: document.getElementById("nombre").value,
-        cantidad_disponible: document.getElementById("cantidad_disponible").value,
+        cantidad_disponible: document.getElementById("cantdisponible").value
     };
 
     fetch('/api/v1/ingredientes', {
@@ -57,7 +57,7 @@ function guardarIngrediente() {
                     timer: 2000,
                     showConfirmButton: false
                 }).then(() => {
-                    $('#ingredienteModal').modal('hide'); // Ocultar el modal
+                    $('#pastaModal').modal('hide'); // Ocultar el modal
                     listarIngredientes(); // Refrescar la lista de ingredientes
                 });
             }
@@ -93,7 +93,7 @@ function cargarDatosIngrediente(id) {
                 // Cargar datos en el modal
                 document.getElementById("id_ingredienteact").value = data.id_ingrediente;
                 document.getElementById("nombreact").value = data.nombre;
-                document.getElementById("cantidad_disponibleact").value = data.cantidad_disponible;
+                document.getElementById("cantdisponibleact").value = data.cantidad_disponible;
 
                 // Mostrar el modal
                 $('#editarIngredienteModal').modal('show');
@@ -112,12 +112,12 @@ function cargarDatosIngrediente(id) {
 // Actualizar
 function actualizarIngrediente() {
     const ingredienteActualizado = {
-        id: document.getElementById("id_ingredienteact").value,
+        id_ingrediente: document.getElementById("id_ingredienteact").value,
         nombre: document.getElementById("nombreact").value,
-        cantidad_disponible: document.getElementById("cantidad_disponibleact").value,
+        cantidad_disponible: document.getElementById("cantdisponibleact").value
     };
 
-    fetch(`/api/v1/ingredientes/${ingredienteActualizado.id}`, {
+    fetch(`/api/v1/ingredientes/${ingredienteActualizado.id_ingrediente}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -158,8 +158,7 @@ function actualizarIngrediente() {
         });
 }
 
-
-//Eliminar
+// Eliminar
 function eliminarIngrediente(id) {
     Swal.fire({
         title: '¿Estás seguro?',
@@ -197,8 +196,6 @@ function eliminarIngrediente(id) {
         }
     });
 }
-
 function exportarExcel() {
     window.location.href = '/excelingredientes';
 }
-

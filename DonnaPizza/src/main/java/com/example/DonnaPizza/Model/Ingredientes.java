@@ -12,15 +12,15 @@ import lombok.NoArgsConstructor;
 
 // Tabla
 @Table(name = "ingredientes")
-public class Ingredientes {
+    public class Ingredientes {
 
-    // Atributos
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_ingrediente;
+        // Atributos
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id_ingrediente;
 
-    @Column(unique = true)
-    private String nombre;
+        @Column(unique = true)
+        private String nombre;
 
-    private Double cantidad_disponible;
-}
+        private Double cantidad_disponible;
+    }

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montagu+Slab:opsz,wght@16..144,100..700&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="img/favicon.ico" type="image/pizza-icon">
+</head>
+<body>
+<div class="container mt-4">
+    <h1>Lista de documentos</h1>
+    <!-- Botón para abrir el modal de agregar documento -->
+    <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#documentoModal">
+        Agregar documento
+    </button>
+
+    <!-- Tabla para listar documentos -->
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID documento</th>
+            <th>Tipo documento</th>
+            <th>Acciones</th> <!-- Añadir columna para acciones -->
+        </tr>
+        </thead>
+        <tbody id="documentos-list"> <!-- Cambiar ID a documentos-list -->
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal para agregar documento -->
+<div class="modal fade" id="documentoModal" tabindex="-1" role="dialog" aria-labelledby="documentoModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="">Agregar documento</h5>
+            </div>
+            <div class="modal-body">
+                <form id="documentoForm"> <!-- Cambiar ID de formulario a documentoForm -->
+                    <div class="form-group">
+                        <label for="tipo_documento">Tipo documento</label> <!-- Cambiar el ID al correcto -->
+                        <input type="text" class="form-control" id="tipo_documento" required>
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="guardarDocumento()">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para editar documento -->
+<div class="modal fade" id="editarDocumentoModal" tabindex="-1" aria-labelledby="editarDocumentoModal"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editarDocumento">Editar documento</h5>
+            </div>
+            <div class="modal-body">
+                <form id="formEditarDocumento">
+                    <input type="hidden" id="id_documentoact"/> <!-- Cambiar ID al correcto -->
+                    <div class="mb-3">
+                        <label for="tipo_documentoact" class="form-label">Tipo documento</label> <!-- Cambiar ID al correcto -->
+                        <input type="text" class="form-control" id="tipo_documentoact" required>
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="actualizarDocumento()">Guardar Cambios</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/documentos.js"></script>
+
+</body>
+</html>

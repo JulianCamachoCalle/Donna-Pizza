@@ -23,6 +23,14 @@
       <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/js/usuarios.js" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/js/usuarios.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/inicioSesion.html" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/inicioSesion.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/menuUsuario.html" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/menuUsuario.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Model/MetodosPago.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Repository/MetodosPagoRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Services/ServicioMetodosPago.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/controladores/ControladorMetodosPago.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/js/metodosPago.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/CRUDMetodosPago.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,6 +117,9 @@
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/julic/IdeaProjects/Donna-Pizza/DonnaPizza/src/main/resources/static/img",
     "list.type.of.created.stylesheet": "CSS",
+    "git-widget-placeholder": "RoosveltMatos",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/ASUS/IdeaProjects/Donna-Pizza/DonnaPizza/src/main/resources/static/js",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -125,9 +136,11 @@
       <recent name="com.example.DonnaPizza.Auth" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\julic\IdeaProjects\Donna-Pizza\DonnaPizza\src\main\resources\static\img" />
-      <recent name="C:\Users\julic\IdeaProjects\Donna-Pizza\DonnaPizza\src\main\resources\static\js" />
-      <recent name="C:\Users\julic\IdeaProjects\Donna-Pizza\DonnaPizza\src\main\resources\templates" />
+      <recent name="C:\Users\ASUS\IdeaProjects\Donna-Pizza\DonnaPizza\src\main\resources\static\js" />
+      <recent name="C:\Users\ASUS\IdeaProjects\Donna-Pizza\DonnaPizza\src\main\resources\templates" />
+      <recent name="C:\Users\ASUS\IdeaProjects\Donna-Pizza\DonnaPizza\src\main\java\com\example\DonnaPizza\controladores" />
+      <recent name="C:\Users\ASUS\IdeaProjects\Donna-Pizza\DonnaPizza\src\main\java\com\example\DonnaPizza\Services" />
+      <recent name="C:\Users\ASUS\IdeaProjects\Donna-Pizza\DonnaPizza\src\main\java\com\example\DonnaPizza\Repository" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\julic\IdeaProjects\Donna-Pizza\DonnaPizza\src\main\resources\static\js" />
@@ -263,6 +276,17 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="FINISH CRUD CLIENTES" />
     <MESSAGE value="FINISH CRUD CLIENTES HTML" />
@@ -277,3 +301,4 @@
     <option name="LAST_COMMIT_MESSAGE" value="Correccion" />
   </component>
 </project>
+
