@@ -22,6 +22,30 @@
     <div th:replace="fragments/header :: header"></div>
     <!--Fin Header-->
 
+    <!-- Icono flotante del carrito -->
+    <div id="cart-icon" onclick="toggleCartModal()">
+        <img src="img/icono-pizza.jpg" alt="Carrito de Compras" class="img-fluid">
+    </div>
+
+    <!-- Modal del carrito -->
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cartModalLabel">Carrito de Compras</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <ul id="cart-items" class="list-group"></ul>
+                </div>
+                <div class="modal-footer">
+                    <a href="/fromclient" class="btn btn-success">Proceder al Pago</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="container mt-4">
         <form action="#" method="GET" class="d-flex mb-5">
             <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
@@ -41,9 +65,51 @@
     </div>
 </div>
 
+<!-- Modal de Especificaciones de Pizza -->
+<div class="modal fade" id="pizzaModal" tabindex="-1" aria-labelledby="pizzaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="pizzaModalLabel">Especificaciones de la Pizza</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex align-items-center">
+                    <div class="product-image">
+                        <img src="/img/pizzas/predeterminada.jpg" alt="Imagen de la Pizza" class="img-fluid" id="modal-pizza-image">
+                    </div>
+                    <div class="product-info ms-3">
+                        <h3 id="modal-pizza-name">Nombre de la Pizza</h3>
+                        <p id="modal-pizza-description">Descripción de los ingredientes de la pizza.</p>
+                        <div class="size-options mt-3">
+                            <h5>Selecciona el tamaño:</h5>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="size" id="size-familiar" value="Familiar" checked>
+                                <label class="form-check-label" for="size-familiar">Familiar - S/. <span id="modal-price-familiar">0</span></label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="size" id="size-media" value="Media">
+                                <label class="form-check-label" for="size-media">Media - S/. <span id="modal-price-media">0</span></label>
+                            </div>
+                        </div>
+                        <div class="quantity-container d-flex align-items-center mt-3">
+                            <button class="btn btn-outline-secondary" onclick="updateQuantity(-1)">-</button>
+                            <input id="modal-quantity" type="text" value="1" readonly class="form-control text-center mx-2" style="width: 50px;">
+                            <button class="btn btn-outline-secondary" onclick="updateQuantity(1)">+</button>
+                        </div>
+                        <button class="btn btn-danger mt-3" onclick="addToCart()">Agregar al Carrito</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <!--Footer-->
 <div th:replace="fragments/footer :: footer"></div>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/js/carta.js"></script>
 
