@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface ImetodosPagoRepository extends JpaRepository<metodosPago, Long> {
+public interface MetodosPagoRepository extends JpaRepository<MetodosPago, Long> {
 
     // Buscar Segun Nombre
     Optional<MetodosPago> findByNombre(String nombre);

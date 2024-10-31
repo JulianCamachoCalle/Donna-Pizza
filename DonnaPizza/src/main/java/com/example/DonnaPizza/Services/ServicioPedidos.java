@@ -1,7 +1,7 @@
 package com.example.DonnaPizza.Services;
 
-import com.example.DonnaPizza.Model.MetodosPago;
-import com.example.DonnaPizza.Repository.MetodosPagoRepository;
+import com.example.DonnaPizza.Model.Pedidos;
+import com.example.DonnaPizza.Repository.PedidosRepository;
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.poi.hssf.usermodel.*;
@@ -21,122 +21,126 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ServicioMetodosPago {
+public class ServicioPedidos {
 
     // Link al Repository
-    private final MetodosPagoRepository metodosPagoRepository;
+    private final PedidosRepository pedidosRepository;
 
-    HashMap<String, Object> datosMetodosPago;
+    HashMap<String, Object> datosPedidos;
 
     @Autowired
-    public ServicioMetodosPago(MetodosPagoRepository metodosPagoRepository) {
-        this.metodosPagoRepository = metodosPagoRepository;
+    public ServicioPedidos(PedidosRepository pedidosRepository) {
+        this.pedidosRepository = pedidosRepository;
     }
 
     // Obtener Todos
-    public List<MetodosPago> getMetodosPago() {
-        return metodosPagoRepository.findAll();
+    public List<Pedidos> getPedidos() {
+        return pedidosRepository.findAll();
     }
 
     // Obtener por ID
-    public Optional<MetodosPago> getMetodosPagoById(Long id) {
-        return metodosPagoRepository.findById(id);
+    public Optional<Pedidos> getPedidoById(Long id) {
+        return pedidosRepository.findById(id);
     }
 
     // Crear Nuevo
-    public ResponseEntity<Object> newMetodosPago(MetodosPago metodosPago) {
-        datosMetodosPago = new HashMap<>();
+    public ResponseEntity<Object> newPedido(Pedidos pedidos) {
+        datosPedidos = new HashMap<>();
 
-        // Verificar Nombre Existente
-        Optional<MetodosPago> resNom = metodosPagoRepository.findByNombre(metodosPago.getNombre());
+        /* // Verificar Nombre Existente
+        Optional<Ingredientes> resNom = ingredientesRepository.findByNombre(ingredientes.getNombre());
 
         // Mnesaje de error Nombre
         if (resNom.isPresent()) {
-            datosMetodosPago.put("error", true);
-            datosMetodosPago.put("mensaje", "Ya existe un metodo de pago con ese nombre");
+            datosIngredientes.put("error", true);
+            datosIngredientes.put("mensaje", "Ya existe un ingrediente con ese nombre");
             return new ResponseEntity<>(
-                    datosMetodosPago,
+                    datosIngredientes,
                     HttpStatus.CONFLICT
             );
-        }
+        } */
 
         // Guardar Con Exito
-        datosMetodosPago.put("mensaje", "Se ha registrado el metodo de pago");
-        metodosPagoRepository.save(metodosPago);
-        datosMetodosPago.put("data", metodosPago);
+        datosPedidos.put("mensaje", "Se ha registrado el Pedido");
+        pedidosRepository.save(pedidos);
+        datosPedidos.put("data", pedidos);
         return new ResponseEntity<>(
-                datosMetodosPago,
+                datosPedidos,
                 HttpStatus.CREATED
         );
     }
 
     // Actualizar
-    public ResponseEntity<Object> updateMetodosPago(Long id, MetodosPago metodosPago) {
-        datosMetodosPago = new HashMap<>();
+    public ResponseEntity<Object> updatePedido(Long id, Pedidos pedidos) {
+        datosPedidos = new HashMap<>();
 
-        // Buscar metodo de pago por ID
-        Optional<MetodosPago> metodosPagoExistente = metodosPagoRepository.findById(id);
-        if (metodosPagoExistente.isEmpty()) {
-            datosMetodosPago.put("error", true);
-            datosMetodosPago.put("mensaje", "Metodo de pago no encontrado");
+        // Buscar pedido por ID
+        Optional<Pedidos> pedidoExistente = pedidosRepository.findById(id);
+        if (pedidoExistente.isEmpty()) {
+            datosPedidos.put("error", true);
+            datosPedidos.put("mensaje", "Pedido no encontrado");
             return new ResponseEntity<>(
-                    datosMetodosPago,
+                    datosPedidos,
                     HttpStatus.NOT_FOUND
             );
         }
 
-        // Verificar si el nombre ya está usado
-        Optional<MetodosPago> resNom = metodosPagoRepository.findByNombre(metodosPago.getNombre());
-        if (resNom.isPresent() && !resNom.get().getId_metodo_pago().equals(id)) {
-            datosMetodosPago.put("error", true);
-            datosMetodosPago.put("mensaje", "Ya existe un metodo de pago con ese nombre");
+        /* // Verificar si el nombre ya está usado
+        Optional<Ingredientes> resNom = ingredientesRepository.findByNombre(ingredientes.getNombre());
+        if (resNom.isPresent() && !resNom.get().getId_ingrediente().equals(id)) {
+            datosIngredientes.put("error", true);
+            datosIngredientes.put("mensaje", "Ya existe un ingrediente con ese nombre");
             return new ResponseEntity<>(
-                    datosMetodosPago,
+                    datosIngredientes,
                     HttpStatus.CONFLICT
             );
-        }
+        } */
 
-        // Actualizar metodo de pago
-        MetodosPago metodosPagoActualizar = metodosPagoExistente.get();
-        metodosPagoActualizar.setNombre(metodosPago.getNombre());
-        metodosPagoActualizar.setDescripcion(metodosPago.getDescripcion());
+        // Actualizar Pedido
+        Pedidos pedidoActualizar = pedidoExistente.get();
+        pedidoActualizar.setId_usuario(pedidos.getId_usuario());
+        pedidoActualizar.setId_cliente(pedidos.getId_cliente());
+        pedidoActualizar.setFecha(pedidos.getFecha());
+        pedidoActualizar.setTotal(pedidos.getTotal());
+        pedidoActualizar.setId_documento(pedidos.getId_documento());
 
-        metodosPagoRepository.save(metodosPagoActualizar);
-        datosMetodosPago.put("mensaje", "Se actualizó el metodo de pago");
-        datosMetodosPago.put("data", metodosPagoActualizar);
+
+        pedidosRepository.save(pedidoActualizar);
+        datosPedidos.put("mensaje", "Se actualizó el Pedido");
+        datosPedidos.put("data", pedidoActualizar);
 
         return new ResponseEntity<>(
-                datosMetodosPago,
+                datosPedidos,
                 HttpStatus.OK
         );
     }
 
     // Eliminar
-    public ResponseEntity<Object> deleteMetodosPago(Long id) {
-        datosMetodosPago = new HashMap<>();
-        boolean existeMetodosPago = metodosPagoRepository.existsById(id);
-        if (!existeMetodosPago) {
-            datosMetodosPago.put("error", true);
-            datosMetodosPago.put("mensaje", "No existe un metodo de pago con ese id");
+    public ResponseEntity<Object> deletePedido(Long id) {
+        datosPedidos = new HashMap<>();
+        boolean existePedido = pedidosRepository.existsById(id);
+        if (!existePedido) {
+            datosPedidos.put("error", true);
+            datosPedidos.put("mensaje", "No existe un pedido con ese id");
             return new ResponseEntity<>(
-                    datosMetodosPago,
+                    datosPedidos,
                     HttpStatus.CONFLICT
             );
         }
-        metodosPagoRepository.deleteById(id);
-        datosMetodosPago.put("mensaje", "metodo de pago eliminado");
+        pedidosRepository.deleteById(id);
+        datosPedidos.put("mensaje", "Pedido eliminado");
         return new ResponseEntity<>(
-                datosMetodosPago,
+                datosPedidos,
                 HttpStatus.ACCEPTED
         );
     }
 
     // Generar Excel
-    public void generarExcelMetodosPago(HttpServletResponse response) throws IOException {
-        List<MetodosPago> metodosPago = metodosPagoRepository.findAll();
+    public void generarExcelPedidos(HttpServletResponse response) throws IOException {
+        List<Pedidos> pedidos = pedidosRepository.findAll();
 
         HSSFWorkbook workbook = new HSSFWorkbook();
-        HSSFSheet sheet = workbook.createSheet("MetodosPago Info");
+        HSSFSheet sheet = workbook.createSheet("Pedidos Info");
 
         // Estilo del título
         HSSFCellStyle titleStyle = workbook.createCellStyle();
@@ -154,9 +158,9 @@ public class ServicioMetodosPago {
         // Crear fila del título y fusionar celdas
         HSSFRow titleRow = sheet.createRow(0);
         HSSFCell titleCell = titleRow.createCell(0);
-        titleCell.setCellValue("Info MetodosPago");
+        titleCell.setCellValue("Info Pedidos");
         titleCell.setCellStyle(titleStyle);
-        sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, 2)); // Reemplazar el 2 segun la cantidad de headers - 1
+        sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, 5)); // Reemplazar el 2 segun la cantidad de headers - 1
 
         // Estilo del encabezado
         HSSFCellStyle headerStyle = workbook.createCellStyle();
@@ -174,7 +178,7 @@ public class ServicioMetodosPago {
 
         // Crear fila de encabezado
         HSSFRow row = sheet.createRow(1);
-        String[] headers = {"ID_Metodos de Pago", "Nombre", "Descripcion"};
+        String[] headers = {"ID Pedidos", "Id Usuario", "Id Cliente", "Fecha", "Total","Id Documento"};
         for (int i = 0; i < headers.length; i++) {
             HSSFCell cell = row.createCell(i);
             cell.setCellValue(headers[i]);
@@ -191,11 +195,14 @@ public class ServicioMetodosPago {
 
         // Llenar datos
         int dataRowIndex = 2;
-        for (MetodosPago metodoPago : metodosPago) {
+        for (Pedidos pedido : pedidos) {
             HSSFRow dataRow = sheet.createRow(dataRowIndex++);
-            dataRow.createCell(0).setCellValue(metodoPago.getId_metodo_pago());
-            dataRow.createCell(1).setCellValue(metodoPago.getNombre());
-            dataRow.createCell(2).setCellValue(metodoPago.getDescripcion());
+            dataRow.createCell(0).setCellValue(pedido.getId_pedido());
+            dataRow.createCell(1).setCellValue(pedido.getId_usuario());
+            dataRow.createCell(2).setCellValue(pedido.getId_cliente());
+            dataRow.createCell(3).setCellValue(pedido.getFecha());
+            dataRow.createCell(4).setCellValue(pedido.getTotal());
+            dataRow.createCell(5).setCellValue(pedido.getId_documento());
 
             // Aplicar estilo de datos a cada celda
             for (int i = 0; i < headers.length; i++) {

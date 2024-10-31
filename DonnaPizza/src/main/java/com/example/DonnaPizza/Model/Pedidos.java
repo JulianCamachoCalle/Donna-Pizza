@@ -11,16 +11,23 @@ import lombok.NoArgsConstructor;
 @Entity
 
 // Tabla
-@Table(name = "metodos_pago")
-public class MetodosPago {
+@Table(name = "pedidos")
+public class Pedidos {
 
     // Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_metodo_pago;
+    private Long id_pedido;
 
-    private String nombre;
+    @Column(unique = true)
+    private Long id_usuario;
 
-    private String descripcion;
+    @Column(unique = true)
+    private Long id_cliente;
 
+    private String fecha;
+
+    private Double total;
+
+    private Long id_documento;
 }
