@@ -13,15 +13,13 @@ import java.util.Optional;
 @RequestMapping(path = "api/v1/clientes")
 public class ClienteControlador {
 
-    // Link al Servicio
+
     private final ServicioCliente servicioCliente;
 
     @Autowired
     public ClienteControlador(ServicioCliente servicioCliente) {
         this.servicioCliente = servicioCliente;
     }
-
-
 
 
     // Obtener Todos
