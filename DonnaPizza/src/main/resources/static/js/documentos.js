@@ -192,3 +192,6 @@ function eliminarDocumento(id) {
         }
     });
 }
+function exportarExcel() {
+    window.location.href = '/exceldocumentos';
+}

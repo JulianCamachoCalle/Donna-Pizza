@@ -3,11 +3,13 @@ package com.example.DonnaPizza.Model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -19,13 +21,13 @@ public class PromocionesUsuarios {
     // Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_promocion_usuario;
+    private Long idPromocionUsuario;
 
-    private Long id_usuario;
+    private Long idUsuario;
 
-    private Long id_promocion;
+    private Long idPromocion;
 
-    private LocalDateTime fecha_aplicacion;
+    private LocalDateTime fechaAplicacion;
 
     private String estado;
 }
