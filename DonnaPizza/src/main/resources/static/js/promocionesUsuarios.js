@@ -12,9 +12,8 @@ function listarPromocionesUsuarios() {
                         <td>${promocionUsuario.idPromocionUsuario}</td>
                         <td>${promocionUsuario.idUsuario}</td>
                         <td>${promocionUsuario.idPromocion}</td>
-                        <td>${promocionUsuario.descuento}</td>
                         <td>${promocionUsuario.fechaAplicacion}</td>
-                        <td>${promocionUsuario.estado ? 'Disponible' : 'No Disponible'}</td>
+                        <td>${promocionUsuario.estado =='true' ?'Disponible' : 'No Disponible'}</td>
                         <td>
                             <button class="btn btn-warning" onclick="cargarDatosPromocionUsuario(${promocionUsuario.idPromocionUsuario})">Editar</button>
                             <button class="btn btn-danger" onclick="eliminarPromocionUsuario(${promocionUsuario.idPromocionUsuario})">Eliminar</button>
@@ -113,7 +112,7 @@ function cargarDatosPromocionUsuario(id) {
                 document.getElementById("fechaAplicacionact").value = data.fechaAplicacion;
                 document.getElementById("estadoact").value = data.estado;
 
-                $('#editarPromocionUsuarioModal').modal('show');
+                $('#editarPromocionUsuariosModal').modal('show');
             }
         })
         .catch(error => {
@@ -127,9 +126,9 @@ function cargarDatosPromocionUsuario(id) {
 }
 
 // Actualizar
-function actualizarPromocionUsuario() {
+function actualizarPromocionesUsuarios() {
     const promocionUsuarioActualizada = {
-        idPromocionUsuario: document.getElementById("idPomocionUsuarioact").value,
+        idPromocionUsuario: document.getElementById("idPromocionUsuarioact").value,
         idUsuario: document.getElementById("idUsuarioact").value,
         idPromocion: document.getElementById("idPromocionact").value,
         fechaAplicacion: document.getElementById("fechaAplicacionact").value,
@@ -175,7 +174,7 @@ function actualizarPromocionUsuario() {
 }
 
 // Eliminar
-function eliminarPromocionUsuario(id) {
+function eliminarPromocionesUsuarios(id) {
     Swal.fire({
         title: '¿Estás seguro?',
         text: "No podrás revertir esto!",
