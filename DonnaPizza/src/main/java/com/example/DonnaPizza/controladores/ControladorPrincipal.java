@@ -1,11 +1,7 @@
 package com.example.DonnaPizza.controladores;
 
 
-import com.example.DonnaPizza.Services.ServicioCliente;
-import com.example.DonnaPizza.Services.ServicioIngredientes;
-import com.example.DonnaPizza.Services.ServicioPizzas;
-import com.example.DonnaPizza.Services.ServicioPizzasFamiliares;
-import com.example.DonnaPizza.Services.ServicioUsuarios;
+import com.example.DonnaPizza.Services.*;
 import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -65,18 +61,36 @@ public class ControladorPrincipal {
     private final ServicioPizzas servicioPizzas;
     private final ServicioPizzasFamiliares servicioPizzasFamiliares;
     private final ServicioUsuarios servicioUsuarios;
+    private final ServicioMetodosPago servicioMetodosPago;
+    private final ServicioDetallesPedido servicioDetallesPedido;
 
     public ControladorPrincipal(
             ServicioCliente servicioCliente,
             ServicioIngredientes servicioIngredientes,
             ServicioPizzas servicioPizzas,
             ServicioPizzasFamiliares servicioPizzasFamiliares,
-            ServicioUsuarios servicioUsuarios) {
+            ServicioUsuarios servicioUsuarios,
+            ServicioMetodosPago servicioMetodosPago,
+            ServicioDetallesPedido servicioDetallesPedido) {
         this.servicioCliente = servicioCliente;
         this.servicioIngredientes = servicioIngredientes;
         this.servicioPizzas = servicioPizzas;
         this.servicioPizzasFamiliares = servicioPizzasFamiliares;
         this.servicioUsuarios = servicioUsuarios;
+        this.servicioMetodosPago = servicioMetodosPago;
+        this.servicioDetallesPedido = servicioDetallesPedido;
+    }
+
+    @GetMapping("/metodopago")
+    public String listarDetallesPedido(Model model) {
+        model.addAttribute("detallepedido", servicioDetallesPedido.getDetallesPedido());
+        return "CRUDDetallesPedido";
+    }
+
+    @GetMapping("/metodopago")
+        public String listarMetodoPago(Model model) {
+        model.addAttribute("metodopago", servicioMetodosPago.getMetodosPago());
+        return "CRUDMetodosPago";
     }
 
     @GetMapping("/pizzasfamiliares")
