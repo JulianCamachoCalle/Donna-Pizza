@@ -9,12 +9,12 @@ function listarMetodosPago() {
             data.forEach(metodosPago => {
                 let row = `
                     <tr>
-                        <td>${metodosPago.id_MetodosPago}</td>
+                        <td>${metodosPago.id_metodo_pago}</td>
                         <td>${metodosPago.nombre}</td>
                         <td>${metodosPago.descripcion}</td>
                         <td>
-                            <button class="btn btn-warning" onclick="cargarDatosMetodosPago(${metodosPago.id_metodosPago})">Editar</button>
-                            <button class="btn btn-danger" onclick="eliminarMetodosPago(${metodosPago.id_metodosPago})">Eliminar</button>
+                            <button class="btn btn-warning" onclick="cargarDatosMetodosPago(${metodosPago.id_metodo_pago})">Editar</button>
+                            <button class="btn btn-danger" onclick="eliminarMetodosPago(${metodosPago.id_metodo_pago})">Eliminar</button>
                         </td>
                     </tr>`;
                 metodosPagoList.innerHTML += row;
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', listarMetodosPago);
 function guardarMetodosPago() {
     const metodosPago = {
         nombre: document.getElementById("nombre").value,
-        description: document.getElementById("descripcion").value,
+        descripcion: document.getElementById("descripcion").value,
     };
 
     fetch('/api/v1/metodosPago', {
@@ -91,9 +91,9 @@ function cargarDatosMetodosPago(id) {
                 });
             } else {
                 // Cargar datos en el modal
-                document.getElementById("id_metodosPagoact").value = data.id_metodosPago;
+                document.getElementById("id_metodosPagoact").value = data.id_metodo_pago;
                 document.getElementById("nombreact").value = data.nombre;
-                document.getElementById("descripcionact").value = data.description;
+                document.getElementById("descripcionact").value = data.descripcion;
 
                 // Mostrar el modal
                 $('#editarMetodosPagoModal').modal('show');
@@ -114,7 +114,7 @@ function actualizarMetodosPago() {
     const metodosPagoActualizado = {
         id: document.getElementById("id_metodosPagoact").value,
         nombre: document.getElementById("nombreact").value,
-        description: document.getElementById("descripcionact").value,
+        descripcion: document.getElementById("descripcionact").value,
     };
 
     fetch(`/api/v1/metodosPago/${metodosPagoActualizado.id}`, {

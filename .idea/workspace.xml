@@ -4,26 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a68d45f-09a6-4b17-9ede-cee68f1ec71d" name="Changes" comment="Correccion">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="6a68d45f-09a6-4b17-9ede-cee68f1ec71d" name="Changes" comment="cree el CRUD de metodos de pago">
+      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/js/DetallesPedido.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/CRUDDetallesPedido.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DonnaPizza/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Repository/DetallesPedidoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Repository/DetallesPedidoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Repository/DocumentosRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Repository/DocumentosRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Repository/EmailDtoRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Repository/EntradasRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Repository/EntradasRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Repository/IngredientesEntradaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Repository/IngredientesEntradaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Repository/IngredientesPastaRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Repository/IngredientesPizzaFamiliarRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Repository/IngredientesPizzaFamiliarRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Repository/IngredientesPizzaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Repository/IngredientesPizzaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Repository/IngredientesRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Repository/IngredientesRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Repository/MetodosPagoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Repository/MetodosPagoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Repository/PastasRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Repository/PastasRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Repository/PizzasFamiliaresRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Repository/PizzasFamiliaresRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Services/ServicioEmailDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Services/ServicioIngredientesPasta.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Services/ServicioMetodosPago.java" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Services/ServicioMetodosPago.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Services/ServicioPizzasFamiliares.java" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/Services/ServicioPizzasFamiliares.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/controladores/ControladorIngredientes.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/controladores/ControladorPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/java/com/example/DonnaPizza/controladores/ControladorPrincipal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/js/metodosPago.js" beforeDir="false" afterPath="$PROJECT_DIR$/DonnaPizza/src/main/resources/static/js/metodosPago.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/DonnaPizza/src/main/resources/static/css/menucliente.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/DonnaPizza/src/main/resources/static/fondo-secundario.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/DonnaPizza/src/main/resources/templates/menuCliente.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DonnaPizza/src/main/resources/templates/DonnaPizza/src/main/resources/templates/menuClientes.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,22 +62,22 @@
     &quot;assignee&quot;: &quot;JulianCamachoCalle&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/JulianCamachoCalle/Donna-Pizza.git&quot;,
-    &quot;accountId&quot;: &quot;8cbc90a8-fdd1-4865-bb74-311c7b5df973&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/JulianCamachoCalle/Donna-Pizza.git",
+    "accountId": "77bb0ff1-7ccd-408a-8ce1-3dea4880e1e0"
   },
-  &quot;recentNewPullRequestHead&quot;: {
-    &quot;server&quot;: {
-      &quot;useHttp&quot;: false,
-      &quot;host&quot;: &quot;github.com&quot;,
-      &quot;port&quot;: null,
-      &quot;suffix&quot;: null
+  "recentNewPullRequestHead": {
+    "server": {
+      "useHttp": false,
+      "host": "github.com",
+      "port": null,
+      "suffix": null
     },
-    &quot;owner&quot;: &quot;JulianCamachoCalle&quot;,
-    &quot;repository&quot;: &quot;Donna-Pizza&quot;
+    "owner": "JulianCamachoCalle",
+    "repository": "Donna-Pizza"
   }
-}</component>
+}]]></component>
   <component name="PhpDebugGeneral" listening_started="true" />
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe" />
   <component name="ProjectColorInfo">{
@@ -106,7 +102,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.DonnaPizzaApplication.executor": "Run",
-    "git-widget-placeholder": "#35 on JulianCamacho",
+    "git-widget-placeholder": "RoosveltMatos",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/ASUS/IdeaProjects/Donna-Pizza/DonnaPizza/src/main/resources/static/js",
     "list.type.of.created.stylesheet": "CSS",
@@ -115,6 +111,9 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
     "vue.rearranger.settings.migration": "true"
@@ -171,6 +170,7 @@
       <workItem from="1730147361880" duration="507000" />
       <workItem from="1730172581663" duration="11919000" />
       <workItem from="1730323127691" duration="14248000" />
+      <workItem from="1730679252147" duration="6369000" />
     </task>
     <task id="LOCAL-00001" summary="FINISH CRUD CLIENTES">
       <option name="closed" value="true" />
