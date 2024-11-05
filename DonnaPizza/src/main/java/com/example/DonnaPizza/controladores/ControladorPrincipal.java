@@ -64,6 +64,8 @@ public class ControladorPrincipal {
     private final ServicioPizzas servicioPizzas;
     private final ServicioPizzasFamiliares servicioPizzasFamiliares;
     private final ServicioUsuarios servicioUsuarios;
+    private final ServicioEntrada servicioEntrada;
+    private final ServicioPasta servicioPasta;
 
     public ControladorPrincipal(
             ServicioCliente servicioCliente,
@@ -73,7 +75,9 @@ public class ControladorPrincipal {
             ServicioPromocionesUsuarios servicioPromocionesUsuarios,
             ServicioPizzas servicioPizzas,
             ServicioPizzasFamiliares servicioPizzasFamiliares,
-            ServicioUsuarios servicioUsuarios) {
+            ServicioUsuarios servicioUsuarios,
+            ServicioEntrada servicioEntrada,
+            ServicioPasta servicioPasta) {
         this.servicioCliente = servicioCliente;
         this.servicioIngredientes = servicioIngredientes;
         this.servicioDocumentos = servicioDocumentos;
@@ -82,6 +86,8 @@ public class ControladorPrincipal {
         this.servicioPizzas = servicioPizzas;
         this.servicioPizzasFamiliares = servicioPizzasFamiliares;
         this.servicioUsuarios = servicioUsuarios;
+        this.servicioEntrada = servicioEntrada;
+        this.servicioPasta = servicioPasta;
     }
 
     @GetMapping("/pizzasfamiliares")
@@ -130,6 +136,18 @@ public class ControladorPrincipal {
     public String listarUsuarios(Model model) {
         model.addAttribute("usuarios", servicioUsuarios.getUsuarios());
         return "CRUDUsuarios";
+    }
+
+    @GetMapping("/entradas")
+    public String listarEntrada(Model model){
+        model.addAttribute("entradas",servicioEntrada.obtenerTodasLasEntradas());
+        return "CRUDEntrada";
+    }
+
+    @GetMapping("/pasta")
+    public String listarPasta(Model model){
+        model.addAttribute("pasta", servicioPasta.obtenerTodasLasPastas());
+        return "CRUDPasta";
     }
 
     @GetMapping("/fromclient")

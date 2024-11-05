@@ -216,7 +216,7 @@ public class ServicioPromociones {
             dataRow.createCell(2).setCellValue(promocion.getDescripcion());
             dataRow.createCell(3).setCellValue(promocion.getDescuento());
             dataRow.createCell(4).setCellValue(promocion.getRequisitos());
-            dataRow.createCell(5).setCellValue(promocion.getActivo());
+            dataRow.createCell(5).setCellValue(promocion.getActivo()? "Si" : "No ");
 
 
 

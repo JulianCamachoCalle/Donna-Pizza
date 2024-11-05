@@ -29,6 +29,12 @@ public class ReportesControlador {
     private ServicioIngredientes servicioIngredientes;
 
     @Autowired
+    private ServicioEntrada servicioEntrada;
+
+    @Autowired
+    private ServicioPasta servicioPasta;
+
+    @Autowired
     private ServicioPizzasFamiliares servicioPizzasFamiliares;
 
     @Autowired
@@ -97,6 +103,32 @@ public class ReportesControlador {
         response.setHeader(headerKey,headerValue);
 
         servicioPromocionesUsuarios.generarExcelPromocionesUsuarios(response);
+    }
+
+    @GetMapping("/excelentradas")
+    public void generarExcelReportesEntradas(HttpServletResponse response) throws  IOException{
+
+        response.setContentType("pplication/octet-stream");;
+
+        String headerKey= "Content-Disposition";
+        String headerValue="attachment; filename=entradas.xls";
+
+        response.setHeader(headerKey,headerValue);
+
+        servicioEntrada.generarExcelEntrada(response);
+    }
+
+    @GetMapping("/excelpasta")
+    public void generarExcelReportesPasta(HttpServletResponse response) throws  IOException{
+
+        response.setContentType("application/octet-stream");;
+
+        String headerKey= "Content-Disposition";
+        String headerValue="attachment; filename=pasta.xls";
+
+        response.setHeader(headerKey,headerValue);
+
+        servicioPasta.generarExcelPasta(response);
     }
 
     @GetMapping("/excelingredientes")

@@ -5,11 +5,13 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "pastas")
-public class Pastas {
+@Table(name =  "entradas")
+public class Entrada {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long  id_pasta;
+    public Long id_entrada;
+
+    public String nombre;
     public String descripcion;
     public Double precio;
     public Boolean disponible;
