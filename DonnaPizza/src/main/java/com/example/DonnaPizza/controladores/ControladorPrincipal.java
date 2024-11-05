@@ -64,8 +64,7 @@ public class ControladorPrincipal {
     private final ServicioPizzas servicioPizzas;
     private final ServicioPizzasFamiliares servicioPizzasFamiliares;
     private final ServicioUsuarios servicioUsuarios;
-    private final ServicioEntrada servicioEntrada;
-    private final ServicioPasta servicioPasta;
+
 
     public ControladorPrincipal(
             ServicioCliente servicioCliente,
@@ -75,9 +74,7 @@ public class ControladorPrincipal {
             ServicioPromocionesUsuarios servicioPromocionesUsuarios,
             ServicioPizzas servicioPizzas,
             ServicioPizzasFamiliares servicioPizzasFamiliares,
-            ServicioUsuarios servicioUsuarios,
-            ServicioEntrada servicioEntrada,
-            ServicioPasta servicioPasta) {
+            ServicioUsuarios servicioUsuarios) {
         this.servicioCliente = servicioCliente;
         this.servicioIngredientes = servicioIngredientes;
         this.servicioDocumentos = servicioDocumentos;
@@ -86,8 +83,7 @@ public class ControladorPrincipal {
         this.servicioPizzas = servicioPizzas;
         this.servicioPizzasFamiliares = servicioPizzasFamiliares;
         this.servicioUsuarios = servicioUsuarios;
-        this.servicioEntrada = servicioEntrada;
-        this.servicioPasta = servicioPasta;
+
     }
 
     @GetMapping("/pizzasfamiliares")
@@ -113,13 +109,14 @@ public class ControladorPrincipal {
         model.addAttribute("documentos",servicioDocumentos.getDocumentos());
         return "CRUDDocumentos";
     }
+    //Desarrollo de anthony
 
     @GetMapping("/promociones")
     public String listaPromociones(Model model){
         model.addAttribute("promociones",servicioPromociones.getPromociones());
         return  "CRUDPromociones";
     }
-
+    //Desarrollo de anthony
     @GetMapping("/promocionesusuarios")
     public String listaPromcoionesUsuarios(Model model){
         model.addAttribute("promocionesusuarios",servicioPromocionesUsuarios.getPromocionesUsuarios());
@@ -136,18 +133,6 @@ public class ControladorPrincipal {
     public String listarUsuarios(Model model) {
         model.addAttribute("usuarios", servicioUsuarios.getUsuarios());
         return "CRUDUsuarios";
-    }
-
-    @GetMapping("/entradas")
-    public String listarEntrada(Model model){
-        model.addAttribute("entradas",servicioEntrada.obtenerTodasLasEntradas());
-        return "CRUDEntrada";
-    }
-
-    @GetMapping("/pasta")
-    public String listarPasta(Model model){
-        model.addAttribute("pasta", servicioPasta.obtenerTodasLasPastas());
-        return "CRUDPasta";
     }
 
     @GetMapping("/fromclient")

@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-
+//Desarrollo de anthony
 // Tabla
 @Table(name = "promociones_usuarios")
 public class PromocionesUsuarios {

@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-
+//Desarrollo de anthony
 // Tabla
 @Table(name = "promociones")
 public class Promociones {

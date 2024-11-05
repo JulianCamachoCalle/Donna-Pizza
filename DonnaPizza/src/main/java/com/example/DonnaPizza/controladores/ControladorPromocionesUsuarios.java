@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 import java.util.List;
 import java.util.Optional;
-
+//Desarrollo de anthony
 @RestController
 @RequestMapping(path = "api/v1/promocionesusuarios")
 public class ControladorPromocionesUsuarios {

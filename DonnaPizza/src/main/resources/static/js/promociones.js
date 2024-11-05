@@ -1,3 +1,4 @@
+//Desarrollo de anthony
 // Obtener lista de promociones y mostrarlas en la tabla
 function listarPromociones() {
     fetch('/api/v1/promociones')
