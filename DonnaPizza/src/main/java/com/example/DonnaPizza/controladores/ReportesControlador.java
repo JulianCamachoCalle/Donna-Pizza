@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
-
+//Desarrollo de todos
 @RestController
 public class ReportesControlador {
 
@@ -16,6 +16,14 @@ public class ReportesControlador {
 
     @Autowired
     private ServicioCliente servicioCliente;
+
+    @Autowired
+    private ServicioDocumentos servicioDocumentos;
+
+    @Autowired
+    private ServicioPromociones servicioPromociones;
+
+    @Autowired ServicioPromocionesUsuarios servicioPromocionesUsuarios;
 
     @Autowired
     private ServicioIngredientes servicioIngredientes;
@@ -52,6 +60,44 @@ public class ReportesControlador {
         servicioCliente.generarExcelClientes(response);
     }
 
+    @GetMapping("/exceldocumentos")
+    public void generarExcelReportesDocumentos(HttpServletResponse response) throws IOException{
+
+        response.setContentType("application/octet-stream");
+
+        String headerKey="Content-Disposition";
+        String headerValue="attachment; filename=documentos.xls";
+
+        response.setHeader(headerKey,headerValue);
+
+        servicioDocumentos.generarExcelDocumento(response);
+    }
+
+    @GetMapping("/excelpromociones")
+    public void generarExcelReportesPromociones(HttpServletResponse response) throws IOException{
+
+        response.setContentType("application/octet-stream");
+
+        String headerKey= "Content-Disposition";
+        String headerValue="attachment; filename=promociones.xls";
+
+        response.setHeader(headerKey,headerValue);
+
+        servicioPromociones.generarExcelPromociones(response);
+    }
+
+    @GetMapping("/excelpromocionesusuarios")
+    public void generarExcelReportesPromocionesUsuarios(HttpServletResponse response) throws IOException{
+
+        response.setContentType("application/octet-stream");
+
+        String headerKey= "Content-Disposition";
+        String headerValue="attachment; filename=promocionesUsuarios.xls";
+
+        response.setHeader(headerKey,headerValue);
+
+        servicioPromocionesUsuarios.generarExcelPromocionesUsuarios(response);
+    }
     @GetMapping("/excelingredientes")
     public void generarExcelReporteIngredientes(HttpServletResponse response) throws IOException {
 

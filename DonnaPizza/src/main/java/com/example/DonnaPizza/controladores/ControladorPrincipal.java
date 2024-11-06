@@ -1,11 +1,7 @@
 package com.example.DonnaPizza.controladores;
 
 
-import com.example.DonnaPizza.Services.ServicioCliente;
-import com.example.DonnaPizza.Services.ServicioIngredientes;
-import com.example.DonnaPizza.Services.ServicioPizzas;
-import com.example.DonnaPizza.Services.ServicioPizzasFamiliares;
-import com.example.DonnaPizza.Services.ServicioUsuarios;
+import com.example.DonnaPizza.Services.*;
 import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -62,21 +58,32 @@ public class ControladorPrincipal {
     // CRUD Clientes
     private final ServicioCliente servicioCliente;
     private final ServicioIngredientes servicioIngredientes;
+    private final ServicioDocumentos servicioDocumentos;
+    private final ServicioPromociones servicioPromociones;
+    private final ServicioPromocionesUsuarios servicioPromocionesUsuarios;
     private final ServicioPizzas servicioPizzas;
     private final ServicioPizzasFamiliares servicioPizzasFamiliares;
     private final ServicioUsuarios servicioUsuarios;
 
+
     public ControladorPrincipal(
             ServicioCliente servicioCliente,
             ServicioIngredientes servicioIngredientes,
+            ServicioDocumentos servicioDocumentos,
+            ServicioPromociones servicioPromociones,
+            ServicioPromocionesUsuarios servicioPromocionesUsuarios,
             ServicioPizzas servicioPizzas,
             ServicioPizzasFamiliares servicioPizzasFamiliares,
             ServicioUsuarios servicioUsuarios) {
         this.servicioCliente = servicioCliente;
         this.servicioIngredientes = servicioIngredientes;
+        this.servicioDocumentos = servicioDocumentos;
+        this.servicioPromociones = servicioPromociones;
+        this.servicioPromocionesUsuarios = servicioPromocionesUsuarios;
         this.servicioPizzas = servicioPizzas;
         this.servicioPizzasFamiliares = servicioPizzasFamiliares;
         this.servicioUsuarios = servicioUsuarios;
+
     }
 
     @GetMapping("/pizzasfamiliares")
@@ -95,6 +102,25 @@ public class ControladorPrincipal {
     public String listarIngredientes(Model model) {
         model.addAttribute("ingredientes", servicioIngredientes.getIngredientes());
         return "CRUDIngredientes";
+    }
+
+    @GetMapping("/documentos")
+    public String listaDocumentos(Model model){
+        model.addAttribute("documentos",servicioDocumentos.getDocumentos());
+        return "CRUDDocumentos";
+    }
+    //Desarrollo de anthony
+
+    @GetMapping("/promociones")
+    public String listaPromociones(Model model){
+        model.addAttribute("promociones",servicioPromociones.getPromociones());
+        return  "CRUDPromociones";
+    }
+    //Desarrollo de anthony
+    @GetMapping("/promocionesusuarios")
+    public String listaPromcoionesUsuarios(Model model){
+        model.addAttribute("promocionesusuarios",servicioPromocionesUsuarios.getPromocionesUsuarios());
+        return "CRUDPromocionesUsuarios";
     }
 
     @GetMapping("/pizzas")

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,13 +13,14 @@ import java.util.Optional;
 @RequestMapping(path = "api/v1/documentos")
 public class DocumentosControlador {
 
-    // Link al Servicio
+
     private final ServicioDocumentos servicioDocumentos;
 
     @Autowired
     public DocumentosControlador(ServicioDocumentos servicioDocumentos) {
         this.servicioDocumentos = servicioDocumentos;
     }
+
 
     // Obtener Todos
     @GetMapping
@@ -30,32 +30,30 @@ public class DocumentosControlador {
 
     // Obtener por Id
     @GetMapping("{documentoId}")
-    public ResponseEntity<Documentos> getCliente(@PathVariable("documentosId") Long id) {
-        ResponseEntity<Object> response = this.servicioDocumentos.getDocumentoById(id);
-
-        if (response.getStatusCode().is2xxSuccessful()) {
-            Documentos documento = (Documentos) ((HashMap<String, Object>) response.getBody()).get("data");
-            return ResponseEntity.ok(documento); // Retorna el documento encontrado
+    public ResponseEntity<Documentos> getDocumnetos(@PathVariable("documentoId") Long id) {
+        Optional<Documentos> documentos = this.servicioDocumentos.getDocumentosById(id);
+        if (documentos.isPresent()) {
+            return ResponseEntity.ok(documentos.get());
         } else {
-            return ResponseEntity.notFound().build(); // Retorna 404 si no se encuentra
+            return ResponseEntity.notFound().build();
         }
     }
 
     // Registrar Nuevo
     @PostMapping
-    public ResponseEntity<Object> registrarCliente(@RequestBody Documentos documentos) {
-        return this.servicioDocumentos.newDocumento(documentos); // Cambia Cliente a Documentos si corresponde
+    public ResponseEntity<Object> registrarDocumento(@RequestBody Documentos documentos) {
+        return this.servicioDocumentos.newDocumento(documentos);
     }
 
     // Actualizar
     @PutMapping("/{id}")
-    public ResponseEntity<Object> actualizarCliente(@PathVariable Long id, @RequestBody Documentos documentos) {
-        return this.servicioDocumentos.updateDocumento(id, documentos); // Cambia Cliente a Documentos si corresponde
+    public ResponseEntity<Object> actualizarDocumento(@PathVariable Long id, @RequestBody Documentos documentos) {
+        return this.servicioDocumentos.updateDocumentos(id,documentos);
     }
 
     // Eliminar
-    @DeleteMapping(path = "{documentosId}")
-    public ResponseEntity<Object> eliminarDocumentos(@PathVariable("documentosId") Long id) {
+    @DeleteMapping(path = "{documentoId}")
+    public ResponseEntity<Object> eliminarDocumento(@PathVariable("documentoId") Long id) {
         return this.servicioDocumentos.deleteDocumento(id);
     }
 }
