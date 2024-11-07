@@ -58,39 +58,32 @@ public class ControladorPrincipal {
     // CRUD Clientes
     private final ServicioCliente servicioCliente;
     private final ServicioIngredientes servicioIngredientes;
+    private final ServicioDocumentos servicioDocumentos;
+    private final ServicioPromociones servicioPromociones;
+    private final ServicioPromocionesUsuarios servicioPromocionesUsuarios;
     private final ServicioPizzas servicioPizzas;
     private final ServicioPizzasFamiliares servicioPizzasFamiliares;
     private final ServicioUsuarios servicioUsuarios;
-    private final ServicioMetodosPago servicioMetodosPago;
-    private final ServicioDetallesPedido servicioDetallesPedido;
+
 
     public ControladorPrincipal(
             ServicioCliente servicioCliente,
             ServicioIngredientes servicioIngredientes,
+            ServicioDocumentos servicioDocumentos,
+            ServicioPromociones servicioPromociones,
+            ServicioPromocionesUsuarios servicioPromocionesUsuarios,
             ServicioPizzas servicioPizzas,
             ServicioPizzasFamiliares servicioPizzasFamiliares,
-            ServicioUsuarios servicioUsuarios,
-            ServicioMetodosPago servicioMetodosPago,
-            ServicioDetallesPedido servicioDetallesPedido) {
+            ServicioUsuarios servicioUsuarios) {
         this.servicioCliente = servicioCliente;
         this.servicioIngredientes = servicioIngredientes;
+        this.servicioDocumentos = servicioDocumentos;
+        this.servicioPromociones = servicioPromociones;
+        this.servicioPromocionesUsuarios = servicioPromocionesUsuarios;
         this.servicioPizzas = servicioPizzas;
         this.servicioPizzasFamiliares = servicioPizzasFamiliares;
         this.servicioUsuarios = servicioUsuarios;
-        this.servicioMetodosPago = servicioMetodosPago;
-        this.servicioDetallesPedido = servicioDetallesPedido;
-    }
 
-    @GetMapping("/metodopago")
-    public String listarDetallesPedido(Model model) {
-        model.addAttribute("detallepedido", servicioDetallesPedido.getDetallesPedido());
-        return "CRUDDetallesPedido";
-    }
-
-    @GetMapping("/metodopago")
-        public String listarMetodoPago(Model model) {
-        model.addAttribute("metodopago", servicioMetodosPago.getMetodosPago());
-        return "CRUDMetodosPago";
     }
 
     @GetMapping("/pizzasfamiliares")
@@ -109,6 +102,25 @@ public class ControladorPrincipal {
     public String listarIngredientes(Model model) {
         model.addAttribute("ingredientes", servicioIngredientes.getIngredientes());
         return "CRUDIngredientes";
+    }
+
+    @GetMapping("/documentos")
+    public String listaDocumentos(Model model){
+        model.addAttribute("documentos",servicioDocumentos.getDocumentos());
+        return "CRUDDocumentos";
+    }
+    //Desarrollo de anthony
+
+    @GetMapping("/promociones")
+    public String listaPromociones(Model model){
+        model.addAttribute("promociones",servicioPromociones.getPromociones());
+        return  "CRUDPromociones";
+    }
+    //Desarrollo de anthony
+    @GetMapping("/promocionesusuarios")
+    public String listaPromcoionesUsuarios(Model model){
+        model.addAttribute("promocionesusuarios",servicioPromocionesUsuarios.getPromocionesUsuarios());
+        return "CRUDPromocionesUsuarios";
     }
 
     @GetMapping("/pizzas")

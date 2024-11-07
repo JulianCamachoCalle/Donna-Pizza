@@ -9,4 +9,7 @@ import java.util.Optional;
 @Repository
 public interface DocumentosRepository extends JpaRepository<Documentos, Long> {
 
+    // Buscar Segun tipo de documento
+    Optional<Documentos> findDocumentosByTipoDocumento(String tipoDocumento);
+
 }

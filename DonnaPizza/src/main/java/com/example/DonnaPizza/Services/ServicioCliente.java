@@ -3,7 +3,9 @@ package com.example.DonnaPizza.Services;
 import com.example.DonnaPizza.Model.Cliente;
 import com.example.DonnaPizza.Repository.ClienteRepository;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -12,13 +14,13 @@ import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.hssf.util.HSSFColor;
-import org.apache.poi.ss.usermodel.BorderStyle;
-import org.apache.poi.ss.usermodel.FillPatternType;
-import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.util.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -213,14 +215,38 @@ public class ServicioCliente {
         titleStyle.setBorderTop(BorderStyle.THIN);
         titleStyle.setBorderRight(BorderStyle.THIN);
         titleStyle.setBorderLeft(BorderStyle.THIN);
-        titleStyle.setAlignment(HorizontalAlignment.CENTER);
+        titleStyle.setAlignment(HorizontalAlignment.LEFT);
+        titleStyle.setVerticalAlignment(VerticalAlignment.CENTER);
 
         // Crear fila del título y fusionar celdas
         HSSFRow titleRow = sheet.createRow(0);
         HSSFCell titleCell = titleRow.createCell(0);
         titleCell.setCellValue("Info Clientes");
         titleCell.setCellStyle(titleStyle);
-        sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, 5)); // Reemplazar el 5 segun la cantidad de headers - 1
+        sheet.addMergedRegion(new CellRangeAddress(0, 4, 0,  5)); // Reemplazar el 5 segun la cantidad de headers - 1
+
+        // Cargar imagen desde la carpeta static
+        InputStream imageInputStream = new ClassPathResource("static/img/logo_color.png").getInputStream();
+        int pictureIdx = workbook.addPicture(imageInputStream.readAllBytes(), Workbook.PICTURE_TYPE_JPEG);
+        imageInputStream.close();
+
+        // Crear un lienzo de dibujo en la hoja
+        Drawing drawing = sheet.createDrawingPatriarch();
+
+        // Crear un ancla para la imagen
+        ClientAnchor anchor = workbook.getCreationHelper().createClientAnchor();
+
+        // Establecer el rango que ocupará la imagen
+        anchor.setCol1(4);
+        anchor.setRow1(0);
+        anchor.setCol2(5);
+        anchor.setRow2(4);
+
+        // Crear la imagen
+        Picture picture = drawing.createPicture(anchor, pictureIdx);
+
+        // Ajustar el tamaño de la imagen si es necesario
+        picture.resize(2,1.25);
 
         // Estilo del encabezado
         HSSFCellStyle headerStyle = workbook.createCellStyle();
@@ -237,7 +263,7 @@ public class ServicioCliente {
         headerStyle.setAlignment(HorizontalAlignment.CENTER);
 
         // Crear fila de encabezado
-        HSSFRow row = sheet.createRow(1);
+        HSSFRow row = sheet.createRow(5);
         String[] headers = {"ID_Cliente", "Nombre", "Apellido", "Email", "Telefono", "Direccion"};
         for (int i = 0; i < headers.length; i++) {
             HSSFCell cell = row.createCell(i);
@@ -254,7 +280,7 @@ public class ServicioCliente {
         dataStyle.setAlignment(HorizontalAlignment.CENTER);
 
         // Llenar datos
-        int dataRowIndex = 2;
+        int dataRowIndex = 6;
         for (Cliente cliente : clientes) {
             HSSFRow dataRow = sheet.createRow(dataRowIndex++);
             dataRow.createCell(0).setCellValue(cliente.getId_cliente());

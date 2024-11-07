@@ -1,41 +1,48 @@
-// Obtener lista de documentos y mostrarlos en la tabla
-function listarDocumentos() {
-    fetch('/api/v1/documentos') // Cambiar a la ruta correcta para documentos
+// Obtener lista de entradas y mostrarlos en la tabla
+function listarEntrada() {
+    fetch('/api/v1/entradas')
         .then(response => response.json())
         .then(data => {
-            const documentosList = document.getElementById("documentos-list"); // Cambiar el ID a documentos-list
-            documentosList.innerHTML = ""; // Limpiar tabla antes de cargar datos
+            const entradasList = document.getElementById("entrada-list");
+            entradasList.innerHTML = ""; // Limpiar tabla antes de cargar datos
 
-            data.forEach(documento => {
+            data.forEach(entrada => {
                 let row = `
                     <tr>
-                        <td>${documento.idDocumento}</td> <!-- Cambiar el nombre de la propiedad según tu modelo -->
-                        <td>${documento.tipoDocumento}</td> <!-- Cambiar el nombre de la propiedad según tu modelo -->
+                        <td>${entrada.id_entrada}</td>
+                        <td>${entrada.nombre}</td>
+                        <td>${entrada.descripcion}</td>
+                        <td>${entrada.precio}</td>
+                        <td>${entrada.disponible ? 'Disponible' : 'No Disponible'}</td>
+
                         <td>
-                            <button class="btn btn-warning" onclick="cargarDatosDocumento(${documento.idDocumento})">Editar</button>
-                            <button class="btn btn-danger" onclick="eliminarDocumento(${documento.idDocumento})">Eliminar</button>
+                            <button class="btn btn-warning" onclick="cargarDatosEntrada(${entrada.id_entrada})">Editar</button>
+                            <button class="btn btn-danger" onclick="eliminarEntrada(${entrada.id_entrada})">Eliminar</button>
                         </td>
                     </tr>`;
-                documentosList.innerHTML += row;
+                entradasList.innerHTML += row;
             });
         })
-        .catch(error => console.error('Error al listar documentos:', error));
+        .catch(error => console.error('Error al listar entradas:', error));
 }
 
-document.addEventListener('DOMContentLoaded', listarDocumentos);
+document.addEventListener('DOMContentLoaded', listarEntrada);
 
-// Función para guardar un documento
-function guardarDocumento() {
-    const documento = {
-        tipoDocumento: document.getElementById("tipo_documento").value // Cambiar el ID al correcto
+// Función para guardar entrada
+function guardarEntrada() {
+    const entrada = {
+        nombre: document.getElementById("nombre").value,
+        descripcion: document.getElementById("descripcion").value,
+        precio: document.getElementById("precio").value,
+        disponible: document.getElementById("disponible").value === 'true'
     };
 
-    fetch('/api/v1/documentos', {
+    fetch('/api/v1/entradas', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(documento)
+        body: JSON.stringify(entrada)
     })
         .then(response => response.json())
         .then(data => {
@@ -44,19 +51,19 @@ function guardarDocumento() {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: data.mensaje || "Hubo un problema al agregar el documento.",
+                    text: data.mensaje || "Hubo un problema al agregar entrada.",
                 });
             } else {
                 // Mostrar mensaje de éxito
                 Swal.fire({
                     icon: 'success',
-                    title: 'Documento agregado',
-                    text: data.mensaje || "El documento se ha registrado exitosamente.",
+                    title: 'Entrada agregada',
+                    text: data.mensaje || "Entrada se ha registrado exitosamente.",
                     timer: 2000,
                     showConfirmButton: false
                 }).then(() => {
-                    $('#documentoModal').modal('hide'); // Ocultar el modal
-                    listarDocumentos(); // Refrescar la lista de documentos
+                    $('#entradaModal').modal('hide'); // Ocultar el modal
+                    listarEntrada(); // Refrescar la lista de entrada
                 });
             }
         })
@@ -67,16 +74,16 @@ function guardarDocumento() {
                 title: 'Error de conexión',
                 text: 'No se pudo conectar con el servidor. Intente nuevamente más tarde.',
             });
-            console.error('Error al guardar documento:', error);
+            console.error('Error al guardar entrada:', error);
         });
 }
 
 // Cargar datos al Modal Actualizar
-function cargarDatosDocumento(id) {
-    fetch(`/api/v1/documentos/${id}`)
+function cargarDatosEntrada(id) {
+    fetch(`/api/v1/entradas/${id}`)
         .then(response => {
             if (!response.ok) {
-                throw new Error('Error al obtener datos del documento');
+                throw new Error('Error al obtener datos de entrada');
             }
             return response.json();
         })
@@ -89,36 +96,42 @@ function cargarDatosDocumento(id) {
                 });
             } else {
                 // Cargar datos en el modal
-                document.getElementById("id_documentoact").value = data.idDocumento; // Cambiar al ID correcto
-                document.getElementById("tipo_documentoact").value = data.tipoDocumento; // Cambiar al ID correcto
+                document.getElementById("id_entrada-en").value = data.id_entrada;
+                document.getElementById("nombre-en").value = data.nombre;
+                document.getElementById("descripcion-en").value = data.descripcion;
+                document.getElementById("precio-en").value = data.precio;
+                document.getElementById("disponible-en").value = data.disponible ? 'true' : 'false';
 
                 // Mostrar el modal
-                $('#editarDocumentoModal').modal('show');
+                $('#editarEntradaModal').modal('show');
             }
         })
         .catch(error => {
             Swal.fire({
                 icon: 'error',
                 title: 'Error de conexión',
-                text: 'No se pudo cargar los datos del documento.',
+                text: 'No se pudo cargar los datos de entrada.',
             });
-            console.error('Error al cargar datos del documento:', error);
+            console.error('Error al cargar datos de entrada:', error);
         });
 }
 
 // Actualizar
-function actualizarDocumento() {
-    const documentoActualizado = {
-        id: document.getElementById("id_documentoact").value, // Cambiar al ID correcto
-        tipoDocumento: document.getElementById("tipo_documentoact").value // Cambiar al ID correcto
+function actualizarEntrada() {
+    const entradaActualizado = {
+        id_entrada: document.getElementById("id_entrada-en").value,
+        nombre: document.getElementById("nombre-en").value,
+        descripcion: document.getElementById("descripcion-en").value,
+        precio: document.getElementById("precio-en").value,
+        disponible: document.getElementById("disponible-en").value === 'true'
     };
 
-    fetch(`/api/v1/documentos/${documentoActualizado.id}`, {
+    fetch(`/api/v1/entradas/${entradaActualizado.id_entrada}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(documentoActualizado)
+        body: JSON.stringify(entradaActualizado)
     })
         .then(response => response.json())
         .then(data => {
@@ -127,19 +140,19 @@ function actualizarDocumento() {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: data.mensaje || "Hubo un problema al actualizar el documento.",
+                    text: data.mensaje || "Hubo un problema al actualizar entrada.",
                 });
             } else {
                 // Mostrar mensaje de éxito
                 Swal.fire({
                     icon: 'success',
-                    title: 'Documento actualizado',
-                    text: data.mensaje || "El documento se ha actualizado exitosamente.",
+                    title: 'Entrada actualizada',
+                    text: data.mensaje || "Entrada se ha actualizado exitosamente.",
                     timer: 2000,
                     showConfirmButton: false
                 }).then(() => {
-                    $('#editarDocumentoModal').modal('hide'); // Ocultar el modal
-                    listarDocumentos(); // Refrescar la lista de documentos
+                    $('#editarEntradaModal').modal('hide'); // Ocultar el modal
+                    listarEntrada(); // Refrescar la lista de entradas
                 });
             }
         })
@@ -150,12 +163,12 @@ function actualizarDocumento() {
                 title: 'Error de conexión',
                 text: 'No se pudo conectar con el servidor. Intente nuevamente más tarde.',
             });
-            console.error('Error al actualizar documento:', error);
+            console.error('Error al actualizar entrada:', error);
         });
 }
 
-// Eliminar
-function eliminarDocumento(id) {
+//Eliminar
+function eliminarEntrada(id) {
     Swal.fire({
         title: '¿Estás seguro?',
         text: "No podrás revertir esto!",
@@ -166,7 +179,7 @@ function eliminarDocumento(id) {
         confirmButtonText: 'Sí, eliminar!'
     }).then((result) => {
         if (result.isConfirmed) {
-            fetch(`/api/v1/documentos/${id}`, {
+            fetch(`/api/v1/entradas/${id}`, {
                 method: 'DELETE'
             })
                 .then(response => response.json())
@@ -177,7 +190,7 @@ function eliminarDocumento(id) {
                         text: data.mensaje,
                     }).then(() => {
                         if (!data.error) {
-                            listarDocumentos(); // Refrescar la lista de documentos
+                            listarEntrada(); // Refrescar la lista de entrada
                         }
                     });
                 })
@@ -185,13 +198,17 @@ function eliminarDocumento(id) {
                     Swal.fire({
                         icon: 'error',
                         title: 'Error de conexión',
-                        text: 'No se pudo eliminar el documento.',
+                        text: 'No se pudo eliminar entrada.',
                     });
-                    console.error('Error al eliminar documento:', error);
+                    console.error('Error al eliminar entrada:', error);
                 });
         }
     });
 }
+
 function exportarExcel() {
-    window.location.href = '/exceldocumentos';
+    window.location.href = '/excelentradas';
 }
+
+
+
