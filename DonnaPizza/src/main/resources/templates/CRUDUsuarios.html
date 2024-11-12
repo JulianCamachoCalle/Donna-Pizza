@@ -18,7 +18,7 @@
 <body>
 <div class="container-fluid mt-4">
     <h1>Lista de Usuarios</h1>
-    <!-- Botón para abrir el modal de agregar usuarios -->
+    <!-- Botón para abrir el modal de agregar user -->
     <button type="button" class="btn btn-primary my-3" data-toggle="modal" data-target="#usuariosModal">
         Agregar Usuarios
     </button>
@@ -28,7 +28,7 @@
         <i class="fas fa-file-excel"></i> Exportar a Excel
     </button>
 
-    <!-- Tabla para listar usuarios -->
+    <!-- Tabla para listar user -->
     <table class="table table-striped">
         <thead>
         <tr>
@@ -44,13 +44,13 @@
             <th>Acciones</th>
         </tr>
         </thead>
-        <tbody id="usuarios-list">
+        <tbody id="user-list">
         </tbody>
     </table>
 </div>
 
 
-<!-- Modal para agregar usuarios -->
+<!-- Modal para agregar user -->
 <div class="modal fade" id="usuariosModal" tabindex="-1" aria-labelledby="usuariosModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -102,7 +102,7 @@
     </div>
 </div>
 
-<!-- Modal para editar usuarios -->
+<!-- Modal para editar user -->
 <div class="modal fade" id="editarUsuariosModal" tabindex="-1" aria-labelledby="editarUsuariosModalLabel"
      aria-hidden="true">
     <div class="modal-dialog">
@@ -159,7 +159,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="/js/usuarios.js"></script>
+<script src="/js/user.js"></script>
 
 </body>
 

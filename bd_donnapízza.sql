@@ -135,10 +135,10 @@ CREATE TABLE `promociones_usuarios` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuarios`
+-- Estructura de tabla para la tabla `user`
 --
 
-CREATE TABLE `usuarios` (
+CREATE TABLE `user` (
                             `id_usuario` int(11) NOT NULL,
                             `nombre` varchar(50) NOT NULL,
                             `apellido` varchar(50) NOT NULL,
@@ -243,9 +243,9 @@ ALTER TABLE `promociones_usuarios`
   ADD KEY `id_promocion` (`id_promocion`);
 
 --
--- Indices de la tabla `usuarios`
+-- Indices de la tabla `user`
 --
-ALTER TABLE `usuarios`
+ALTER TABLE `user`
     ADD PRIMARY KEY (`id_usuario`),
   ADD UNIQUE KEY `email` (`email`);
 
@@ -304,9 +304,9 @@ ALTER TABLE `promociones_usuarios`
     MODIFY `id_promocion_usuario` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `usuarios`
+-- AUTO_INCREMENT de la tabla `user`
 --
-ALTER TABLE `usuarios`
+ALTER TABLE `user`
     MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -337,14 +337,14 @@ ALTER TABLE `pagos`
 -- Filtros para la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-    ADD CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`),
+    ADD CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `user` (`id_usuario`),
   ADD CONSTRAINT `pedidos_ibfk_2` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`);
 
 --
 -- Filtros para la tabla `promociones_usuarios`
 --
 ALTER TABLE `promociones_usuarios`
-    ADD CONSTRAINT `promociones_usuarios_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`),
+    ADD CONSTRAINT `promociones_usuarios_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `user` (`id_usuario`),
   ADD CONSTRAINT `promociones_usuarios_ibfk_2` FOREIGN KEY (`id_promocion`) REFERENCES `promociones` (`id_promocion`);
 COMMIT;
 
@@ -379,7 +379,7 @@ ALTER TABLE `pedidos`
     ADD `id_documento` int(11) DEFAULT NULL,
 ADD CONSTRAINT `pedidos_ibfk_3` FOREIGN KEY (`id_documento`) REFERENCES `documentos` (`id_documento`);
 
-ALTER TABLE `usuarios`
+ALTER TABLE `user`
     MODIFY COLUMN `telefono` varchar(15) NOT NULL,
     ADD CONSTRAINT chk_telefono_usuarios CHECK (telefono REGEXP '^\\+[0-9]{1,3} [0-9]{6,12}$');
 

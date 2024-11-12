@@ -1,79 +1,48 @@
 package com.example.DonnaPizza.Config;
 
-import com.example.DonnaPizza.Services.ServicioUsuarios;
-import jakarta.servlet.http.Cookie;
+import com.example.DonnaPizza.Jwt.JwtAuthenticationFilter;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static org.apache.catalina.core.ApplicationSessionCookieConfig.createSessionCookie;
 
 @Configuration
-@AllArgsConstructor
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
 
-    @Autowired
-    private final ServicioUsuarios servicioUsuarios;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final AuthenticationProvider authProvider;
 
     @Bean
-    public UserDetailsService userDetailsService() {
-        return servicioUsuarios;
-    }
-
-    @Bean
-    public AuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(servicioUsuarios);
-        provider.setPasswordEncoder(passwordEncoder());
-        return provider;
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        return httpSecurity
-                .csrf(AbstractHttpConfigurer::disable)
-                .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http
+                .csrf(csrf ->
+                        csrf
+                                .disable())
+                .authorizeHttpRequests(authorizeRequests ->
+                        authorizeRequests
+                                .requestMatchers(HttpMethod.GET).permitAll()
+                                .requestMatchers(HttpMethod.POST).permitAll()
+                                .requestMatchers(HttpMethod.OPTIONS).permitAll()
+                                .requestMatchers("/auth/**").permitAll()
+                                .requestMatchers("/api/v1/**").authenticated()
+                                .anyRequest().authenticated()
                 )
-                .formLogin(httpForm -> {
-                    httpForm.loginPage("/inicioSesion").permitAll();
-                    httpForm.defaultSuccessUrl("/menuUsuario", true);
-                    httpForm.successHandler((request, response, authentication) -> {
-                        // Establecer una cookie persistente
-                        response.addCookie(createSessionCookie());
-                        response.sendRedirect("/menuUsuario");
-                    });
-                })
-                .authorizeHttpRequests(registry -> {
-                    registry.requestMatchers("/req/signup", "/css/**", "/js/**", "/img/**", "/**").permitAll();
-                    registry.anyRequest().authenticated();
-                })
+                .sessionManagement(sessionManagement ->
+                        sessionManagement
+                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authenticationProvider(authProvider)
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
-    }
-
-    private Cookie createSessionCookie() {
-        Cookie cookie = new Cookie("JSESSIONID", "valor");
-        cookie.setMaxAge(30 * 24 * 60 * 60);
-        cookie.setHttpOnly(true);
-        cookie.setPath("/");
-        return cookie;
     }
 }
 

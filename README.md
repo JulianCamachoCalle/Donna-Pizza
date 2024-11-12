@@ -271,16 +271,16 @@ El proyecto incluye la creación de una aplicación web utilizando HTML, CSS, Ja
 
 | Requerimientos funcionales del sistema | Descripción |
 |----------------------------------------|-------------|
-| **RF01** | Permite que los usuarios se registren y creen cuentas. |
+| **RF01** | Permite que los user se registren y creen cuentas. |
 | **RF02** | Permite a los administradores agregar, editar, eliminar y visualizar perfiles de usuario. |
 | **RF03** | Contiene una barra de navegación que permita acceder a las diferentes secciones del sitio web. |
-| **RF04** | Permite a los usuarios buscar contenido utilizando palabras clave. |
-| **RF05** | Permite a los usuarios dejar consultas y reclamos. |
-| **RF06** | Cifrado de las contraseñas de los usuarios. |
-| **RF07** | Contiene un panel de administración donde los administradores puedan gestionar el contenido y los usuarios. |
-| **RF08** | Permite a los usuarios realizar el pago a través de diferentes métodos de pago (Yape, plin, tarjetas de crédito, PayPal). |
-| **RF09** | Permite a los usuarios el envío correspondiente del producto. |
-| **RF10** | Permite a los usuarios agregar productos a un carrito de compras. |
+| **RF04** | Permite a los user buscar contenido utilizando palabras clave. |
+| **RF05** | Permite a los user dejar consultas y reclamos. |
+| **RF06** | Cifrado de las contraseñas de los user. |
+| **RF07** | Contiene un panel de administración donde los administradores puedan gestionar el contenido y los user. |
+| **RF08** | Permite a los user realizar el pago a través de diferentes métodos de pago (Yape, plin, tarjetas de crédito, PayPal). |
+| **RF09** | Permite a los user el envío correspondiente del producto. |
+| **RF10** | Permite a los user agregar productos a un carrito de compras. |
 
 
 ### Requerimientos no funcionales del sistema
@@ -289,11 +289,11 @@ El proyecto incluye la creación de una aplicación web utilizando HTML, CSS, Ja
 
 | Requerimientos no funcionales del sistema | Descripción |
 |-------------------------------------------|-------------|
-| **RNF01** | El sistema debe ser capaz de manejar al menos 1000 usuarios concurrentes sin degradar el rendimiento. |
+| **RNF01** | El sistema debe ser capaz de manejar al menos 1000 user concurrentes sin degradar el rendimiento. |
 | **RNF02** | La arquitectura del sistema debe permitir la adición de nuevos servidores para manejar incrementos en la carga de trabajo. |
 | **RNF03** | El sistema debe estar disponible el 99.9% del tiempo, excluyendo el mantenimiento programado. |
 | **RNF04** | Todos los datos sensibles deben ser cifrados tanto en tránsito como en reposo. |
-| **RNF05** | La interfaz de usuario debe ser intuitiva y fácil de usar, con un tiempo de aprendizaje máximo de 30 minutos para nuevos usuarios. |
+| **RNF05** | La interfaz de usuario debe ser intuitiva y fácil de usar, con un tiempo de aprendizaje máximo de 30 minutos para nuevos user. |
 | **RNF06** | El código del sistema debe seguir estándares de codificación que faciliten su mantenimiento y actualización. |
 | **RNF07** | El sistema debe ser capaz de ejecutarse en diferentes sistemas operativos, incluyendo Windows, macOS y Linux. |
 | **RNF08** | El sistema debe ser capaz de recuperarse automáticamente de fallos menores sin pérdida de datos. |
