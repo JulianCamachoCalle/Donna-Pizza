@@ -11,105 +11,116 @@ loginButton.addEventListener('click', () => {
     contenedor.classList.remove('active');
 });
 
-// Función para guardar un usuario
-function guardarUsuario() {
-    const usuarios = {
+// Función para manejar el registro de usuario
+async function guardarUsuario() {
+    const data = {
         nombre: document.getElementById("nombre").value,
         apellido: document.getElementById("apellido").value,
-        username: document.getElementById("email").value,
+        username: document.getElementById("username").value,
         telefono: document.getElementById("telefono").value,
         direccion: document.getElementById("direccion").value,
-        rol: rolUsuario,
-        password: document.getElementById("contraseña").value,
-        fecha_registro: fecha_registroUsuario
+        password: document.getElementById("password").value,
     };
 
-    fetch('/api/v1/usuarios', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(usuarios)
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.error) {
-                // Mostrar mensaje de error
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: data.mensaje || "Hubo un problema al agregar el usuario.",
-                    timer: 2000,
-                });
-            } else {
-                // Mostrar mensaje de éxito
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Usuario agregado',
-                    text: data.mensaje || "El usuario se ha registrado exitosamente.",
-                    timer: 2000,
-                    showConfirmButton: false
-                })
-            }
-        })
-        .catch(error => {
-            // Mostrar mensaje de error en caso de fallo en la conexión
-            Swal.fire({
-                icon: 'error',
-                title: 'Error de conexión',
-                text: 'No se pudo conectar con el servidor. Intente nuevamente más tarde.',
-                timer: 2000,
-            });
-            console.error('Error al guardar usuario:', error);
+    try {
+        const response = await fetch("/auth/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
         });
-    setTimeout(() => {
-        window.location.href = "/inicioSesion";
-    }, 3000);
+
+        if (response.ok) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Usuario registrado exitosamente',
+                showConfirmButton: false,
+                timer: 2500
+            }).then(() => {
+                window.location.href = "/inicioSesion";
+            });
+        } else {
+            const errorText = await response.text();
+            let errorData = {};
+            try {
+                errorData = JSON.parse(errorText); // Intentar parsear la respuesta del servidor
+            } catch (e) {
+                console.error("Error al parsear el JSON:", e);
+                // Si no es JSON, mostrar un mensaje genérico
+                errorData = { general: "Hubo un problema con la respuesta del servidor." };
+            }
+            console.log("Error recibido del servidor:", errorData); // Verifica qué error se recibe
+            showErrors(errorData);
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Hubo un problema con el registro',
+            text: 'Intenta nuevamente más tarde',
+            confirmButtonText: 'Cerrar'
+        });
+    }
 }
 
-// Obtiene la fecha actual
-const today = new Date();
-const yyyy = today.getFullYear();
-const mm = String(today.getMonth() + 1).padStart(2, '0'); // Mes con dos dígitos
-const dd = String(today.getDate()).padStart(2, '0'); // Día con dos dígitos
+// Función para mostrar errores con SweetAlert
+function showErrors(errors) {
+    console.log("Errores a mostrar:", errors); // Verifica qué errores se están pasando
 
-// Formato de la fecha actual en yyyy-mm-dd
-const currentDate = `${yyyy}-${mm}-${dd}`;
+    // Crear un arreglo de errores
+    const errorMessages = [];
 
-// Asigna la fecha actual al input
-const fecha_registroUsuario = currentDate;
-
-const rolUsuario = "USER";
-
-function iniciarSesion() {
-    const username = document.querySelector('input[name="emaillogin"]').value;
-    const password = document.querySelector('input[name="contraseñalogin"]').value;
-
-    // Validar campos
-    if (!username || !password) {
-        Swal.fire('Error', 'Por favor, complete todos los campos.', 'error');
-        return;
+    // Si existe el error general, lo agregamos
+    if (errors.general) {
+        errorMessages.push(errors.general);
     }
 
-    // Enviar datos al backend
-    $.ajax({
-        type: 'POST',
-        url: '/api/v1/usuarios/login',
-        data: {
-            username: username,
-            password: password
-        },
-        success: function(response) {
-            // Maneja la respuesta, redirige o muestra un mensaje
-            if (response.success) {
-                window.location.href = '/menuUsuario/${result.id}';
-            } else {
-                Swal.fire('Error', response.message, 'error');
-            }
-        },
-        error: function() {
-            Swal.fire('Error', 'Ocurrió un error en el inicio de sesión.', 'error');
-        }
-    });
+    // Si el servidor devuelve un mensaje de error en el campo 'token'
+    if (errors.token) {
+        errorMessages.push(errors.token);
+    }
+
+    // Mostrar los errores específicos si existen
+    if (errors.nombre) {
+        errorMessages.push(errors.nombre);
+    }
+    if (errors.apellido) {
+        errorMessages.push(errors.apellido);
+    }
+    if (errors.username) {
+        errorMessages.push(errors.username);
+    }
+    if (errors.telefono) {
+        errorMessages.push(errors.telefono);
+    }
+    if (errors.direccion) {
+        errorMessages.push(errors.direccion);
+    }
+    if (errors.password) {
+        errorMessages.push(errors.password);
+    }
+
+    // Si existen errores, mostramos el SweetAlert
+    if (errorMessages.length > 0) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Errores de registro',
+            text: errorMessages.join('\n'), // Usamos join para separar los errores
+            confirmButtonText: 'Cerrar'
+        });
+    } else {
+        // Si no hay errores, mostramos un mensaje genérico
+        Swal.fire({
+            icon: 'warning',
+            title: 'No se detectaron errores específicos',
+            text: 'Por favor revisa los datos ingresados',
+            confirmButtonText: 'Cerrar'
+        });
+    }
 }
+
+
+
+
 
