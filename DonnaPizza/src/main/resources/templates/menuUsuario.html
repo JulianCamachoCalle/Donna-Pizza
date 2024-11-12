@@ -55,7 +55,7 @@
         const urlParams = new URLSearchParams(window.location.search);
         const usuarioId = urlParams.get('id') || 1; // Cambia esto si deseas un valor por defecto
         try {
-            const response = await fetch(`/api/v1/usuarios/${usuarioId}`);
+            const response = await fetch(`/api/v1/user/${usuarioId}`);
             if (!response.ok) {
                 throw new Error('Error al obtener el usuario');
             }
