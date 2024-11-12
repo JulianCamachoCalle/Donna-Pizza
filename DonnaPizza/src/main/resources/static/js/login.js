@@ -120,6 +120,81 @@ function showErrors(errors) {
     }
 }
 
+async function iniciarSesion() {
+    const data = {
+        username: document.getElementById("emaillogin").value,
+        password: document.getElementById("contraseñalogin").value,
+    };
+
+    try {
+        const response = await fetch("/auth/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (response.ok) {
+            const responseData = await response.json();
+
+            // Almacenar el token en localStorage o cookies
+            localStorage.setItem("token", responseData.token);
+
+            // Mensaje de éxito y redirección
+            Swal.fire({
+                icon: 'success',
+                title: 'Inicio de sesión exitoso',
+                showConfirmButton: false,
+                timer: 1500
+            }).then(() => {
+                // Redirige al usuario al dashboard
+                window.location.href = "/dashboard";
+            });
+        } else {
+            const errorText = await response.text();
+            let errorData = {};
+            try {
+                errorData = JSON.parse(errorText);
+            } catch (e) {
+                console.error("Error al parsear el JSON:", e);
+                errorData = { general: "Hubo un problema con la respuesta del servidor." };
+            }
+            mostrarErroresLogin(errorData);
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Hubo un problema con el inicio de sesión',
+            text: 'Intenta nuevamente más tarde',
+            confirmButtonText: 'Cerrar'
+        });
+    }
+}
+
+// Función para mostrar errores específicos de login usando SweetAlert
+function mostrarErroresLogin(errors) {
+    let errorMessage = '';
+    if (errors.general) {
+        errorMessage += errors.general + '\n';
+    }
+    if (errors.username) {
+        errorMessage += errors.username + '\n';
+    }
+    if (errors.password) {
+        errorMessage += errors.password + '\n';
+    }
+
+    Swal.fire({
+        icon: 'error',
+        title: 'Errores de inicio de sesión',
+        text: errorMessage,
+        confirmButtonText: 'Cerrar'
+    });
+}
+
+
 
 
 

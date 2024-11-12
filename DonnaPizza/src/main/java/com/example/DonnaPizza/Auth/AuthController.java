@@ -1,12 +1,11 @@
 package com.example.DonnaPizza.Auth;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
-import java.util.Map;
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 @RequestMapping({"/auth"})
@@ -17,7 +16,11 @@ public class AuthController {
 
     @PostMapping(value = "login")
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
-        return ResponseEntity.ok(authService.login(request));
+        try {
+            return ResponseEntity.ok(authService.login(request));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(new AuthResponse("Error: " + e.getMessage()));
+        }
     }
 
     @PostMapping(value = "register")
@@ -28,5 +31,4 @@ public class AuthController {
             return ResponseEntity.badRequest().body(new AuthResponse("Error: " + e.getMessage()));
         }
     }
-
 }
