@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class ControladorPrincipal {
 
+    private final ServicioPedidos servicioPedidos;
+    private final ServicioPagos servicioPagos;
+
     @GetMapping("/")
     public String index() {
         return "index";
@@ -55,6 +58,7 @@ public class ControladorPrincipal {
         return "menuUsuario";
     }
 
+
     // CRUD Clientes
     private final ServicioCliente servicioCliente;
     private final ServicioIngredientes servicioIngredientes;
@@ -64,6 +68,7 @@ public class ControladorPrincipal {
     private final ServicioPizzas servicioPizzas;
     private final ServicioPizzasFamiliares servicioPizzasFamiliares;
     private final ServicioUsuarios servicioUsuarios;
+    private final ServicioDetallesPedido servicioDetallesPedido;
 
 
     public ControladorPrincipal(
@@ -74,7 +79,10 @@ public class ControladorPrincipal {
             ServicioPromocionesUsuarios servicioPromocionesUsuarios,
             ServicioPizzas servicioPizzas,
             ServicioPizzasFamiliares servicioPizzasFamiliares,
-            ServicioUsuarios servicioUsuarios) {
+            ServicioUsuarios servicioUsuarios,
+            ServicioDetallesPedido servicioDetallesPedido,
+            ServicioPedidos servicioPedidos,
+            ServicioPagos servicioPagos) {
         this.servicioCliente = servicioCliente;
         this.servicioIngredientes = servicioIngredientes;
         this.servicioDocumentos = servicioDocumentos;
@@ -83,7 +91,9 @@ public class ControladorPrincipal {
         this.servicioPizzas = servicioPizzas;
         this.servicioPizzasFamiliares = servicioPizzasFamiliares;
         this.servicioUsuarios = servicioUsuarios;
-
+        this.servicioDetallesPedido = servicioDetallesPedido;
+        this.servicioPedidos = servicioPedidos;
+        this.servicioPagos = servicioPagos;
     }
 
     @GetMapping("/pizzasfamiliares")
@@ -133,6 +143,22 @@ public class ControladorPrincipal {
     public String listarUsuarios(Model model) {
         model.addAttribute("usuarios", servicioUsuarios.getUsuarios());
         return "CRUDUsuarios";
+    }
+    @GetMapping("/detallespedido")
+    public String listarDetallesPedido(Model model) {
+        model.addAttribute("detalles-pedido", servicioDetallesPedido.getDetallesPedido());
+        return "CRUDDetallesPedido";
+    }
+    @GetMapping("/pedidos")
+    public String listarPedidos(Model model) {
+        model.addAttribute("pedido", servicioPedidos.getPedidos());
+        return "CRUDPedidos";
+    }
+
+    @GetMapping("/pagos")
+    public String listarPagos(Model model) {
+        model.addAttribute("pago", servicioPagos.getPagos());
+        return "CRUDPagos";
     }
 
     @GetMapping("/fromclient")
