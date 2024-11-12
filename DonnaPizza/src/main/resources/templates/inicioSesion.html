@@ -29,6 +29,7 @@
         <!--Main-->
         <main id="main" class="main d-flex justify-content-center align-items-center flex-column vh-100">
             <div class="contenedor position-relative rounded-5 overflow-hidden bg-light shadow-lg p-3 rounded" id="contenedor">
+
                 <div class="form-contenedor crear-cuenta position-absolute">
                     <form id="registerForm" onsubmit="event.preventDefault(); guardarUsuario();" class="d-flex justify-content-center align-items-center flex-column px-4">
                         <h1 th:text="#{form.usuario.legend.crear}"></h1>
@@ -49,16 +50,23 @@
                     </form>
                 </div>
 
-
                 <div class="form-contenedor position-absolute iniciar-sesion">
                     <form id="loginForm" onsubmit="event.preventDefault(); iniciarSesion();" class="d-flex justify-content-center align-items-center flex-column px-4">
                         <h1 th:text="#{form.usuario.legend.iniciar}"></h1>
-                        <input class="my-1" type="email" name="emaillogin" th:placeholder="#{form.usuario.ingresar.correo}">
-                        <input class="my-1" type="password" name="contraseñalogin" th:placeholder="#{form.usuario.contrasena}">
-                        <a href="#" class="my-3">Olvidaste tu contraseña?</a>
+
+                        <!-- Campo de correo -->
+                        <input class="my-1" type="email" id="emaillogin" name="emaillogin" th:placeholder="#{form.usuario.ingresar.correo}" required>
+
+                        <!-- Campo de contraseña -->
+                        <input class="my-1" type="password" id="contraseñalogin" name="contraseñalogin" th:placeholder="#{form.usuario.contrasena}" required>
+
+                        <a href="#" class="my-3">¿Olvidaste tu contraseña?</a>
+
+                        <!-- Botón de inicio de sesión -->
                         <button type="submit" class="btn btn-login-register border px-3 py-2" th:text="#{form.boton.iniciar}"></button>
                     </form>
                 </div>
+
                 <div class="cambiar-contenedor position-absolute overflow-hidden">
                     <div class="cambiar">
                         <div class="cambiar-panel cambiar-izquierda d-flex justify-content-center align-items-center flex-column position-absolute">
