@@ -1,6 +1,7 @@
 package com.example.DonnaPizza.Jwt;
 
 import com.example.DonnaPizza.MVC.User.User;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -16,6 +17,12 @@ import java.util.function.Function;
 
 @Service
 public class JwtService {
+
+    private final ObjectMapper objectMapper;
+
+    public JwtService(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
+    }
 
     @Value("${jwt.secret}")
     private String SECRET_KEY;
@@ -33,7 +40,7 @@ public class JwtService {
                 .claim("apellido", user.getApellido())
                 .claim("telefono", user.getTelefono())
                 .claim("direccion", user.getDireccion())
-                .claim("fecha_registro", user.getFecha_registro())
+                .claim("fecha_registro", user.getFecha_registro().toString())
                 .subject(user.getUsername())
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))

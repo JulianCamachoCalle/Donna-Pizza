@@ -5,6 +5,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -12,6 +16,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
+    // Actualizar
     @Transactional
     public UserResponse updateUser(UserRequest userRequest) {
 
@@ -31,6 +36,7 @@ public class UserService {
         return new UserResponse("El usuario se registro exitosamente!");
     }
 
+    // Obtener Segun el ID
     public UserDTO getUser(Long id) {
         User user = userRepository.findById(id).orElse(null);
 
@@ -50,6 +56,34 @@ public class UserService {
         return null;
     }
 
+    // Obtener todos
+    public List<UserDTO> getAllUsers() {
+        List<User> users = userRepository.findAll();
+        return users.stream()
+                .map(user -> UserDTO.builder()
+                        .id_usuario(user.getId_usuario())
+                        .username(user.getUsername())
+                        .password(user.getPassword())
+                        .nombre(user.getNombre())
+                        .apellido(user.getApellido())
+                        .telefono(user.getTelefono())
+                        .direccion(user.getDireccion())
+                        .fecha_registro(user.getFecha_registro())
+                        .build())
+                .collect(Collectors.toList());
+    }
+
+    // Eliminar
+    public boolean deleteUser(Long id) {
+        Optional<User> user = userRepository.findById(id);
+        if (user.isPresent()) {
+            userRepository.delete(user.get());
+            return true;
+        }
+        return false;
+    }
+
+    // Registrar Nuevo
     public UserResponse registerUser(UserRequest userRequest) {
         User user = User.builder()
                 .username(userRequest.getUsername())

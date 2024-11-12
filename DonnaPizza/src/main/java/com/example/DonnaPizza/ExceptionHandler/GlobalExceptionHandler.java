@@ -5,16 +5,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<String> handlerArgumentException(IllegalArgumentException exception) {
-        return new ResponseEntity<String>(exception.getMessage(), HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<String> handlerRuntimeException(RuntimeException exception) {
-        return new ResponseEntity<String>(exception.getMessage(), HttpStatus.BAD_GATEWAY);
+    public ResponseEntity<Map<String, String>> handleValidationExceptions(IllegalArgumentException ex) {
+        Map<String, String> errors = new HashMap<>();
+        errors.put("error", ex.getMessage());
+        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 }

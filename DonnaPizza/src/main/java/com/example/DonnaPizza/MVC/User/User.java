@@ -20,7 +20,7 @@ import java.util.List;
 @Entity
 
 // Tabla
-@Table(name = "usuarios")
+@Table(name = "user")
 public class User implements UserDetails {
 
     // Atributos
