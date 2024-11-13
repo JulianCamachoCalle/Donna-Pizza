@@ -1,64 +1,26 @@
-package com.example.DonnaPizza.controladores;
 
+package com.example.DonnaPizza.Controller;
 
-import com.example.DonnaPizza.Services.*;
-import jakarta.servlet.http.HttpServletRequest;
-
+import com.example.DonnaPizza.MVC.Cliente.ServicioCliente;
+import com.example.DonnaPizza.MVC.Documentos.ServicioDocumentos;
+import com.example.DonnaPizza.MVC.Ingredientes.ServicioIngredientes;
+import com.example.DonnaPizza.MVC.Pizzas.ServicioPizzas;
+import com.example.DonnaPizza.MVC.PizzasFamiliares.ServicioPizzasFamiliares;
+import com.example.DonnaPizza.MVC.Promociones.ServicioPromociones;
+import com.example.DonnaPizza.MVC.PromocionesUsuarios.ServicioPromocionesUsuarios;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.Locale;
-
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class ControladorPrincipal {
-
-    private final ServicioPedidos servicioPedidos;
-    private final ServicioPagos servicioPagos;
-
-    @GetMapping("/")
-    public String index() {
-        return "index";
-    }
-
-    @GetMapping("/index")
-    public String index(Model model) {
-        return "index";
-    }
-
-    @GetMapping("/carta")
-    public String carta(Model model) {
-        return "carta";
-    }
-
-    @GetMapping("/primerlocal")
-    public String primerlocal(Model model) {
-        return "primerlocal";
-    }
-
-    @GetMapping("/segundolocal")
-    public String segundolocal(Model model) {
-        return "segundolocal";
-    }
-
-    @GetMapping("/inicioSesion")
-    public String login(Model model) {
-        return "inicioSesion";
-    }
-
-    @GetMapping("/access-denied")
-    public String accessDenied(Model model) {
-        return "access-denied";
-    }
-
-    @GetMapping("/menuUsuario")
-    public String menuUsuario(Model model) {
-        return "menuUsuario";
-    }
-
-
+@RequestMapping("/admin/crud")
+@RequiredArgsConstructor
+@CrossOrigin(origins = {"http://localhost:4200"})
+public class CRUDController {
+  
     // CRUD Clientes
     private final ServicioCliente servicioCliente;
     private final ServicioIngredientes servicioIngredientes;
@@ -69,32 +31,6 @@ public class ControladorPrincipal {
     private final ServicioPizzasFamiliares servicioPizzasFamiliares;
     private final ServicioUsuarios servicioUsuarios;
     private final ServicioDetallesPedido servicioDetallesPedido;
-
-
-    public ControladorPrincipal(
-            ServicioCliente servicioCliente,
-            ServicioIngredientes servicioIngredientes,
-            ServicioDocumentos servicioDocumentos,
-            ServicioPromociones servicioPromociones,
-            ServicioPromocionesUsuarios servicioPromocionesUsuarios,
-            ServicioPizzas servicioPizzas,
-            ServicioPizzasFamiliares servicioPizzasFamiliares,
-            ServicioUsuarios servicioUsuarios,
-            ServicioDetallesPedido servicioDetallesPedido,
-            ServicioPedidos servicioPedidos,
-            ServicioPagos servicioPagos) {
-        this.servicioCliente = servicioCliente;
-        this.servicioIngredientes = servicioIngredientes;
-        this.servicioDocumentos = servicioDocumentos;
-        this.servicioPromociones = servicioPromociones;
-        this.servicioPromocionesUsuarios = servicioPromocionesUsuarios;
-        this.servicioPizzas = servicioPizzas;
-        this.servicioPizzasFamiliares = servicioPizzasFamiliares;
-        this.servicioUsuarios = servicioUsuarios;
-        this.servicioDetallesPedido = servicioDetallesPedido;
-        this.servicioPedidos = servicioPedidos;
-        this.servicioPagos = servicioPagos;
-    }
 
     @GetMapping("/pizzasfamiliares")
     public String listarPizzasFamiliares(Model model) {
@@ -138,39 +74,4 @@ public class ControladorPrincipal {
         model.addAttribute("pizzas", servicioPizzas.getPizzas());
         return "CRUDPizzas";
     }
-
-    @GetMapping("/usuarios")
-    public String listarUsuarios(Model model) {
-        model.addAttribute("usuarios", servicioUsuarios.getUsuarios());
-        return "CRUDUsuarios";
-    }
-    @GetMapping("/detallespedido")
-    public String listarDetallesPedido(Model model) {
-        model.addAttribute("detalles-pedido", servicioDetallesPedido.getDetallesPedido());
-        return "CRUDDetallesPedido";
-    }
-    @GetMapping("/pedidos")
-    public String listarPedidos(Model model) {
-        model.addAttribute("pedido", servicioPedidos.getPedidos());
-        return "CRUDPedidos";
-    }
-
-    @GetMapping("/pagos")
-    public String listarPagos(Model model) {
-        model.addAttribute("pago", servicioPagos.getPagos());
-        return "CRUDPagos";
-    }
-
-    @GetMapping("/fromclient")
-    public String fromclient(Model model) {
-        return "fromclient";
-    }
-
-    @GetMapping("/changeLanguage")
-    public String changeLanguage(@RequestParam("lang") String lang, HttpServletRequest request) {
-        request.getSession().setAttribute("org.springframework.web.servlet.i18n.SessionLocaleResolver.LOCALE", new Locale(lang));
-        return "redirect:" + request.getHeader("Referer");
-    }
-
-
 }
