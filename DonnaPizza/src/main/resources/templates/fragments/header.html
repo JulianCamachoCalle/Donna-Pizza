@@ -18,11 +18,38 @@
                     <li class="nav-item">
                         <a class="nav-link" th:text="#{nav.locales}" th:href="@{/primerlocal}"></a>
                     </li>
-                    <li class="nav-item">
+                    <!-- Enlace de inicio de sesión -->
+                    <li class="nav-item" id="loginLink">
                         <a class="nav-link" th:text="#{nav.login}" th:href="@{/inicioSesion}"></a>
+                    </li>
+                    <!-- Enlace del Dashboard -->
+                    <li class="nav-item d-none" id="dashboardLink">
+                        <a class="nav-link" th:text="#{nav.dashboard}" th:href="@{/dashboard}">Dashboard</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        actualizarNav();
+    });
+
+    function actualizarNav() {
+        const token = localStorage.getItem("token");
+        const loginLink = document.getElementById("loginLink");
+        const dashboardLink = document.getElementById("dashboardLink");
+
+        if (token) {
+            // Usuario autenticado
+            loginLink.classList.add("d-none");      // Ocultar enlace de inicio de sesión
+            dashboardLink.classList.remove("d-none"); // Mostrar enlace del dashboard
+        } else {
+            // Usuario no autenticado
+            loginLink.classList.remove("d-none");     // Mostrar enlace de inicio de sesión
+            dashboardLink.classList.add("d-none");    // Ocultar enlace del dashboard
+        }
+    }
+</script>

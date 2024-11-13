@@ -5,16 +5,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/v1/user")
 @RequiredArgsConstructor
+@CrossOrigin(origins = {"http://localhost:4200"})
 public class UserController {
 
     private final UserService userService;
 
-    // Obtener Segun el ID
+    // Obtener por ID
     @GetMapping(value = "{id}")
     public ResponseEntity<UserDTO> getUser(@PathVariable Long id) {
         UserDTO userDTO = userService.getUser(id);
@@ -24,14 +26,7 @@ public class UserController {
         return ResponseEntity.ok(userDTO);
     }
 
-    // Obtener todos
-    @GetMapping
-    public ResponseEntity<List<UserDTO>> getAllUsers() {
-        List<UserDTO> users = userService.getAllUsers();
-        return ResponseEntity.ok(users);
-    }
-
-    // Registrar Nuevo
+    // Registrar
     @PostMapping
     public ResponseEntity<UserResponse> registerUser(@RequestBody UserRequest userRequest) {
         UserResponse userResponse = userService.registerUser(userRequest);
@@ -42,16 +37,5 @@ public class UserController {
     @PutMapping()
     public ResponseEntity<UserResponse> updateUser(@RequestBody UserRequest userRequest) {
         return ResponseEntity.ok(userService.updateUser(userRequest));
-    }
-
-    // Eliminar
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
-        boolean isDeleted = userService.deleteUser(id);
-        if (isDeleted) {
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
     }
 }

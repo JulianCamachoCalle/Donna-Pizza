@@ -7,13 +7,17 @@ import com.example.DonnaPizza.MVC.Pizzas.ServicioPizzas;
 import com.example.DonnaPizza.MVC.PizzasFamiliares.ServicioPizzasFamiliares;
 import com.example.DonnaPizza.MVC.Promociones.ServicioPromociones;
 import com.example.DonnaPizza.MVC.PromocionesUsuarios.ServicioPromocionesUsuarios;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/admin/crud")
+@RequiredArgsConstructor
+@CrossOrigin(origins = {"http://localhost:4200"})
 public class CRUDController {
 
     // CRUD Clientes
@@ -24,24 +28,6 @@ public class CRUDController {
     private final ServicioPromocionesUsuarios servicioPromocionesUsuarios;
     private final ServicioPizzas servicioPizzas;
     private final ServicioPizzasFamiliares servicioPizzasFamiliares;
-
-    public CRUDController(
-            ServicioCliente servicioCliente,
-            ServicioIngredientes servicioIngredientes,
-            ServicioDocumentos servicioDocumentos,
-            ServicioPromociones servicioPromociones,
-            ServicioPromocionesUsuarios servicioPromocionesUsuarios,
-            ServicioPizzas servicioPizzas,
-            ServicioPizzasFamiliares servicioPizzasFamiliares) {
-        this.servicioCliente = servicioCliente;
-        this.servicioIngredientes = servicioIngredientes;
-        this.servicioDocumentos = servicioDocumentos;
-        this.servicioPromociones = servicioPromociones;
-        this.servicioPromocionesUsuarios = servicioPromocionesUsuarios;
-        this.servicioPizzas = servicioPizzas;
-        this.servicioPizzasFamiliares = servicioPizzasFamiliares;
-
-    }
 
     @GetMapping("/pizzasfamiliares")
     public String listarPizzasFamiliares(Model model) {
