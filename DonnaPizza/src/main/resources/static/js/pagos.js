@@ -1,43 +1,47 @@
-// Obtener lista de metodos  de pago y mostrarlos en la tabla
-function listarMetodosPago() {
-    fetch('/api/v1/metodosPago')
+// Obtener lista de pagos y mostrarlos en la tabla
+function listarPagos() {
+    fetch('/api/v1/pagos')
         .then(response => response.json())
         .then(data => {
-            const metodosPagoList = document.getElementById("metodosPago-list");
-            metodosPagoList.innerHTML = ""; // Limpiar tabla antes de cargar datos
+            const pagosList = document.getElementById("pagos-list");
+            pagosList.innerHTML = ""; // Limpiar tabla antes de cargar datos
 
-            data.forEach(metodosPago => {
+            data.forEach(pago => {
                 let row = `
                     <tr>
-                        <td>${metodosPago.id_metodo_pago}</td>
-                        <td>${metodosPago.nombre}</td>
-                        <td>${metodosPago.descripcion}</td>
+                        <td>${pago.id_pago}</td>
+                        <td>${pago.id_pedido}</td>
+                        <td>${pago.id_metodo_pago}</td>
+                        <td>${pago.monto}</td>
+                        <td>${pago.fecha}</td>
                         <td>
-                            <button class="btn btn-warning" onclick="cargarDatosMetodosPago(${metodosPago.id_metodo_pago})">Editar</button>
-                            <button class="btn btn-danger" onclick="eliminarMetodosPago(${metodosPago.id_metodo_pago})">Eliminar</button>
+                            <button class="btn btn-warning" onclick="cargarDatosPagos(${pedido.id_pedido})">Editar</button>
+                            <button class="btn btn-danger" onclick="eliminarIngrediente(${pedido.id_pedido})">Eliminar</button>
                         </td>
                     </tr>`;
-                metodosPagoList.innerHTML += row;
+                pagosList.innerHTML += row;
             });
         })
-        .catch(error => console.error('Error al listar metodos de pago:', error));
+        .catch(error => console.error('Error al listar pagos:', error));
 }
 
-document.addEventListener('DOMContentLoaded', listarMetodosPago);
+document.addEventListener('DOMContentLoaded', listarIngredientes);
 
-// Función para guardar un metodo de pago
-function guardarMetodosPago() {
-    const metodosPago = {
-        nombre: document.getElementById("nombre").value,
-        descripcion: document.getElementById("descripcion").value,
+// Función para guardar un pago
+function guardarPago() {
+    const pago = {
+        id_pedido: document.getElementById("id_pedido").value,
+        id_metodo_pago: document.getElementById("id_metodosPago").value,
+        monto: document.getElementById("monto").value,
+        fecha: document.getElementById("fecha").value,
     };
 
-    fetch('/api/v1/metodosPago', {
+    fetch('/api/v1/pagos', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(metodosPago)
+        body: JSON.stringify(pedido)
     })
         .then(response => response.json())
         .then(data => {
@@ -46,19 +50,19 @@ function guardarMetodosPago() {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: data.mensaje || "Hubo un problema al agregar el metodo de pago.",
+                    text: data.mensaje || "Hubo un problema al agregar el pedido.",
                 });
             } else {
                 // Mostrar mensaje de éxito
                 Swal.fire({
                     icon: 'success',
-                    title: 'Metodo de pago agregado',
-                    text: data.mensaje || "El metodo de pago se ha registrado exitosamente.",
+                    title: 'pedido agregado',
+                    text: data.mensaje || "El pedido se ha registrado exitosamente.",
                     timer: 2000,
                     showConfirmButton: false
                 }).then(() => {
-                    $('#metodosPagoModal').modal('hide'); // Ocultar el modal
-                    listarMetodosPago(); // Refrescar la lista de metodos de pago
+                    $('#pedidoModal').modal('hide'); // Ocultar el modal
+                    listarPedidos(); // Refrescar la lista de pedidos
                 });
             }
         })
@@ -69,16 +73,16 @@ function guardarMetodosPago() {
                 title: 'Error de conexión',
                 text: 'No se pudo conectar con el servidor. Intente nuevamente más tarde.',
             });
-            console.error('Error al guardar el metodo de pago:', error);
+            console.error('Error al guardar pedido:', error);
         });
 }
 
 // Cargar datos al Modal Actualizar
-function cargarDatosMetodosPago(id) {
-    fetch(`/api/v1/metodosPago/${id}`)
+function cargarDatosPedido(id) {
+    fetch(`/api/v1/pedidos/${id}`)
         .then(response => {
             if (!response.ok) {
-                throw new Error('Error al obtener datos del metodo de pago');
+                throw new Error('Error al obtener datos del pedido');
             }
             return response.json();
         })
@@ -91,38 +95,44 @@ function cargarDatosMetodosPago(id) {
                 });
             } else {
                 // Cargar datos en el modal
-                document.getElementById("id_metodosPagoact").value = data.id_metodo_pago;
-                document.getElementById("nombreact").value = data.nombre;
-                document.getElementById("descripcionact").value = data.descripcion;
+                document.getElementById("id-pedidoact").value = data.id_pedido;
+                document.getElementById("id-usuarioact").value = data.id_usuario;
+                document.getElementById("id-clienteact").value = data.id_cliente;
+                document.getElementById("fechaact").value = data.fecha;
+                document.getElementById("totalact").value = data.total;
+                document.getElementById("id-documento").value = data.id_documento;
 
                 // Mostrar el modal
-                $('#editarMetodosPagoModal').modal('show');
+                $('#editarPedidoModal').modal('show');
             }
         })
         .catch(error => {
             Swal.fire({
                 icon: 'error',
                 title: 'Error de conexión',
-                text: 'No se pudo cargar los datos del metodo de pado.',
+                text: 'No se pudo cargar los datos del pedido.',
             });
-            console.error('Error al cargar datos del metodo de pago:', error);
+            console.error('Error al cargar datos del pedido:', error);
         });
 }
 
 // Actualizar
-function actualizarMetodosPago() {
-    const metodosPagoActualizado = {
-        id: document.getElementById("id_metodosPagoact").value,
-        nombre: document.getElementById("nombreact").value,
-        descripcion: document.getElementById("descripcionact").value,
+function actualizarPago() {
+    const pagoActualizado = {
+        id: document.getElementById("id_pedidoact").value,
+        id_usuario: document.getElementById("id_pedido").value,
+        id_cliente: document.getElementById("id_cliente").value,
+        fecha: document.getElementById("fecha").value,
+        total: document.getElementById("total").value,
+        id_documento: document.getElementById("id_documento").value,
     };
 
-    fetch(`/api/v1/metodosPago/${metodosPagoActualizado.id}`, {
+    fetch(`/api/v1/pagos/${pagoActualizado.id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(metodosPagoActualizado)
+        body: JSON.stringify(pagoActualizado)
     })
         .then(response => response.json())
         .then(data => {
@@ -131,19 +141,19 @@ function actualizarMetodosPago() {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: data.mensaje || "Hubo un problema al actualizar el metodo de pago.",
+                    text: data.mensaje || "Hubo un problema al actualizar el pago.",
                 });
             } else {
                 // Mostrar mensaje de éxito
                 Swal.fire({
                     icon: 'success',
-                    title: 'Metodo de pago actualizado',
-                    text: data.mensaje || "El metodo de pago se ha actualizado exitosamente.",
+                    title: 'Pago actualizado',
+                    text: data.mensaje || "El pago se ha actualizado exitosamente.",
                     timer: 2000,
                     showConfirmButton: false
                 }).then(() => {
-                    $('#editarMetodosPagoModal').modal('hide'); // Ocultar el modal
-                    listarMetodosPago(); // Refrescar la lista de metodos de pago
+                    $('#editarPagoModal').modal('hide'); // Ocultar el modal
+                    listarPagos(); // Refrescar la lista de pagos
                 });
             }
         })
@@ -154,13 +164,13 @@ function actualizarMetodosPago() {
                 title: 'Error de conexión',
                 text: 'No se pudo conectar con el servidor. Intente nuevamente más tarde.',
             });
-            console.error('Error al actualizar metodos de pago:', error);
+            console.error('Error al actualizar pago:', error);
         });
 }
 
 
 //Eliminar
-function eliminarMetodosPago(id) {
+function eliminarPago(id) {
     Swal.fire({
         title: '¿Estás seguro?',
         text: "No podrás revertir esto!",
@@ -171,7 +181,7 @@ function eliminarMetodosPago(id) {
         confirmButtonText: 'Sí, eliminar!'
     }).then((result) => {
         if (result.isConfirmed) {
-            fetch(`/api/v1/metodosPago/${id}`, {
+            fetch(`/api/v1/pagos/${id}`, {
                 method: 'DELETE'
             })
                 .then(response => response.json())
@@ -182,7 +192,7 @@ function eliminarMetodosPago(id) {
                         text: data.mensaje,
                     }).then(() => {
                         if (!data.error) {
-                            listarMetodosPago(); // Refrescar la lista de metodos de pago
+                            listarPagos(); // Refrescar la lista de pagos
                         }
                     });
                 })
@@ -190,15 +200,15 @@ function eliminarMetodosPago(id) {
                     Swal.fire({
                         icon: 'error',
                         title: 'Error de conexión',
-                        text: 'No se pudo eliminar el metodo de pago.',
+                        text: 'No se pudo eliminar el pago.',
                     });
-                    console.error('Error al eliminar metodo de pago:', error);
+                    console.error('Error al eliminar pago:', error);
                 });
         }
     });
 }
 
 function exportarExcel() {
-    window.location.href = '/excelmetodosPago';
+    window.location.href = '/excelpagos';
 }
 

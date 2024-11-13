@@ -1,7 +1,6 @@
 package com.example.DonnaPizza.MVC.Pagos;
 
 import jakarta.persistence.*;
-import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,11 +19,13 @@ public class Pagos {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_pago;
 
-    private Long id_pedido;
+    @Column(unique = true)
+    private long id_pedido;
 
-    private Long id_metodo_pago;
+    @Column(unique = true)
+    private long id_metodo_pago;
 
     private Double monto;
 
-    private Date fecha;
+    private String fecha;
 }

@@ -1,3 +1,4 @@
+
 package com.example.DonnaPizza.Controller;
 
 import com.example.DonnaPizza.MVC.Cliente.ServicioCliente;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 @CrossOrigin(origins = {"http://localhost:4200"})
 public class CRUDController {
-
+  
     // CRUD Clientes
     private final ServicioCliente servicioCliente;
     private final ServicioIngredientes servicioIngredientes;
@@ -28,6 +29,8 @@ public class CRUDController {
     private final ServicioPromocionesUsuarios servicioPromocionesUsuarios;
     private final ServicioPizzas servicioPizzas;
     private final ServicioPizzasFamiliares servicioPizzasFamiliares;
+    private final ServicioUsuarios servicioUsuarios;
+    private final ServicioDetallesPedido servicioDetallesPedido;
 
     @GetMapping("/pizzasfamiliares")
     public String listarPizzasFamiliares(Model model) {

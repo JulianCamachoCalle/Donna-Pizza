@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 // Tabla
 @Table(name = "metodos_pago")
 public class MetodosPago {
+
     // Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
